@@ -1,0 +1,11 @@
+@use "header";
+@use "request";
+
+body {
+    background-color: #232323;
+    font-family: "Montserrat", serif;
+}
+
+.wrapper {
+    padding: 0 142px;
+}

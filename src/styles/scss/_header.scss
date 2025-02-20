@@ -1,0 +1,18 @@
+.header {
+    padding-top: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.contact_button {
+    color: white;
+    background: #232323;
+    border-radius: 15px;
+    border: white 1px solid;
+    font-family: "Montserrat";
+    font-size: 18px;
+    padding: 12px 40px;
+    margin-bottom: 49px;
+    cursor: pointer;
+}
