@@ -1,11 +1,25 @@
 @use "header";
 @use "request";
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     background-color: #232323;
     font-family: "Montserrat", serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
 .wrapper {
     padding: 0 142px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
 }

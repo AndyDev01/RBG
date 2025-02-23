@@ -1,7 +1,4 @@
 .request {
-    padding-top: 172px;
-    padding-bottom: 174px;
-
     &__button {
         cursor: pointer;
         border-radius: 15px;
@@ -56,6 +53,7 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 72px;
 }
 .item {
     &__icon {
