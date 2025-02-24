@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./src/styles/normalize.css" />
         <link rel="stylesheet" href="./src/styles/style.css" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,7 +22,7 @@
             <header class="header">
                 <img
                     src="./public/rbg-logo-white.svg"
-                    class="header__logo"
+                    class="logo"
                     alt="logo"
                 />
                 <div>
@@ -36,9 +37,6 @@
                     кондиционирования.
                 </p>
                 <button class="request__button">Отправить запрос</button>
-                <button class="request__button2">Отправить запрос</button>
-                <button class="request__button3">Отправить запрос</button>
-                <button class="request__button4">Отправить запрос</button>
             </section>
             <div class="items">
                 <div class="item">
@@ -145,7 +143,39 @@
         </div>
 
         <div class="sidebar request-sidebar">
-            <h2>Отправить запрос</h2>
+            <img src="./public/rbg-logo-blue.svg" class="logo" alt="logo" />
+            <form action="" class="request__form">
+                <h2 class="h2">Ваш запрос</h2>
+                <div class="request__inputs">
+                    <input
+                        type="text"
+                        placeholder="Имя"
+                        class="request__form_input"
+                    />
+                    <input
+                        type="text"
+                        placeholder="Компания"
+                        class="request__form_input"
+                    />
+                    <input
+                        type="email"
+                        placeholder="Ваша эл. почта"
+                        class="request__form_input"
+                    />
+                    <textarea
+                        placeholder="Текст запроса"
+                        class="request__textarea"
+                    ></textarea>
+                </div>
+                <div>
+                    <button type="submit" class="request__form_button">
+                        Отправить
+                    </button>
+                    <button type="submit" class="request__form_button2">
+                        Отправить
+                    </button>
+                </div>
+            </form>
         </div>
         <script type="module" src="/src/main.js"></script>
     </body>

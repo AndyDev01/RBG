@@ -2,66 +2,6 @@
     &__button {
         color: white;
         border-radius: 15px;
-        // background-color: transparent;
-        background-color: #3a75ed;
-        font-family: "Montserrat";
-        font-size: 18px;
-        margin-bottom: 49px;
-        cursor: pointer;
-        transition: box-shadow 0.3s ease;
-        font-weight: 500;
-        line-height: 29.26px;
-        letter-spacing: 0%;
-        border: 1px solid white;
-        padding: 15px 37px 17px 36px;
-        &:hover {
-            box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        }
-    }
-    &__button2 {
-        color: white;
-        border-radius: 15px;
-        // background-color: transparent;
-        background-color: #3a75ed;
-        font-family: "Montserrat";
-        font-size: 18px;
-        margin-bottom: 49px;
-        cursor: pointer;
-        transition: box-shadow 0.3s ease;
-        font-weight: 500;
-        line-height: 29.26px;
-        letter-spacing: 0%;
-        border: 1px solid transparent;
-        padding: 15px 37px 17px 36px;
-        &:hover {
-            box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        }
-    }
-    &__button4 {
-        color: white;
-        border-radius: 15px;
-        background-color: transparent;
-        font-family: "Montserrat";
-        font-size: 18px;
-        margin-bottom: 49px;
-        cursor: pointer;
-        transition: box-shadow 0.3s ease;
-        font-weight: 500;
-        line-height: 29.26px;
-        letter-spacing: 0%;
-        border: 1px solid white;
-        padding: 15px 37px 17px 36px;
-        &:hover {
-            box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        }
-    }
-    &__button3 {
-        color: white;
-        border-radius: 15px;
-        // background-color: transparent;
         background-color: #3a75ed;
         font-family: "Montserrat";
         font-size: 18px;
@@ -77,6 +17,52 @@
             box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
             border: 1px solid white;
+        }
+    }
+    &__form {
+        margin-top: 84px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        h2 {
+            font-family: "Montserrat";
+            font-weight: 600;
+            font-size: 33px;
+            line-height: 40.23px;
+            letter-spacing: 0%;
+        }
+        &_input {
+            border: none;
+            padding-top: 16px;
+            padding-bottom: 11px;
+            padding-left: 0;
+            border-bottom: 1px solid #151515;
+            outline: none;
+            font-size: 20px;
+        }
+    }
+    &__inputs {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__textarea {
+        height: 130px;
+        margin-top: 31px;
+        background-color: #e7e7e7;
+        outline: none;
+        font-family: "Montserrat";
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24.38px;
+        border: none;
+        border-radius: 11px;
+        padding: 14px 18px 14px 18px;
+        resize: none;
+        &::placeholder {
+            font-size: 20px;
+            font-weight: 400;
+            color: #959595;
         }
     }
 }

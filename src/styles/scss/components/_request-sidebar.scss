@@ -1,6 +1,10 @@
 .request-sidebar {
     @extend .sidebar;
 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 76px 162px 224px 162px;
     left: 0;
     width: $sidebar-request-width;
     transform: translateX(-100%);
@@ -12,12 +16,54 @@
     &.active {
         transform: translateX(0);
     }
+}
 
-    &__title {
-        font-size: 2rem;
+.request__form {
+    display: flex;
+    flex-direction: column;
+    gap: 54px;
+
+    &_button {
+        width: 264px;
+        border-radius: 15px;
+        background-color: #3a75ed;
+        color: white;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28.8px;
+        font-family: "Montserrat";
+        padding: 15px 65px 15px 63px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        box-sizing: border-box;
+        &:hover {
+            transition: all 0.3s ease;
+            border: 1px solid white;
+            box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
     }
-
-    &__description {
-        margin: 20px 0;
+    &_button2 {
+        width: 264px;
+        border-radius: 15px;
+        background-color: #3a75ed;
+        color: white;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 28.8px;
+        font-family: "Montserrat";
+        padding: 15px 65px 15px 63px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        box-sizing: border-box;
+        &:hover {
+            transition: all 0.3s ease;
+            // border: 1px solid white;
+            box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+        }
+    }
+    &_input {
+        font-family: "Montserrat";
     }
 }
