@@ -7,7 +7,7 @@
 
 .contact_button {
     color: white;
-    background: #232323;
+    background-color: transparent;
     border-radius: 15px;
     border: white 1px solid;
     font-family: "Montserrat";
@@ -15,4 +15,19 @@
     padding: 12px 40px;
     margin-bottom: 49px;
     cursor: pointer;
+    transition: box-shadow 0.3s ease;
+
+.contact_button:hover {
+    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7); /* Белое свечение */
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Начальное свечение */
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.9); /* Максимальное свечение */
+    }
 }
