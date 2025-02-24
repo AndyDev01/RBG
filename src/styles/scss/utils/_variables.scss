@@ -4,3 +4,5 @@ $overlay-bg: rgba(0, 0, 0, 0.5);
 $transition-duration: 0.3s;
 $z-index-overlay: 1000;
 $z-index-sidebar: 1001;
+$overlay-color: rgba(21, 21, 21, 0.85); // #151515 с 85% прозрачности
+$backdrop-blur: blur(4px);

@@ -9,9 +9,33 @@
     visibility: hidden;
     transition: all $transition-duration ease;
     z-index: $z-index-overlay;
+    background: $overlay-color;
+    backdrop-filter: $backdrop-blur;
+    -webkit-backdrop-filter: $backdrop-blur;
+    transition: all $transition-duration ease,
+        backdrop-filter $transition-duration ease,
+        -webkit-backdrop-filter $transition-duration ease;
 
     &.active {
         opacity: 1;
         visibility: visible;
+        backdrop-filter: $backdrop-blur;
+        -webkit-backdrop-filter: $backdrop-blur;
+    }
+}
+
+.overlay {
+    @supports not (backdrop-filter: blur(1px)) {
+        background: rgba(21, 21, 21, 0.95);
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: inherit;
+            z-index: -1;
+        }
     }
 }

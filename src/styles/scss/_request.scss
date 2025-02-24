@@ -2,18 +2,18 @@
     &__button {
         color: white;
         border-radius: 15px;
-        border: white 1px solid;
         background-color: transparent;
         font-family: "Montserrat";
         font-size: 18px;
-        padding: 12px 40px;
         margin-bottom: 49px;
         cursor: pointer;
         transition: box-shadow 0.3s ease;
         font-weight: 500;
         line-height: 29.26px;
         letter-spacing: 0%;
+        border: 1px solid white;
         padding: 15px 37px 17px 36px;
+
         &:hover {
             box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
