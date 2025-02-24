@@ -3,6 +3,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    &__logo {
+        width: 88px;
+        height: 88px;
+    }
 }
 
 .contact_button {
