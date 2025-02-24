@@ -1,0 +1,18 @@
+.contact-sidebar {
+    @extend .sidebar;
+    right: 0;
+    width: $sidebar-contact-width;
+    transform: translateX(100%);
+
+    @include mobile {
+        transform: translateX(100%);
+    }
+
+    &.active {
+        transform: translateX(0);
+    }
+
+    &__content {
+        padding: 20px;
+    }
+}

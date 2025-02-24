@@ -1,5 +1,11 @@
 @use "header";
 @use "request";
+@import "utils/variables";
+@import "utils/mixins";
+@import "components/overlay";
+@import "components/sidebar-base";
+@import "components/contact-sidebar";
+@import "components/request-sidebar";
 
 * {
     margin: 0;
@@ -8,7 +14,6 @@
 }
 
 body {
-    // background-color: #232323;
     font-family: "Montserrat", serif;
     box-sizing: border-box;
     margin: 0;
@@ -17,12 +22,12 @@ body {
 }
 
 #video-background {
-    position: fixed; /* Фиксируем видео */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* 100% ширины вьюпорта */
-    height: 100vh; /* 100% высоты вьюпорта */
-    object-fit: cover; /* Видео заполняет весь блок, сохраняя пропорции */
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
     z-index: -1;
 }
 

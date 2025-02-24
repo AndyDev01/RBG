@@ -1,0 +1,14 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    background: #fff;
+    transition: transform $transition-duration ease;
+    z-index: $z-index-sidebar;
+    padding: 40px;
+    box-sizing: border-box;
+
+    @include mobile {
+        width: 100% !important;
+    }
+}

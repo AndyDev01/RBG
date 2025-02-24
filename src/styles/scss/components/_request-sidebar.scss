@@ -1,0 +1,23 @@
+.request-sidebar {
+    @extend .sidebar;
+
+    left: 0;
+    width: $sidebar-request-width;
+    transform: translateX(-100%);
+
+    @include mobile {
+        transform: translateX(-100%);
+    }
+
+    &.active {
+        transform: translateX(0);
+    }
+
+    &__title {
+        font-size: 2rem;
+    }
+
+    &__description {
+        margin: 20px 0;
+    }
+}
