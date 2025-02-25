@@ -21,6 +21,7 @@
     }
     &__form {
         margin-top: 84px;
+        margin-top: 168px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -31,15 +32,20 @@
             line-height: 40.23px;
             letter-spacing: 0%;
         }
-        &_input {
-            border: none;
-            padding-top: 16px;
-            padding-bottom: 11px;
-            padding-left: 0;
-            border-bottom: 1px solid #151515;
-            outline: none;
-            font-size: 20px;
-        }
+        // &_input {
+        //     border: none;
+        //     padding-top: 27px;
+        //     padding-bottom: 10px;
+        //     padding-left: 0;
+        //     border-bottom: 1px solid #151515;
+        //     outline: none;
+        //     font-size: 20px;
+        //     &::placeholder {
+        //         font-size: 20px;
+        //         font-weight: 400;
+        //         color: #959595;
+        //     }
+        // }
     }
     &__inputs {
         display: flex;
@@ -47,7 +53,7 @@
         justify-content: space-between;
     }
     &__textarea {
-        height: 130px;
+        height: 102px;
         margin-top: 31px;
         background-color: #e7e7e7;
         outline: none;
@@ -61,7 +67,7 @@
         resize: none;
         &::placeholder {
             font-size: 20px;
-            font-weight: 400;
+            font-weight: 350;
             color: #959595;
         }
     }
