@@ -59,12 +59,13 @@
 
         &::placeholder {
             font-size: 20px;
-            font-weight: 370;
+            font-weight: 385;
             color: #959595;
             text-align: left !important;
             padding-left: 0 !important;
             text-indent: 0;
             opacity: 1;
+            text-indent: -2px; // Сдвиг влево на 5px
         }
     }
 }
