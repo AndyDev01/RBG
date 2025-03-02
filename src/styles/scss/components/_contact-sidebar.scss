@@ -15,4 +15,51 @@
     &__content {
         padding: 20px;
     }
+    &_wrapper {
+        padding: 0 74px;
+    }
+}
+.contact-title {
+    margin-left: 54px;
+    padding: 188px 0 75px 0;
+}
+.contact-information {
+    display: flex;
+    flex-direction: column;
+}
+
+.phones_block,
+.mail_block,
+.location_block {
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 52px;
+}
+
+.contact_icons {
+    margin-right: 15px;
+    margin-top: -8px;
+    min-width: 41px;
+    min-height: 41px;
+}
+
+.contact_icons {
+    margin-top: -8px;
+    flex-shrink: 0;
+}
+
+.contact-information {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-label {
+    margin-right: 8px;
+    font-weight: 500;
+}
+
+.location-label {
+    font-weight: 500;
+    margin-right: 8px;
 }

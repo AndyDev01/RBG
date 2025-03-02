@@ -27,6 +27,18 @@ body {
     min-height: 100vh;
 }
 
+ul,
+ol,
+li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none !important;
+}
+
 #video-background {
     position: fixed;
     top: 0;
