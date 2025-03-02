@@ -43,11 +43,6 @@
     min-height: 41px;
 }
 
-.contact_icons {
-    margin-top: -8px;
-    flex-shrink: 0;
-}
-
 .contact-information {
     display: flex;
     flex-direction: column;
@@ -62,4 +57,11 @@
 .location-label {
     font-weight: 500;
     margin-right: 8px;
+}
+
+.phone,
+.contact-email {
+    color: #151515;
+    text-decoration: none;
+    font-weight: 400;
 }
