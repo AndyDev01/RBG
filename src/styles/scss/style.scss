@@ -39,6 +39,10 @@ a {
     text-decoration: none;
 }
 
+:root {
+    --wrapper-padding: 29px;
+}
+
 #video-background {
     position: fixed;
     top: 0;
@@ -57,21 +61,8 @@ a {
     height: 100vh;
 }
 
-// /* Принудительное затемнение элементов */
-// .ymaps-2-1-79-balloon__content,
-// .ymaps-2-1-79-balloon__tail,
-// .ymaps-2-1-79-balloon__close-button,
-// .ymaps-2-1-79-balloon__layout {
-//     background-color: #1a1a1a !important;
-//     color: #fff !important;
-// }
-
-// .ymaps-2-1-79-balloon__close-button {
-//     filter: invert(1);
-// }
-
-// /* Затемнение подложки */
-// .ymaps-2-1-79-ground-pane {
-//     filter: grayscale(1) invert(1) contrast(1.2) brightness(0.9);
-//     -webkit-filter: grayscale(1) invert(1) contrast(1.2) brightness(0.9);
-// }
+@media (max-width: 845px) {
+    .wrapper {
+        padding: 0 18px;
+    }
+}
