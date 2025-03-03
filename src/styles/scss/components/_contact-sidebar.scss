@@ -18,10 +18,14 @@
     &_wrapper {
         padding: 0 74px;
     }
+    &_wrapper {
+        padding-bottom: 84px;
+    }
 }
 .contact-title {
     margin-left: 54px;
     padding: 188px 0 75px 0;
+    font-size: 33px;
 }
 .contact-information {
     display: flex;
@@ -64,4 +68,9 @@
     color: #151515;
     text-decoration: none;
     font-weight: 400;
+}
+
+.map_wrapper {
+    display: flex;
+    flex-direction: column;
 }

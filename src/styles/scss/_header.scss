@@ -25,3 +25,27 @@
     box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
     text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
+
+@media (max-width: 845px) {
+    .header {
+        padding-bottom: 57px;
+    }
+    .logo {
+        width: 44px;
+        height: 44px;
+    }
+    .contact_button {
+        font-size: 12px;
+        padding: 12px 40px;
+        margin-bottom: 49px;
+        transition: box-shadow 0.3s ease;
+        margin-bottom: 0;
+        margin-top: 0;
+    }
+    .h1 {
+        font-size: 35px;
+        font-weight: 700;
+        font-size: 35px;
+        line-height: 42.67px;
+    }
+}

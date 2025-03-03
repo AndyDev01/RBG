@@ -1,4 +1,5 @@
 .overlay {
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -21,6 +22,7 @@
         visibility: visible;
         backdrop-filter: $backdrop-blur;
         -webkit-backdrop-filter: $backdrop-blur;
+        display: block;
     }
 }
 

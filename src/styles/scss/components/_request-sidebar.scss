@@ -1,6 +1,5 @@
 .request-sidebar {
     @extend .sidebar;
-
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -43,7 +42,6 @@
         box-sizing: border-box;
         &:hover {
             transition: all 0.3s ease;
-            // border: 1px solid white;
             box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
         }

@@ -6,6 +6,13 @@
     transition: transform $transition-duration ease;
     z-index: $z-index-sidebar;
     box-sizing: border-box;
+    visibility: hidden;
+    opacity: 0;
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
 
     @include mobile {
         width: 100% !important;
