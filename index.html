@@ -1,254 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./src/styles/normalize.css" />
-        <link rel="stylesheet" href="./src/styles/style.css" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-            rel="stylesheet"
-        />
-        <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&theme=dark"></script>
-        <title>Rbg</title>
-    </head>
-    <body>
-        <video autoplay muted loop playsinline id="video-background">
-            <source src="./public/videos/background.webm" type="video/webm" />
-        </video>
-        <div class="wrapper">
-            <header class="header">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/normalize.css" />
+    <link rel="stylesheet" href="./src/styles/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&theme=dark"></script>
+    <title>Rbg</title>
+  </head>
+  <body>
+    <video autoplay muted loop playsinline id="video-background">
+      <source src="./public/videos/background.webm" type="video/webm" />
+    </video>
+    <div class="wrapper">
+      <header class="header">
+        <img src="./public/rbg-logo-white.svg" class="logo" alt="logo" />
+        <div>
+          <button class="contact_button">Связаться с нами</button>
+        </div>
+      </header>
+
+      <section class="request">
+        <h1 class="h1">РЕФБИЛИДИНГ ГРУПП</h1>
+        <p class="description">
+          Надежный поставщик систем холодоснабжения, вентиляции и
+          кондиционирования.
+        </p>
+        <button class="request__button">Отправить запрос</button>
+      </section>
+      <div class="items-container">
+        <div class="items">
+          <div class="item">
+            <div class="icon">
+              <div class="item__bg">
                 <img
-                    src="./public/rbg-logo-white.svg"
-                    class="logo"
-                    alt="logo"
+                  class="item__icon"
+                  src="./public/icons/service_icon.svg"
+                  alt="service_icon"
                 />
-                <div>
-                    <button class="contact_button">Связаться с нами</button>
-                </div>
-            </header>
-
-            <section class="request">
-                <h1 class="h1">РЕФБИЛИДИНГ ГРУПП</h1>
-                <p class="description">
-                    Надежный поставщик систем холодоснабжения, вентиляции и
-                    кондиционирования.
-                </p>
-                <button class="request__button">Отправить запрос</button>
-            </section>
-            <div class="items-container">
-                <div class="items">
-                    <div class="item">
-                        <div class="icon">
-                            <div class="item__bg">
-                                <img
-                                    class="item__icon"
-                                    src="./public/time-icon.svg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-
-                        <div class="item__text">Преимущество</div>
-                        <p class="item__description">
-                            Lorem Ipsumis simply dummy text of the
-                        </p>
-                    </div>
-                    <div class="item">
-                        <div class="icon">
-                            <div class="item__bg">
-                                <img
-                                    class="item__icon"
-                                    src="./public/time-icon.svg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-
-                        <div class="item__text">Преимущество</div>
-                        <p class="item__description">
-                            Lorem Ipsumis simply dummy text of the
-                        </p>
-                    </div>
-                    <div class="item">
-                        <div class="icon">
-                            <div class="item__bg">
-                                <img
-                                    class="item__icon"
-                                    src="./public/time-icon.svg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-
-                        <div class="item__text">Преимущество</div>
-                        <p class="item__description">
-                            Lorem Ipsumis simply dummy text of the
-                        </p>
-                    </div>
-                    <div class="item">
-                        <div class="icon">
-                            <div class="item__bg">
-                                <img
-                                    class="item__icon"
-                                    src="./public/time-icon.svg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-
-                        <div class="item__text">Преимущество</div>
-                        <p class="item__description">
-                            Lorem Ipsumis cimply dummy text of the
-                        </p>
-                    </div>
-                    <div class="item">
-                        <div class="icon">
-                            <div class="item__bg">
-                                <img
-                                    class="item__icon"
-                                    src="./public/time-icon.svg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-
-                        <div class="item__text">Преимущество</div>
-                        <p class="item__description">
-                            Lorem Ipsumis simply dummy text of the
-                        </p>
-                    </div>
-                    <div class="item">
-                        <div class="icon">
-                            <div class="item__bg">
-                                <img
-                                    class="item__icon"
-                                    src="./public/time-icon.svg"
-                                    alt=""
-                                />
-                            </div>
-                        </div>
-
-                        <div class="item__text">Преимущество</div>
-                        <p class="item__description">
-                            Lorem Ipsumis simply dummy text of the
-                        </p>
-                    </div>
-                </div>
+              </div>
             </div>
-        </div>
-        <div class="overlay"></div>
-        <div class="sidebar contact-sidebar">
-            <div class="map_wrapper">
-                <div class="contact-sidebar_wrapper">
-                    <h2 class="contact-title">Связаться с нами</h2>
-                    <li class="contact">
-                        <ul class="phones_block">
-                            <img
-                                src="./public/phone_icon.svg"
-                                alt="phone_icon"
-                                class="contact_icons"
-                            />
-                            <div class="contact-information">
-                                <a href="tel:+7 (495) 521 19 15" class="phone"
-                                    >+7 (495) 521 19 15</a
-                                >
-                                <a href="tel:+7 (495) 521 30 16" class="phone"
-                                    >+7 (495) 521 30 16</a
-                                >
-                            </div>
-                        </ul>
-                        <ul class="mail_block">
-                            <img
-                                src="./public/email_icon.svg"
-                                alt="email_icon"
-                                class="contact_icons"
-                            />
-                            <div class="contact-information">
-                                <div class="contact-line">
-                                    <span class="contact-label"
-                                        >Коммерческий отдел:</span
-                                    >
-                                    <a
-                                        href="mailto:info@refbg.ru"
-                                        class="contact-email"
-                                        >info@refbg.ru</a
-                                    >
-                                </div>
-                                <div class="contact-line">
-                                    <span class="contact-label"
-                                        >Сервисная служба:</span
-                                    >
-                                    <a
-                                        href="mailto: service@refbg.ru"
-                                        class="contact-email"
-                                        >service@refbg.ru</a
-                                    >
-                                </div>
-                            </div>
-                        </ul>
-                        <ul class="location_block">
-                            <img
-                                src="./public/location_icon.svg"
-                                alt="location_icon"
-                                class="contact_icons"
-                            />
-                            <div class="contact-information">
-                                <div class="contact-line">
-                                    <span class="location-label">Офис:</span>
-                                    Московская обл., г. Балашиха, улица
-                                    Белякова, 2Б
-                                </div>
-                                <div class="contact-line">
-                                    <span class="location-label"
-                                        >Производство:</span
-                                    >
-                                    Московская обл., г. Электрогорск, улица
-                                    Буденного, д. 1а
-                                </div>
-                            </div>
-                        </ul>
-                    </li>
-                </div>
-                <div id="map" style="width: 100%; height: 353px"></div>
+            <div class="item__text">Сервисная служба</div>
+            <p class="item__description">
+              Техническая <br />
+              поддержка 24/7
+            </p>
+          </div>
+          <div class="item">
+            <div class="icon">
+              <div class="item__bg">
+                <img
+                  class="item__icon"
+                  src="./public/icons/gear_icon.svg"
+                  alt="gear_icon"
+                />
+              </div>
             </div>
-        </div>
+            <div class="item__text">Собственное производство</div>
+            <p class="item__description">
+              Поставка оборудования <br />
+              без посредников
+            </p>
+          </div>
+          <div class="item">
+            <div class="icon">
+              <div class="item__bg">
+                <img
+                  class="item__icon"
+                  src="./public/icons/snowflake_icon.svg"
+                  alt="snowflake_icon"
+                />
+              </div>
+            </div>
+            <div class="item__text">Экспертность</div>
+            <p class="item__description">
+              Знание технологий хранения <br />
+              и холодильной обработки
+            </p>
+          </div>
+          <div class="item">
+            <div class="icon">
+              <div class="item__bg">
+                <img
+                  class="item__icon"
+                  src="./public/icons/key_icon.svg"
+                  alt="key_icon"
+                />
+              </div>
+            </div>
 
-        <div class="sidebar request-sidebar">
-            <img src="./public/rbg-logo-blue.svg" class="logo" alt="logo" />
-            <form action="" class="request__form">
-                <h2 class="h2">Ваш запрос</h2>
-                <div class="request__inputs">
-                    <input
-                        type="text"
-                        placeholder="Имя"
-                        class="request__form_input"
-                    />
-                    <input
-                        type="text"
-                        placeholder="Компания"
-                        class="request__form_input"
-                    />
-                    <input
-                        type="email"
-                        placeholder="Ваша эл. почта"
-                        class="request__form_input"
-                    />
-                    <textarea
-                        placeholder="Текст запроса"
-                        class="request__textarea"
-                    ></textarea>
-                </div>
-                <div>
-                    <button type="submit" class="request__form_button">
-                        Отправить
-                    </button>
-                </div>
-            </form>
+            <div class="item__text">Комплексный подход</div>
+            <p class="item__description">
+              Реализация объектов <br />
+              «под ключ»
+            </p>
+          </div>
+          <div class="item">
+            <div class="icon">
+              <div class="item__bg">
+                <img
+                  class="item__icon"
+                  src="./public/icons/popular_man_icon.svg"
+                  alt="popular_man_icon"
+                />
+              </div>
+            </div>
+
+            <div class="item__text">Накопленный опыт</div>
+            <p class="item__description">
+              Успешный запуск проектов <br />
+              различной сложности
+            </p>
+          </div>
+          <div class="item">
+            <div class="icon">
+              <div class="item__bg">
+                <img
+                  class="item__icon"
+                  src="./public/icons/warehouse_icon.svg"
+                  alt="warehouse_icon"
+                />
+              </div>
+            </div>
+
+            <div class="item__text">Склад ЗИП</div>
+            <p class="item__description">
+              Наличие необходимых <br />комплектующих
+            </p>
+          </div>
         </div>
-        <script type="module" src="/src/main.js"></script>
-    </body>
+      </div>
+    </div>
+    <div class="overlay"></div>
+    <div class="sidebar contact-sidebar">
+      <div class="map_wrapper">
+        <div class="contact-sidebar_wrapper">
+          <h2 class="contact-title">Связаться с нами</h2>
+          <li class="contact">
+            <ul class="phones_block">
+              <img
+                src="./public/phone_icon.svg"
+                alt="phone_icon"
+                class="contact_icons"
+              />
+              <div class="contact-information">
+                <a href="tel:+7 (495) 521 19 15" class="phone"
+                  >+7 (495) 521 19 15</a
+                >
+                <a href="tel:+7 (495) 521 30 16" class="phone"
+                  >+7 (495) 521 30 16</a
+                >
+              </div>
+            </ul>
+            <ul class="mail_block">
+              <img
+                src="./public/email_icon.svg"
+                alt="email_icon"
+                class="contact_icons"
+              />
+              <div class="contact-information">
+                <div class="contact-line">
+                  <span class="contact-label">Коммерческий отдел:</span>
+                  <a href="mailto:info@refbg.ru" class="contact-email"
+                    >info@refbg.ru</a
+                  >
+                </div>
+                <div class="contact-line">
+                  <span class="contact-label">Сервисная служба:</span>
+                  <a href="mailto: service@refbg.ru" class="contact-email"
+                    >service@refbg.ru</a
+                  >
+                </div>
+              </div>
+            </ul>
+            <ul class="location_block">
+              <img
+                src="./public/location_icon.svg"
+                alt="location_icon"
+                class="contact_icons"
+              />
+              <div class="contact-information">
+                <div class="contact-line">
+                  <span class="location-label">Офис:</span>
+                  Московская обл., г. Балашиха, улица Белякова, 2Б
+                </div>
+                <div class="contact-line">
+                  <span class="location-label">Производство:</span>
+                  Московская обл., г. Электрогорск, улица Буденного, д. 1а
+                </div>
+              </div>
+            </ul>
+          </li>
+        </div>
+        <div id="map" style="width: 100%; height: 353px"></div>
+      </div>
+    </div>
+
+    <div class="sidebar request-sidebar">
+      <img src="./public/rbg-logo-blue.svg" class="logo" alt="logo" />
+      <form action="" class="request__form">
+        <h2 class="h2">Ваш запрос</h2>
+        <div class="request__inputs">
+          <input type="text" placeholder="Имя" class="request__form_input" />
+          <input
+            type="text"
+            placeholder="Компания"
+            class="request__form_input"
+          />
+          <input
+            type="email"
+            placeholder="Ваша эл. почта"
+            class="request__form_input"
+          />
+          <textarea
+            placeholder="Текст запроса"
+            class="request__textarea"
+          ></textarea>
+        </div>
+        <div>
+          <button type="submit" class="request__form_button">Отправить</button>
+        </div>
+      </form>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
 </html>

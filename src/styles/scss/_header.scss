@@ -1,51 +1,49 @@
 .header {
-    padding-top: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding-top: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .logo {
-    width: 100px;
-    height: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 .contact_button {
-    color: white;
-    background-color: transparent;
-    border-radius: 15px;
-    border: white 1px solid;
-    font-family: "Montserrat";
-    font-size: 18px;
-    padding: 12px 40px;
-    margin-bottom: 49px;
-    cursor: pointer;
-    transition: box-shadow 0.3s ease;
+  color: white;
+  background-color: transparent;
+  border-radius: 15px;
+  border: white 1px solid;
+  font-family: "Montserrat";
+  font-size: 18px;
+  padding: 12px 40px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
 }
 .contact_button:hover {
-    box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+  box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 
 @media (max-width: 845px) {
-    .header {
-        padding-bottom: 57px;
-    }
-    .logo {
-        width: 44px;
-        height: 44px;
-    }
-    .contact_button {
-        font-size: 12px;
-        padding: 12px 40px;
-        margin-bottom: 49px;
-        transition: box-shadow 0.3s ease;
-        margin-bottom: 0;
-        margin-top: 0;
-    }
-    .h1 {
-        font-size: 35px;
-        font-weight: 700;
-        font-size: 35px;
-        line-height: 42.67px;
-    }
+  .header {
+    padding-bottom: 57px;
+  }
+  .logo {
+    width: 44px;
+    height: 44px;
+  }
+  .contact_button {
+    font-size: 12px;
+    padding: 12px 40px;
+    transition: box-shadow 0.3s ease;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  .h1 {
+    font-size: 35px;
+    font-weight: 700;
+    font-size: 35px;
+    line-height: 42.67px;
+  }
 }
