@@ -73,8 +73,8 @@ body::-webkit-scrollbar {
 
 /* Адаптивные стили для всех устройств */
 
-/* Большие десктопы (больше 1400px) */
-@media (min-width: 1401px) {
+/* Большие десктопы (больше 1600px) */
+@media (min-width: 1400px) {
     .wrapper {
         padding: 0 160px;
     }
@@ -89,6 +89,28 @@ body::-webkit-scrollbar {
         line-height: 58px;
     }
 }
+
+@media (max-width: 1640px) and (min-width: 1201px){
+    h1 {
+        font-size: 50px;
+    }
+    .header {
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .description{
+        margin-bottom: 25px;
+    }
+
+    .description {
+        font-size: 27px;
+    }
+    .item__bg{
+        width: 85px;
+        height: 85px;
+    }
+}
+
 
 /* Стандартные десктопы (от 1200px до 1400px) */
 @media (max-width: 1400px) and (min-width: 1201px) {

@@ -121,7 +121,7 @@ h1 {
     font-size: 19px;
     line-height: 100%;
     letter-spacing: 0%;
-    white-space: nowrap;
+
   }
   &__description {
     text-align: center;
@@ -234,6 +234,7 @@ h1 {
     &__text {
       font-size: 19px;
       margin-top: 10px;
+      white-space: nowrap;
     }
     
     &__description {
@@ -543,7 +544,6 @@ h1 {
       font-size: 13px;
       line-height: 15px;
       margin-top: 6px;
-      white-space: wrap;
     }
     
     &__description {
@@ -553,67 +553,6 @@ h1 {
     }
   }
 }
-
-/* Меньше 359px - показываем 2 элемента */
-// @media (max-width: 358px) {
-//   .request {
-//     &__button {
-//       font-size: 14px;
-//       padding: 10px 20px;
-//       margin-bottom: 25px;
-//       border-radius: 10px;
-//       display: block;
-//       width: 100%;
-//       max-width: 220px;
-//     }
-//     &__form {
-//       margin-top: 70px;
-//       h2 {
-//         font-size: 20px;
-//         line-height: 24px;
-//       }
-//     }
-//     &__textarea {
-//       height: 75px;
-//       font-size: 14px;
-//       margin-top: 15px;
-//     }
-//   }
-  
-//   .items {
-//     overflow-x: auto;
-//     padding-bottom: 20px;
-//     margin-top: 25px;
-//     gap: 8px;
-//   }
-  
-//   .item {
-//     width: calc((100% - 8px) / 2); /* 2 элемента с минимальным отступом */
-    
-//     &__bg {
-//       height: 57px;
-//       width: 57px;
-//       margin: 0 auto;
-//     }
-    
-//     &__icon {
-//       height: 24px;
-//       width: 24px;
-//     }
-    
-//     &__text {
-//       font-size: 12px;
-//       line-height: 14px;
-//       margin-top: 5px;
-//     }
-    
-//     &__description {
-//       font-size: 10px;
-//       line-height: 12px;
-//       margin-top: 3px;
-//     }
-//   }
-// }
 
 /* Общие стили для мобильных устройств */
 @media (max-width: 576px) {

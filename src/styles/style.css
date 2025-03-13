@@ -7,8 +7,8 @@
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 85px;
+  height: 85px;
 }
 
 .contact_button {
@@ -32,30 +32,6 @@
 @media (min-width: 1401px) {
   .header {
     padding-top: 80px;
-  }
-  .logo {
-    width: 120px;
-    height: 120px;
-  }
-}
-/* Стандартные десктопы (от 1200px до 1400px) */
-@media (max-width: 1400px) and (min-width: 1201px) {
-  .header {
-    padding-top: 72px;
-  }
-  .logo {
-    width: 110px;
-    height: 110px;
-  }
-}
-/* Маленькие десктопы и большие планшеты (от 992px до 1200px) */
-@media (max-width: 1200px) and (min-width: 993px) {
-  .header {
-    padding-top: 68px;
-  }
-  .logo {
-    width: 95px;
-    height: 95px;
   }
 }
 /* Планшеты (от 768px до 992px) */
@@ -258,7 +234,6 @@ h1 {
   font-size: 19px;
   line-height: 100%;
   letter-spacing: 0%;
-  white-space: nowrap;
 }
 .item__description {
   text-align: center;
@@ -357,6 +332,7 @@ h1 {
   .item__text {
     font-size: 19px;
     margin-top: 10px;
+    white-space: nowrap;
   }
   .item__description {
     font-size: 15px;
@@ -614,7 +590,6 @@ h1 {
     font-size: 13px;
     line-height: 15px;
     margin-top: 6px;
-    white-space: wrap;
   }
   .item__description {
     font-size: 11px;
@@ -622,7 +597,6 @@ h1 {
     margin-top: 4px;
   }
 }
-/* Меньше 359px - показываем 2 элемента */
 /* Общие стили для мобильных устройств */
 @media (max-width: 576px) {
   .request__button {
@@ -953,8 +927,8 @@ body {
 }
 
 /* Адаптивные стили для всех устройств */
-/* Большие десктопы (больше 1400px) */
-@media (min-width: 1401px) {
+/* Большие десктопы (больше 1600px) */
+@media (min-width: 1400px) {
   .wrapper {
     padding: 0 160px;
   }
@@ -965,6 +939,25 @@ body {
   h2 {
     font-size: 48px;
     line-height: 58px;
+  }
+}
+@media (max-width: 1640px) and (min-width: 1201px) {
+  h1 {
+    font-size: 50px;
+  }
+  .header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .description {
+    margin-bottom: 25px;
+  }
+  .description {
+    font-size: 27px;
+  }
+  .item__bg {
+    width: 85px;
+    height: 85px;
   }
 }
 /* Стандартные десктопы (от 1200px до 1400px) */

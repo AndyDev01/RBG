@@ -5,8 +5,8 @@
   justify-content: space-between;
 }
 .logo {
-  width: 100px;
-  height: 100px;
+  width: 85px;
+  height: 85px;
 }
 
 .contact_button {
@@ -30,33 +30,10 @@
   .header {
     padding-top: 80px;
   }
-  .logo {
-    width: 120px;
-    height: 120px;
-  }
+
 }
 
-/* Стандартные десктопы (от 1200px до 1400px) */
-@media (max-width: 1400px) and (min-width: 1201px) {
-  .header {
-    padding-top: 72px;
-  }
-  .logo {
-    width: 110px;
-    height: 110px;
-  }
-}
 
-/* Маленькие десктопы и большие планшеты (от 992px до 1200px) */
-@media (max-width: 1200px) and (min-width: 993px) {
-  .header {
-    padding-top: 68px;
-  }
-  .logo {
-    width: 95px;
-    height: 95px;
-  }
-}
 
 /* Планшеты (от 768px до 992px) */
 @media (max-width: 992px) and (min-width: 769px) {
