@@ -88,7 +88,7 @@
 }
 
 /* Телефоны (от 359px до 576px) */
-@media (max-width: 576px) and (min-width: 359px) {
+@media (max-width: 576px) and (min-width: 357px) {
   .contact_button{
     width: 156px;
     padding: 12px 22px;
@@ -99,8 +99,8 @@
     padding-bottom: 15px;
   }
   .logo {
-    width: 55px;
-    height: 55px;
+    width: 44px;
+    height: 44px;
   }
   .h1 {
     font-size: 38px;
@@ -117,7 +117,7 @@
     font-size: 12px;
   }
   .header {
-    padding-top: 15px;
+    padding-top: 15px !important;
     padding-bottom: 15px;
   }
   .logo {

@@ -86,7 +86,7 @@
   }
 }
 /* Телефоны (от 359px до 576px) */
-@media (max-width: 576px) and (min-width: 359px) {
+@media (max-width: 576px) and (min-width: 357px) {
   .contact_button {
     width: 156px;
     padding: 12px 22px;
@@ -97,8 +97,8 @@
     padding-bottom: 15px;
   }
   .logo {
-    width: 55px;
-    height: 55px;
+    width: 44px;
+    height: 44px;
   }
   .h1 {
     font-size: 38px;
@@ -114,7 +114,7 @@
     font-size: 12px;
   }
   .header {
-    padding-top: 15px;
+    padding-top: 15px !important;
     padding-bottom: 15px;
   }
   .logo {
@@ -570,7 +570,7 @@ h1 {
   }
 }
 /* От 359px до 576px - показываем 3 элемента */
-@media (max-width: 576px) and (min-width: 357px) {
+@media (max-width: 576px) {
   .request__button {
     font-size: 16px;
     padding: 12px 25px;
@@ -614,6 +614,7 @@ h1 {
     font-size: 13px;
     line-height: 15px;
     margin-top: 6px;
+    white-space: wrap;
   }
   .item__description {
     font-size: 11px;
@@ -622,57 +623,6 @@ h1 {
   }
 }
 /* Меньше 359px - показываем 2 элемента */
-@media (max-width: 358px) {
-  .request__button {
-    font-size: 14px;
-    padding: 10px 20px;
-    margin-bottom: 25px;
-    border-radius: 10px;
-    display: block;
-    width: 100%;
-    max-width: 220px;
-  }
-  .request__form {
-    margin-top: 70px;
-  }
-  .request__form h2 {
-    font-size: 20px;
-    line-height: 24px;
-  }
-  .request__textarea {
-    height: 75px;
-    font-size: 14px;
-    margin-top: 15px;
-  }
-  .items {
-    overflow-x: auto;
-    padding-bottom: 20px;
-    margin-top: 25px;
-    gap: 8px;
-  }
-  .item {
-    width: calc((100% - 8px) / 2); /* 2 элемента с минимальным отступом */
-  }
-  .item__bg {
-    height: 54px;
-    width: 54px;
-    margin: 0 auto;
-  }
-  .item__icon {
-    height: 24px;
-    width: 24px;
-  }
-  .item__text {
-    font-size: 12px;
-    line-height: 14px;
-    margin-top: 5px;
-  }
-  .item__description {
-    font-size: 10px;
-    line-height: 12px;
-    margin-top: 3px;
-  }
-}
 /* Общие стили для мобильных устройств */
 @media (max-width: 576px) {
   .request__button {
