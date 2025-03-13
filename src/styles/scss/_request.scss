@@ -88,18 +88,29 @@ h1 {
 
 .items-container {
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
+  width: 100%;
 }
 
+/* Базовые стили для items */
 .items {
   display: flex;
-  //   align-items: center;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
   padding-bottom: 72px;
   transition: transform 0.3s ease;
+  -ms-overflow-style: none; /* IE и Edge */
+  scrollbar-width: none; /* Firefox */
 }
+
+/* Скрываем скроллбар для Chrome, Safari и Opera */
+.items::-webkit-scrollbar {
+  display: none;
+}
+
 .item {
   text-align: center;
+  flex: 0 0 auto;
   &__icon {
     // position: absolute;
     // top: 50%;
@@ -143,63 +154,486 @@ h1 {
   }
 }
 
-// @media (max-width: 845px) {
-//     .request {
-//         margin-top: -175px;
-//     }
-//     .description {
-//         font-weight: 400;
-//         font-size: 16px;
-//         line-height: 19.5px;
-//         margin-top: 6px;
-//         margin-bottom: 30px;
-//     }
-//     .item {
-//         &__bg {
-//             height: 57px;
-//             width: 57px;
-//             border-radius: 50%;
-//         }
-//         &__icon {
-//             height: 33px;
-//             width: 33px;
-//         }
-//         &__description {
-//             font-size: 11px;
-//             line-height: 13.41px;
-//             text-align: center;
-//         }
-//         &__text {
-//             font-weight: 500;
-//             font-size: 12px;
-//             line-height: 14.63px;
-//         }
-//     }
-//     .items {
-//         display: flex;
-//         flex-wrap: nowrap;
-//         overflow-x: auto;
-//         -webkit-overflow-scrolling: touch;
-//         scroll-snap-type: x mandatory;
-//         gap: 20px;
-//         padding-bottom: 50px;
-//     }
-//     .item {
-//         flex: 0 0 calc(33.33% - 14px);
-//         scroll-snap-align: start;
-//         box-sizing: border-box;
-//     }
+/* Адаптивные стили для wrapper - уменьшение падинга с каждым брейкпоинтом */
+@media (min-width: 1676px) {
+  .wrapper {
+    padding-left: 150px !important;
+    padding-right: 150px !important;
+  }
+}
 
-//     /* Стили для скроллбара */
-//     .items::-webkit-scrollbar {
-//         height: 4px;
-//     }
+@media (max-width: 1675px) and (min-width: 1401px) {
+  .wrapper {
+    padding-left: 120px !important;
+    padding-right: 120px !important;
+  }
+}
 
-//     .items::-webkit-scrollbar-track {
-//         display: none;
-//     }
+@media (max-width: 1400px) and (min-width: 1201px) {
+  .wrapper {
+    padding-left: 90px !important;
+    padding-right: 90px !important;
+  }
+}
 
-//     .items::-webkit-scrollbar-thumb {
-//         display: none;
-//     }
-// }
+@media (max-width: 1200px) and (min-width: 993px) {
+  .wrapper {
+    padding-left: 60px !important;
+    padding-right: 60px !important;
+  }
+}
+
+@media (max-width: 992px) and (min-width: 769px) {
+  .wrapper {
+    padding-left: 45px !important;
+    padding-right: 45px !important;
+  }
+}
+
+@media (max-width: 768px) and (min-width: 577px) {
+  .wrapper {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .wrapper {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+  }
+}
+
+/* Адаптивные стили для request */
+
+/* Большие десктопы (больше 1675px) - все элементы */
+@media (min-width: 1676px) {
+  .request {
+    &__button {
+      font-size: 20px;
+      padding: 16px 40px;
+      margin-bottom: 55px;
+    }
+    &__form {
+      margin-top: 180px;
+      h2 {
+        font-size: 36px;
+        line-height: 44px;
+      }
+    }
+    &__textarea {
+      height: 110px;
+      font-size: 22px;
+    }
+  }
+  
+  .items {
+    gap: 30px;
+  }
+  
+  .item {
+    width: calc((100% - 180px) / 7); /* 7 элементов */
+    
+    &__bg {
+      height: 116px;
+      width: 116px;
+      margin: 0 auto;
+    }
+    
+    &__text {
+      font-size: 19px;
+      margin-top: 10px;
+    }
+    
+    &__description {
+      font-size: 15px;
+    }
+  }
+}
+
+/* От 1401px до 1675px - показываем 6 элементов */
+@media (max-width: 1675px) and (min-width: 1401px) {
+  .request {
+    &__button {
+      font-size: 20px;
+      padding: 16px 40px;
+      margin-bottom: 55px;
+    }
+    &__form {
+      margin-top: 180px;
+      h2 {
+        font-size: 36px;
+        line-height: 44px;
+      }
+    }
+    &__textarea {
+      height: 110px;
+      font-size: 22px;
+    }
+  }
+  
+  .items {
+    overflow-x: auto;
+    gap: 25px;
+  }
+  
+  .item {
+    width: calc((100% - 125px) / 6); /* 6 элементов */
+    
+    &__bg {
+      height: 116px;
+      width: 116px;
+      margin: 0 auto;
+    }
+    
+    &__text {
+      font-size: 19px;
+      margin-top: 10px;
+    }
+    
+    &__description {
+      font-size: 15px;
+    }
+  }
+}
+
+/* От 1201px до 1400px - показываем 4 элемента */
+@media (max-width: 1400px) and (min-width: 1201px) {
+  .request {
+    &__button {
+      font-size: 19px;
+      padding: 15px 38px;
+      margin-bottom: 50px;
+    }
+    &__form {
+      margin-top: 170px;
+      h2 {
+        font-size: 34px;
+        line-height: 41px;
+      }
+    }
+    &__textarea {
+      height: 105px;
+      font-size: 21px;
+    }
+  }
+  
+  .items-container {
+    overflow-x: hidden;
+    width: 100%;
+  }
+  
+  .items {
+    overflow-x: auto;
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  .item {
+    width: calc((100% - 60px) / 4); /* 4 элемента */
+    
+    &__bg {
+      height: 100px;
+      width: 100px;
+      margin: 0 auto;
+    }
+    
+    &__text {
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    
+    &__description {
+      font-size: 14px;
+    }
+  }
+}
+
+/* От 993px до 1200px - показываем 4 элемента */
+@media (max-width: 1200px) and (min-width: 993px) {
+  .request {
+    &__button {
+      font-size: 18px;
+      padding: 14px 35px;
+      margin-bottom: 45px;
+    }
+    &__form {
+      margin-top: 150px;
+      h2 {
+        font-size: 32px;
+        line-height: 39px;
+      }
+    }
+    &__textarea {
+      height: 100px;
+      font-size: 19px;
+    }
+  }
+  
+  .items {
+    overflow-x: auto;
+    gap: 18px;
+  }
+  
+  .item {
+    width: calc((100% - 54px) / 4); /* 4 элемента */
+    
+    &__bg {
+      height: 90px;
+      width: 90px;
+      margin: 0 auto;
+    }
+    
+    &__text {
+      font-size: 17px;
+      margin-top: 10px;
+    }
+    
+    &__description {
+      font-size: 14px;
+    }
+  }
+}
+
+/* От 769px до 992px - показываем 3 элемента */
+@media (max-width: 992px) and (min-width: 769px) {
+  .request {
+    &__button {
+      font-size: 17px;
+      padding: 13px 32px;
+      margin-bottom: 40px;
+    }
+    &__form {
+      margin-top: 130px;
+      h2 {
+        font-size: 30px;
+        line-height: 37px;
+      }
+    }
+    &__textarea {
+      height: 90px;
+      font-size: 18px;
+      margin-top: 25px;
+    }
+  }
+  
+  .items {
+    overflow-x: auto;
+    padding-bottom: 30px;
+    gap: 15px;
+  }
+  
+  .item {
+    width: calc((100% - 30px) / 3); /* 3 элемента */
+    
+    &__bg {
+      height: 70px;
+      width: 70px;
+      margin: 0 auto;
+    }
+    
+    &__icon {
+      height: 30px;
+      width: 30px;
+    }
+    
+    &__text {
+      font-size: 16px;
+      margin-top: 8px;
+    }
+    
+    &__description {
+      font-size: 13px;
+    }
+  }
+}
+
+/* От 577px до 768px - показываем 3 элемента */
+@media (max-width: 768px) and (min-width: 577px) {
+  .request {
+    &__button {
+      font-size: 16px;
+      padding: 12px 30px;
+      margin-bottom: 35px;
+    }
+    &__form {
+      margin-top: 110px;
+      h2 {
+        font-size: 28px;
+        line-height: 34px;
+      }
+    }
+    &__textarea {
+      height: 85px;
+      font-size: 17px;
+      margin-top: 20px;
+    }
+  }
+  
+  .items {
+    overflow-x: auto;
+    padding-bottom: 30px;
+    gap: 12px;
+  }
+  
+  .item {
+    width: calc((100% - 24px) / 3); /* 3 элемента */
+    
+    &__bg {
+      height: 65px;
+      width: 65px;
+      margin: 0 auto;
+    }
+    
+    &__icon {
+      height: 28px;
+      width: 28px;
+    }
+    
+    &__text {
+      font-size: 15px;
+      margin-top: 8px;
+    }
+    
+    &__description {
+      font-size: 12px;
+    }
+  }
+}
+
+/* От 359px до 576px - показываем 3 элемента */
+@media (max-width: 576px) and (min-width: 359px) {
+  .request {
+    &__button {
+      font-size: 16px;
+      padding: 12px 25px;
+      margin-bottom: 30px;
+      border-radius: 10px;
+      display: block;
+      width: 100%;
+      max-width: 250px;
+    }
+    &__form {
+      margin-top: 90px;
+      h2 {
+        font-size: 24px;
+        line-height: 29px;
+      }
+    }
+    &__textarea {
+      height: 80px;
+      font-size: 16px;
+      margin-top: 18px;
+    }
+  }
+  
+  .items {
+    overflow-x: auto;
+    padding-bottom: 30px;
+    margin-top: 30px;
+    gap: 10px;
+  }
+  
+  .item {
+    width: calc((100% - 20px) / 3); /* 3 элемента */
+    
+    &__bg {
+      height: 57px;
+      width: 57px;
+      margin: 0 auto;
+    }
+    
+    &__icon {
+      height: 25px;
+      width: 25px;
+    }
+    
+    &__text {
+      font-size: 13px;
+      line-height: 15px;
+      margin-top: 6px;
+    }
+    
+    &__description {
+      font-size: 11px;
+      line-height: 13px;
+      margin-top: 4px;
+    }
+  }
+}
+
+/* Меньше 359px - показываем 2 элемента */
+@media (max-width: 358px) {
+  .request {
+    &__button {
+      font-size: 14px;
+      padding: 10px 20px;
+      margin-bottom: 25px;
+      border-radius: 10px;
+      display: block;
+      width: 100%;
+      max-width: 220px;
+    }
+    &__form {
+      margin-top: 70px;
+      h2 {
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+    &__textarea {
+      height: 75px;
+      font-size: 14px;
+      margin-top: 15px;
+    }
+  }
+  
+  .items {
+    overflow-x: auto;
+    padding-bottom: 20px;
+    margin-top: 25px;
+    gap: 8px;
+  }
+  
+  .item {
+    width: calc((100% - 8px) / 2); /* 2 элемента с минимальным отступом */
+    
+    &__bg {
+      height: 54px;
+      width: 54px;
+      margin: 0 auto;
+    }
+    
+    &__icon {
+      height: 24px;
+      width: 24px;
+    }
+    
+    &__text {
+      font-size: 12px;
+      line-height: 14px;
+      margin-top: 5px;
+    }
+    
+    &__description {
+      font-size: 10px;
+      line-height: 12px;
+      margin-top: 3px;
+    }
+  }
+}
+
+/* Общие стили для мобильных устройств */
+@media (max-width: 576px) {
+  .request__button {
+    background-color: #3a75ed;
+    color: white;
+    border: none;
+    margin-top: 10px;
+  }
+}
+
+// Убираем дублирование margin-top в .request__form
+.request__form {
+  margin-top: 168px;
+}
