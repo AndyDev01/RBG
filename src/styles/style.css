@@ -161,7 +161,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .items-container {
@@ -291,7 +291,6 @@ h1 {
   }
   .item__text {
     font-size: 19px;
-    margin-top: 10px;
     white-space: nowrap;
   }
   .item__description {
@@ -311,6 +310,10 @@ h1 {
   }
   .item {
     width: calc((100% - 125px) / 6); /* 6 элементов */
+  }
+  .item__icon {
+    height: 50px;
+    width: 50px;
   }
   .item__bg {
     height: 116px;
@@ -342,6 +345,10 @@ h1 {
   .item {
     width: calc((100% - 60px) / 4); /* 4 элемента */
   }
+  .item .item__icon {
+    height: 50px;
+    width: 50px;
+  }
   .item__bg {
     height: 100px;
     width: 100px;
@@ -349,7 +356,6 @@ h1 {
   }
   .item__text {
     font-size: 18px;
-    margin-top: 10px;
   }
   .item__description {
     font-size: 14px;
@@ -368,6 +374,10 @@ h1 {
   .item {
     width: calc((100% - 54px) / 4); /* 4 элемента */
   }
+  .item__icon {
+    height: 50px;
+    width: 50px;
+  }
   .item__bg {
     height: 90px;
     width: 90px;
@@ -375,7 +385,6 @@ h1 {
   }
   .item__text {
     font-size: 17px;
-    margin-top: 10px;
   }
   .item__description {
     font-size: 14px;
@@ -386,6 +395,9 @@ h1 {
   .request__button {
     font-size: 17px;
     padding: 13px 32px;
+  }
+  .icon {
+    margin-bottom: 8px;
   }
   .items {
     overflow-x: auto;
@@ -406,7 +418,6 @@ h1 {
   }
   .item__text {
     font-size: 16px;
-    margin-top: 8px;
   }
   .item__description {
     font-size: 13px;
@@ -437,7 +448,6 @@ h1 {
   }
   .item__text {
     font-size: 15px;
-    margin-top: 8px;
   }
   .item__description {
     font-size: 12px;
@@ -473,7 +483,6 @@ h1 {
   .item__text {
     font-size: 13px;
     line-height: 15px;
-    margin-top: 6px;
   }
   .item__description {
     font-size: 11px;
@@ -488,6 +497,9 @@ h1 {
     color: white;
     border: none;
     margin-top: 10px;
+  }
+  .icon {
+    margin-bottom: 8px;
   }
 }
 .overlay {

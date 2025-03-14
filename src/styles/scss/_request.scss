@@ -44,7 +44,7 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .items-container {
@@ -80,8 +80,6 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  &__icon {
-  }
   &__text {
     font-family: Montserrat;
     font-weight: 500;
@@ -189,7 +187,6 @@ h1 {
 
     &__text {
       font-size: 19px;
-      margin-top: 10px;
       white-space: nowrap;
     }
 
@@ -217,6 +214,11 @@ h1 {
   .item {
     width: calc((100% - 125px) / 6); /* 6 элементов */
 
+    &__icon {
+      height: 50px;
+      width: 50px;
+    }
+
     &__bg {
       height: 116px;
       width: 116px;
@@ -225,7 +227,6 @@ h1 {
 
     &__text {
       font-size: 17px;
-      // margin-top: 10px;
     }
 
     &__description {
@@ -257,6 +258,11 @@ h1 {
   .item {
     width: calc((100% - 60px) / 4); /* 4 элемента */
 
+    .item__icon {
+      height: 50px;
+      width: 50px;
+    }
+
     &__bg {
       height: 100px;
       width: 100px;
@@ -265,7 +271,6 @@ h1 {
 
     &__text {
       font-size: 18px;
-      margin-top: 10px;
     }
 
     &__description {
@@ -290,6 +295,10 @@ h1 {
 
   .item {
     width: calc((100% - 54px) / 4); /* 4 элемента */
+    &__icon {
+      height: 50px;
+      width: 50px;
+    }
 
     &__bg {
       height: 90px;
@@ -299,7 +308,6 @@ h1 {
 
     &__text {
       font-size: 17px;
-      margin-top: 10px;
     }
 
     &__description {
@@ -315,6 +323,9 @@ h1 {
       font-size: 17px;
       padding: 13px 32px;
     }
+  }
+  .icon {
+    margin-bottom: 8px;
   }
 
   .items {
@@ -339,7 +350,6 @@ h1 {
 
     &__text {
       font-size: 16px;
-      margin-top: 8px;
     }
 
     &__description {
@@ -379,7 +389,6 @@ h1 {
 
     &__text {
       font-size: 15px;
-      margin-top: 8px;
     }
 
     &__description {
@@ -426,7 +435,6 @@ h1 {
     &__text {
       font-size: 13px;
       line-height: 15px;
-      margin-top: 6px;
     }
 
     &__description {
@@ -444,5 +452,8 @@ h1 {
     color: white;
     border: none;
     margin-top: 10px;
+  }
+  .icon {
+    margin-bottom: 8px;
   }
 }
