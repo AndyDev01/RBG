@@ -146,8 +146,8 @@ script.onload = () => {
 
 function init() {
   const map = new ymaps.Map("map", {
-    center: [55.800944, 37.967062],
-    zoom: 15,
+    center: [55.835335004821715, 38.37710203910369],
+    zoom: 9,
     controls: ["zoomControl"],
   });
 
@@ -161,7 +161,18 @@ function init() {
       balloonCloseButton: false,
     }
   );
+  const placemark2 = new ymaps.Placemark(
+    [55.888917, 38.797438],
+    {},
+    {
+      preset: "islands#redIcon",
+      iconColor: "#cc0000",
+      hideIconOnBalloonOpen: false,
+      balloonCloseButton: false,
+    }
+  );
 
   map.geoObjects.add(placemark);
+  map.geoObjects.add(placemark2);
   map.options.set("nightMode", true);
 }

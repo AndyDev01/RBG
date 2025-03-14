@@ -498,6 +498,9 @@ h1 {
     color: white;
     border: none;
     margin-top: 10px;
+    padding: 8.4px 0;
+    max-width: 201px;
+    border-radius: 15px;
   }
   .icon {
     margin-bottom: 8px;
@@ -616,21 +619,36 @@ h1 {
   padding: 20px;
 }
 .contact-sidebar_wrapper {
-  padding: 0 74px;
+  padding: 88px 122px;
 }
-.contact-sidebar_wrapper {
-  padding-bottom: 84px;
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.contact-sidebar_content {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 }
 
 .contact-title {
-  margin-left: 54px;
-  padding: 188px 0 75px 0;
   font-size: 33px;
+  font-weight: 600;
+  margin-bottom: 9px;
+}
+
+.contact-subtitle {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 110%;
 }
 
 .contact-information {
   display: flex;
-  flex-direction: column;
 }
 
 .phones_block,
@@ -638,25 +656,32 @@ h1 {
 .location_block {
   display: flex;
   align-items: flex-start;
-  padding-bottom: 52px;
 }
 
-.contact_icons {
-  margin-right: 15px;
-  margin-top: -8px;
-  min-width: 41px;
-  min-height: 41px;
-}
-
-.contact-information {
+.mail-information {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
+.address-information {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-information {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
 .contact-label {
   margin-right: 8px;
-  font-weight: 500;
+  font-weight: 400;
+  color: #959595;
+  font-size: 18px;
+  line-height: 122%;
 }
 
 .location-label {
@@ -674,8 +699,47 @@ h1 {
 .map_wrapper {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
+@media (max-width: 888px) {
+  .contact-sidebar_wrapper {
+    padding: 88px 45px;
+  }
+}
+@media (max-width: 576px) {
+  .contact {
+    gap: 30px;
+  }
+  .contact-sidebar_wrapper {
+    padding: 88px 15px 44px 15px !important;
+  }
+  .contact-title {
+    font-size: 26px;
+  }
+  .contact-information {
+    gap: 2px;
+  }
+  .contact-subtitle,
+  .contact-information,
+  .address-information,
+  .mail-information,
+  .contact-label {
+    font-size: 14px;
+  }
+  .contact-sidebar_content {
+    gap: 30px;
+  }
+  .mail-information {
+    gap: 5px;
+  }
+  .address-information {
+    gap: 5px;
+  }
+  .phones_block {
+    gap: 5px;
+  }
+}
 .request-sidebar {
   display: flex;
   flex-direction: column;
@@ -750,7 +814,7 @@ h1 {
   font-size: 16px;
   color: #333;
   resize: none;
-  max-height: 54px;
+  height: 130px;
   outline: none;
   transition: all 0.3s ease;
   border: 1px solid transparent;
@@ -908,6 +972,7 @@ h1 {
   }
   .request-sidebar .request__textarea {
     font-size: 14px;
+    max-height: 65px;
   }
   .request-sidebar .request__policy {
     font-size: 11px;

@@ -84,7 +84,7 @@
     font-size: 16px;
     color: #333;
     resize: none;
-    max-height: 54px;
+    height: 130px;
     outline: none;
     transition: all 0.3s ease;
     border: 1px solid transparent;
@@ -250,6 +250,7 @@
     }
     .request__textarea {
       font-size: 14px;
+      max-height: 65px;
     }
     .request__policy {
       font-size: 11px;
