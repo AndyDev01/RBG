@@ -89,6 +89,7 @@ h1 {
   position: relative;
   overflow: hidden;
   width: 100%;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
 }
 
 /* Базовые стили для items */
@@ -97,6 +98,7 @@ h1 {
   flex-wrap: nowrap;
   justify-content: space-between;
   padding-bottom: 72px;
+  margin-bottom: env(safe-area-inset-bottom, 20px);
   transition: transform 0.3s ease;
   -ms-overflow-style: none; /* IE и Edge */
   scrollbar-width: none; /* Firefox */
@@ -117,17 +119,14 @@ h1 {
   flex-direction: column;
   align-items: center;
   &__icon {
-
   }
   &__text {
-
     font-family: Montserrat;
     font-weight: 500;
     color: #ffffff;
     font-size: 19px;
     line-height: 100%;
     letter-spacing: 0%;
-
   }
   &__description {
     text-align: center;
@@ -223,27 +222,27 @@ h1 {
       font-size: 22px;
     }
   }
-  
+
   .items {
     gap: 30px;
   }
-  
+
   .item {
     width: calc((100% - 180px) / 7); /* 7 элементов */
     min-width: 220px;
-    
+
     &__bg {
       height: 116px;
       width: 116px;
       margin: 0 auto;
     }
-    
+
     &__text {
       font-size: 19px;
       margin-top: 10px;
       white-space: nowrap;
     }
-    
+
     &__description {
       font-size: 15px;
     }
@@ -270,27 +269,27 @@ h1 {
       font-size: 22px;
     }
   }
-  
+
   .items {
     overflow-x: auto;
     overflow-y: hidden !important;
     gap: 25px;
   }
-  
+
   .item {
     width: calc((100% - 125px) / 6); /* 6 элементов */
-    
+
     &__bg {
       height: 116px;
       width: 116px;
       margin: 0 auto;
     }
-    
+
     &__text {
       font-size: 17px;
       // margin-top: 10px;
     }
-    
+
     &__description {
       font-size: 13px;
     }
@@ -317,32 +316,32 @@ h1 {
       font-size: 21px;
     }
   }
-  
+
   .items-container {
     overflow-x: hidden;
     width: 100%;
   }
-  
+
   .items {
     overflow-x: auto;
     gap: 20px;
     justify-content: space-between;
   }
-  
+
   .item {
     width: calc((100% - 60px) / 4); /* 4 элемента */
-    
+
     &__bg {
       height: 100px;
       width: 100px;
       margin: 0 auto;
     }
-    
+
     &__text {
       font-size: 18px;
       margin-top: 10px;
     }
-    
+
     &__description {
       font-size: 14px;
     }
@@ -369,26 +368,26 @@ h1 {
       font-size: 19px;
     }
   }
-  
+
   .items {
     overflow-x: auto;
     gap: 18px;
   }
-  
+
   .item {
     width: calc((100% - 54px) / 4); /* 4 элемента */
-    
+
     &__bg {
       height: 90px;
       width: 90px;
       margin: 0 auto;
     }
-    
+
     &__text {
       font-size: 17px;
       margin-top: 10px;
     }
-    
+
     &__description {
       font-size: 14px;
     }
@@ -401,7 +400,7 @@ h1 {
     &__button {
       font-size: 17px;
       padding: 13px 32px;
-      margin-bottom: 150px
+      margin-bottom: 150px;
     }
     &__form {
       margin-top: 130px;
@@ -416,32 +415,32 @@ h1 {
       margin-top: 25px;
     }
   }
-  
+
   .items {
     overflow-x: auto;
     padding-bottom: 30px;
     gap: 15px;
   }
-  
+
   .item {
     width: calc((100% - 30px) / 3); /* 3 элемента */
-    
+
     &__bg {
       height: 70px;
       width: 70px;
       margin: 0 auto;
     }
-    
+
     &__icon {
       height: 30px;
       width: 30px;
     }
-    
+
     &__text {
       font-size: 16px;
       margin-top: 8px;
     }
-    
+
     &__description {
       font-size: 13px;
     }
@@ -469,39 +468,39 @@ h1 {
       margin-top: 20px;
     }
   }
-  
+
   .items {
     overflow-x: auto;
     padding-bottom: 30px;
     gap: 12px;
   }
-  
+
   .item {
     width: calc((100% - 24px) / 3); /* 3 элемента */
-    
+
     &__bg {
       height: 65px;
       width: 65px;
       margin: 0 auto;
     }
-    
+
     &__icon {
       height: 28px;
       width: 28px;
     }
-    
+
     &__text {
       font-size: 15px;
       margin-top: 8px;
     }
-    
+
     &__description {
       font-size: 12px;
     }
   }
 }
 
-/* От 359px до 576px - показываем 3 элемента */
+/* До 576px - показываем 3 элемента */
 @media (max-width: 576px) {
   .request {
     &__button {
@@ -526,34 +525,34 @@ h1 {
       margin-top: 18px;
     }
   }
-  
+
   .items {
     overflow-x: auto;
-    padding-bottom: 30px;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 20px));
     margin-top: 30px;
     gap: 10px;
   }
-  
+
   .item {
     width: calc((100% - 20px) / 3); /* 3 элемента */
-    
+
     &__bg {
       height: 57px;
       width: 57px;
       margin: 0 auto;
     }
-    
+
     &__icon {
       height: 25px;
       width: 25px;
     }
-    
+
     &__text {
       font-size: 13px;
       line-height: 15px;
       margin-top: 6px;
     }
-    
+
     &__description {
       font-size: 11px;
       line-height: 13px;

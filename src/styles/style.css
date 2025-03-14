@@ -205,6 +205,7 @@ h1 {
   position: relative;
   overflow: hidden;
   width: 100%;
+  padding-bottom: env(safe-area-inset-bottom, 20px);
 }
 
 /* Базовые стили для items */
@@ -213,6 +214,7 @@ h1 {
   flex-wrap: nowrap;
   justify-content: space-between;
   padding-bottom: 72px;
+  margin-bottom: env(safe-area-inset-bottom, 20px);
   transition: transform 0.3s ease;
   -ms-overflow-style: none; /* IE и Edge */
   scrollbar-width: none; /* Firefox */
@@ -552,7 +554,7 @@ h1 {
     font-size: 12px;
   }
 }
-/* От 359px до 576px - показываем 3 элемента */
+/* До 576px - показываем 3 элемента */
 @media (max-width: 576px) {
   .request__button {
     font-size: 16px;
@@ -577,7 +579,7 @@ h1 {
   }
   .items {
     overflow-x: auto;
-    padding-bottom: 30px;
+    padding-bottom: calc(60px + env(safe-area-inset-bottom, 20px));
     margin-top: 30px;
     gap: 10px;
   }
@@ -1073,6 +1075,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-bottom: env(safe-area-inset-bottom, 30px) !important;
   }
   h1 {
     margin-bottom: 10px;
