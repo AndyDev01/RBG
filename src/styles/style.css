@@ -768,7 +768,7 @@ h1 {
 .request-sidebar .request__actions {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 56px;
   margin-top: 10px;
 }
 .request-sidebar .request__file-button {
@@ -776,10 +776,12 @@ h1 {
   border: none;
   font-family: "Montserrat";
   font-size: 16px;
-  color: #3a75ed;
+  color: #151515;
   cursor: pointer;
   padding: 0;
-  text-decoration: underline;
+  text-decoration: none;
+  font-weight: 400;
+  font-size: 20px;
 }
 .request-sidebar .request__file-button:hover {
   color: #2856b5;
