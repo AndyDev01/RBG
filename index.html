@@ -145,6 +145,23 @@
     <div class="sidebar contact-sidebar">
       <div class="map_wrapper">
         <div class="contact-sidebar_wrapper">
+          <div class="close-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
+              <path
+                d="M10 10L6.5 6.5M10 10L13.5 13.5M10 10L13.5 6.5M10 10L6.5 13.5"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+              />
+            </svg>
+          </div>
           <h2 class="contact-title">Связаться с нами</h2>
           <li class="contact">
             <ul class="phones_block">
@@ -208,29 +225,87 @@
 
     <div class="sidebar request-sidebar">
       <img src="./public/rbg-logo-blue.svg" class="logo" alt="logo" />
-      <form action="" class="request__form">
-        <h2 class="h2">Ваш запрос</h2>
-        <div class="request__inputs">
-          <input type="text" placeholder="Имя" class="request__form_input" />
+
+      <div class="request__form-container">
+        <h2 class="request__title">Ваш запрос</h2>
+        <p class="request__subtitle">
+          Мы всегда открыты для сотрудничества <br />
+          и рады новым интересным проектам.
+        </p>
+
+        <form class="request__form">
           <input
             type="text"
+            class="request__input"
+            placeholder="Имя"
+            required
+          />
+          <input
+            type="text"
+            class="request__input"
             placeholder="Компания"
-            class="request__form_input"
+            required
+          />
+          <input
+            type="tel"
+            class="request__input"
+            placeholder="Номер телефона"
+            required
           />
           <input
             type="email"
+            class="request__input"
             placeholder="Ваша эл. почта"
-            class="request__form_input"
+            required
           />
           <textarea
-            placeholder="Текст запроса"
             class="request__textarea"
+            placeholder="Текст запроса"
+            rows="5"
+            required
           ></textarea>
-        </div>
-        <div>
-          <button type="submit" class="request__form_button">Отправить</button>
-        </div>
-      </form>
+
+          <div class="request__policy">
+            <input
+              type="checkbox"
+              class="request__checkbox"
+              id="policy-checkbox"
+              required
+            />
+            <label for="policy-checkbox"
+              >Отправляя форму, Вы соглашаетесь с
+              <a href="#" class="request__policy-link"
+                >политикой конфиденциальности</a
+              ></label
+            >
+          </div>
+
+          <div class="request__actions">
+            <button class="request__button" type="submit">Отправить</button>
+            <button type="button" class="request__file-button">
+              Прикрепить файл
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div class="close-btn">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
+          <path
+            d="M10 10L6.5 6.5M10 10L13.5 13.5M10 10L13.5 6.5M10 10L6.5 13.5"
+            stroke="white"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </div>
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>

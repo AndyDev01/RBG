@@ -1,70 +1,228 @@
 .request-sidebar {
-    @extend .sidebar;
+  @extend .sidebar;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 80px 150px 224px 150px;
+  left: 0;
+  width: $sidebar-request-width;
+  transform: translateX(-100%);
+
+  .logo {
+    width: 85px;
+    height: 85px;
+    margin-left: 0;
+  }
+
+  // Стили для формы запроса
+  .request__form-container {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .request__title {
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 32px;
+    color: #000;
+    margin: 0 0 0 0;
+  }
+
+  .request__subtitle {
+    max-width: 398px;
+    font-family: "Montserrat";
+    font-weight: 420;
+    font-size: 18px;
+    color: #151515;
+    margin: 0 0 30px 0;
+    line-height: 1.4;
+  }
+
+  .request__form {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 72px 160px 224px 162px;
-    left: 0;
-    width: $sidebar-request-width;
+    gap: 15px;
+    width: 100%;
+  }
+
+  .request__input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 11px;
+    border: none;
+    background-color: #e7e7e7;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: #151515;
+    outline: none;
+
+    &::placeholder {
+      color: #959595;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+    }
+  }
+
+  .request__textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background-color: #e7e7e7;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: #333;
+    resize: none;
+    min-height: 108px;
+    outline: none;
+
+    &::placeholder {
+      color: #959595;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+    }
+  }
+
+  .request__policy {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 5px;
+    font-family: "Montserrat";
+    font-size: 14px;
+    color: #666;
+    max-width: 320px;
+
+    label {
+      line-height: 1.4;
+    }
+  }
+  .request__checkbox {
+    width: 19px;
+    height: 19px;
+    accent-color: #3a75ed;
+    margin-left: 2px;
+  }
+
+  .request__policy-link {
+    color: #3a75ed;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .request__actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .request__file-button {
+    background: none;
+    border: none;
+    font-family: "Montserrat";
+    font-size: 16px;
+    color: #3a75ed;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+
+    &:hover {
+      color: #2856b5;
+    }
+  }
+
+  .request__button {
+    margin-top: 0;
+    color: white;
+    border-radius: 15px;
+    background-color: #3a75ed;
+    font-family: "Montserrat";
+    font-size: 18px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease;
+    font-weight: 500;
+    line-height: 29.26px;
+    letter-spacing: 0%;
+    border: 1px solid transparent;
+    padding: 12px 61px;
+    align-self: flex-start;
+
+    &:hover {
+      box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  @include mobile {
     transform: translateX(-100%);
 
-    @include mobile {
-        transform: translateX(-100%);
+    .close-btn {
+      right: 15px;
     }
+  }
 
-    &.active {
-        transform: translateX(0);
+  &.active {
+    transform: translateX(0);
+  }
+
+  // Медиа запросы для обеспечения резиновости
+  @media (min-width: 1676px) {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+
+  @media (max-width: 1675px) and (min-width: 1401px) {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+
+  @media (max-width: 1400px) and (min-width: 1201px) {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+
+  @media (max-width: 1200px) and (min-width: 993px) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  @media (max-width: 992px) and (min-width: 769px) {
+    padding: 60px 45px 100px 45px;
+    .logo {
+      width: 85px;
+      height: 85px;
     }
-}
+  }
 
-.request__form {
-    display: flex;
-    flex-direction: column;
-    gap: 56px;
-    h2 {
-        margin-left: -3px;
-        margin-bottom: -27px;
+  @media (max-width: 768px) and (min-width: 577px) {
+    padding: 50px 30px 80px 30px;
+    .logo {
+      width: 70px;
+      height: 70px;
     }
+  }
 
-    &_button {
-        width: 264px;
-        border-radius: 15px;
-        background-color: #3a75ed;
-        color: white;
-        font-weight: 500;
-        font-size: 24px;
-        line-height: 28.8px;
-        font-family: "Montserrat";
-        padding: 15px 65px 15px 63px;
-        border: 1px solid transparent;
-        margin-left: 2px;
-        cursor: pointer;
-        box-sizing: border-box;
-        &:hover {
-            transition: all 0.3s ease;
-            box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
-            text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
-        }
+  @media (max-width: 576px) {
+    padding: 20px 15px 60px 15px;
+    .logo {
+      width: 44px;
+      height: 44px;
     }
+  }
 
-    &_input {
-        border: none;
-        padding: 28px 0 10px 0;
-        border-bottom: 1px solid #151515;
-        outline: none;
-        font-size: 20px;
-        width: 100%;
-        box-sizing: border-box;
-
-        &::placeholder {
-            font-size: 20px;
-            font-weight: 365;
-            color: #959595;
-            text-align: left !important;
-            padding-left: 0 !important;
-            text-indent: 0;
-            opacity: 1;
-            text-indent: -2px;
-        }
+  @media (max-width: 358px) {
+    padding: 15px 15px 50px 15px;
+    .logo {
+      width: 44px;
+      height: 44px;
     }
+  }
 }

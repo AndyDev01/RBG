@@ -3,8 +3,8 @@
   top: 0;
   height: 100vh;
   background: #fff;
-  transition: transform $transition-duration ease;
-  z-index: $z-index-sidebar;
+  transition: transform 0.3s ease;
+  z-index: 1001;
   box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
@@ -14,65 +14,46 @@
     opacity: 1;
   }
 
+  .close-btn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 10;
+    width: 20px;
+    height: 20px;
+    transition: all 0.2s ease;
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    circle {
+      transition: fill 0.2s ease;
+    }
+
+    path {
+      transition: stroke 0.2s ease;
+    }
+
+    &:hover {
+      path {
+        stroke: #3a75ed;
+      }
+
+      circle {
+        fill: white;
+      }
+    }
+  }
+
   @include mobile {
     width: 100% !important;
+
+    .close-btn {
+      display: block;
+    }
   }
 }
-
-/* Адаптивные стили для боковых панелей */
-
-// /* Большие десктопы (больше 1400px) */
-// @media (min-width: 1401px) {
-//     .sidebar {
-//         width: 450px !important;
-//         padding: 50px 30px;
-//     }
-// }
-
-// /* Стандартные десктопы (от 1200px до 1400px) */
-// @media (max-width: 1400px) and (min-width: 1201px) {
-//   .sidebar {
-//     width: 420px !important;
-//     padding: 45px 28px;
-//   }
-// }
-
-// /* Маленькие десктопы и большие планшеты (от 992px до 1200px) */
-// @media (max-width: 1200px) and (min-width: 993px) {
-//   .sidebar {
-//     width: 380px !important;
-//     padding: 40px 25px;
-//   }
-// }
-
-// /* Планшеты (от 768px до 992px) */
-// @media (max-width: 992px) and (min-width: 769px) {
-//   .sidebar {
-//     width: 350px !important;
-//     padding: 35px 22px;
-//   }
-// }
-
-// /* Маленькие планшеты и большие телефоны (от 576px до 768px) */
-// @media (max-width: 768px) and (min-width: 577px) {
-//   .sidebar {
-//     width: 320px !important;
-//     padding: 30px 20px;
-//   }
-// }
-
-// /* Телефоны (от 359px до 576px) */
-// @media (max-width: 576px) and (min-width: 359px) {
-//   .sidebar {
-//     width: 100% !important;
-//     padding: 25px 18px;
-//   }
-// }
-
-// /* Маленькие телефоны (меньше 359px) */
-// @media (max-width: 358px) {
-//   .sidebar {
-//     width: 100% !important;
-//     padding: 20px 15px;
-//   }
-// }

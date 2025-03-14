@@ -94,10 +94,6 @@ body {
   h1 {
     font-size: 50px;
   }
-  .header {
-    padding-top: 50px;
-    padding-bottom: 25px;
-  }
   .description {
     margin-bottom: 25px;
   }
@@ -178,29 +174,6 @@ body {
     line-height: 39px;
   }
 }
-
-/* Телефоны (от 359px до 576px) */
-// @media (max-width: 576px) and (min-width: 359px) {
-//   .wrapper {
-//     padding: 0 20px;
-//   }
-
-//   h1 {
-//     font-size: 36px;
-//     line-height: 44px;
-//   }
-
-//   h2 {
-//     font-size: 28px;
-//     line-height: 34px;
-//   }
-
-//   .description {
-//     font-size: 16px;
-//     line-height: 20px;
-//     margin-bottom: 25px;
-//   }
-// }
 
 /* Маленькие телефоны (меньше 359px) */
 @media (max-width: 358px) {

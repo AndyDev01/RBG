@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .header {
-  padding-top: 72px;
+  padding-top: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -32,13 +32,13 @@
 @media (min-width: 1401px) {
   .header {
     padding-top: 80px;
+    padding-bottom: 80px;
   }
 }
 /* Планшеты (от 768px до 992px) */
 @media (max-width: 992px) and (min-width: 769px) {
   .header {
     padding-top: 60px;
-    padding-bottom: 20px;
   }
   .logo {
     width: 85px;
@@ -121,7 +121,6 @@
   background-color: #3a75ed;
   font-family: "Montserrat";
   font-size: 18px;
-  margin-bottom: 49px;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   font-weight: 500;
@@ -134,43 +133,6 @@
   box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
   border: 1px solid white;
-}
-.request__form {
-  margin-top: 168px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.request__form h2 {
-  font-family: "Montserrat";
-  font-weight: 600;
-  font-size: 33px;
-  line-height: 40.23px;
-  letter-spacing: 0%;
-}
-.request__inputs {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.request__textarea {
-  height: 102px;
-  margin-top: 31px;
-  background-color: #e7e7e7;
-  outline: none;
-  font-family: "Montserrat";
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24.38px;
-  border: none;
-  border-radius: 11px;
-  padding: 14px 18px 14px 18px;
-  resize: none;
-}
-.request__textarea::placeholder {
-  font-size: 20px;
-  font-weight: 350;
-  color: #959595;
 }
 
 h1 {
@@ -314,18 +276,6 @@ h1 {
   .request__button {
     font-size: 20px;
     padding: 16px 40px;
-    margin-bottom: 55px;
-  }
-  .request__form {
-    margin-top: 180px;
-  }
-  .request__form h2 {
-    font-size: 36px;
-    line-height: 44px;
-  }
-  .request__textarea {
-    height: 110px;
-    font-size: 22px;
   }
   .items {
     gap: 30px;
@@ -353,18 +303,6 @@ h1 {
   .request__button {
     font-size: 20px;
     padding: 16px 40px;
-    margin-bottom: 55px;
-  }
-  .request__form {
-    margin-top: 180px;
-  }
-  .request__form h2 {
-    font-size: 36px;
-    line-height: 44px;
-  }
-  .request__textarea {
-    height: 110px;
-    font-size: 22px;
   }
   .items {
     overflow-x: auto;
@@ -391,18 +329,6 @@ h1 {
   .request__button {
     font-size: 19px;
     padding: 15px 38px;
-    margin-bottom: 50px;
-  }
-  .request__form {
-    margin-top: 170px;
-  }
-  .request__form h2 {
-    font-size: 34px;
-    line-height: 41px;
-  }
-  .request__textarea {
-    height: 105px;
-    font-size: 21px;
   }
   .items-container {
     overflow-x: hidden;
@@ -434,18 +360,6 @@ h1 {
   .request__button {
     font-size: 18px;
     padding: 14px 35px;
-    margin-bottom: 45px;
-  }
-  .request__form {
-    margin-top: 150px;
-  }
-  .request__form h2 {
-    font-size: 32px;
-    line-height: 39px;
-  }
-  .request__textarea {
-    height: 100px;
-    font-size: 19px;
   }
   .items {
     overflow-x: auto;
@@ -472,19 +386,6 @@ h1 {
   .request__button {
     font-size: 17px;
     padding: 13px 32px;
-    margin-bottom: 150px;
-  }
-  .request__form {
-    margin-top: 130px;
-  }
-  .request__form h2 {
-    font-size: 30px;
-    line-height: 37px;
-  }
-  .request__textarea {
-    height: 90px;
-    font-size: 18px;
-    margin-top: 25px;
   }
   .items {
     overflow-x: auto;
@@ -516,19 +417,6 @@ h1 {
   .request__button {
     font-size: 16px;
     padding: 12px 30px;
-    margin-bottom: 35px;
-  }
-  .request__form {
-    margin-top: 110px;
-  }
-  .request__form h2 {
-    font-size: 28px;
-    line-height: 34px;
-  }
-  .request__textarea {
-    height: 85px;
-    font-size: 17px;
-    margin-top: 20px;
   }
   .items {
     overflow-x: auto;
@@ -564,18 +452,6 @@ h1 {
     display: block;
     width: 100%;
     max-width: 250px;
-  }
-  .request__form {
-    margin-top: 90px;
-  }
-  .request__form h2 {
-    font-size: 24px;
-    line-height: 29px;
-  }
-  .request__textarea {
-    height: 80px;
-    font-size: 16px;
-    margin-top: 18px;
   }
   .items {
     overflow-x: auto;
@@ -670,13 +546,42 @@ h1 {
   visibility: visible;
   opacity: 1;
 }
+.sidebar .close-btn, .request-sidebar .close-btn, .contact-sidebar .close-btn {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s ease;
+}
+.sidebar .close-btn svg, .request-sidebar .close-btn svg, .contact-sidebar .close-btn svg {
+  width: 20px;
+  height: 20px;
+}
+.sidebar .close-btn circle, .request-sidebar .close-btn circle, .contact-sidebar .close-btn circle {
+  transition: fill 0.2s ease;
+}
+.sidebar .close-btn path, .request-sidebar .close-btn path, .contact-sidebar .close-btn path {
+  transition: stroke 0.2s ease;
+}
+.sidebar .close-btn:hover path, .request-sidebar .close-btn:hover path, .contact-sidebar .close-btn:hover path {
+  stroke: #3a75ed;
+}
+.sidebar .close-btn:hover circle, .request-sidebar .close-btn:hover circle, .contact-sidebar .close-btn:hover circle {
+  fill: white;
+}
 @media (max-width: 888px) {
   .sidebar, .request-sidebar, .contact-sidebar {
     width: 100% !important;
   }
+  .sidebar .close-btn, .request-sidebar .close-btn, .contact-sidebar .close-btn {
+    display: block;
+  }
 }
 
-/* Адаптивные стили для боковых панелей */
 .contact-sidebar {
   right: 0;
   width: 888px;
@@ -685,6 +590,10 @@ h1 {
 @media (max-width: 888px) {
   .contact-sidebar {
     transform: translateX(100%);
+  }
+  .contact-sidebar .close-btn {
+    right: 15px;
+    top: 20px;
   }
 }
 .contact-sidebar.active {
@@ -757,68 +666,214 @@ h1 {
 .request-sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 72px 160px 224px 162px;
+  justify-content: start;
+  padding: 80px 150px 224px 150px;
   left: 0;
   width: 864px;
   transform: translateX(-100%);
+}
+.request-sidebar .logo {
+  width: 85px;
+  height: 85px;
+  margin-left: 0;
+}
+.request-sidebar .request__form-container {
+  width: 100%;
+  margin-top: 40px;
+}
+.request-sidebar .request__title {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 32px;
+  color: #000;
+  margin: 0 0 0 0;
+}
+.request-sidebar .request__subtitle {
+  max-width: 398px;
+  font-family: "Montserrat";
+  font-weight: 420;
+  font-size: 18px;
+  color: #151515;
+  margin: 0 0 30px 0;
+  line-height: 1.4;
+}
+.request-sidebar .request__form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+.request-sidebar .request__input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 11px;
+  border: none;
+  background-color: #e7e7e7;
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #151515;
+  outline: none;
+}
+.request-sidebar .request__input::placeholder {
+  color: #959595;
+}
+.request-sidebar .request__input:focus {
+  box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+}
+.request-sidebar .request__textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background-color: #e7e7e7;
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #333;
+  resize: none;
+  min-height: 108px;
+  outline: none;
+}
+.request-sidebar .request__textarea::placeholder {
+  color: #959595;
+}
+.request-sidebar .request__textarea:focus {
+  box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+}
+.request-sidebar .request__policy {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 5px;
+  font-family: "Montserrat";
+  font-size: 14px;
+  color: #666;
+  max-width: 320px;
+}
+.request-sidebar .request__policy label {
+  line-height: 1.4;
+}
+.request-sidebar .request__checkbox {
+  width: 19px;
+  height: 19px;
+  accent-color: #3a75ed;
+  margin-left: 2px;
+}
+.request-sidebar .request__policy-link {
+  color: #3a75ed;
+  text-decoration: none;
+}
+.request-sidebar .request__policy-link:hover {
+  text-decoration: underline;
+}
+.request-sidebar .request__actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+.request-sidebar .request__file-button {
+  background: none;
+  border: none;
+  font-family: "Montserrat";
+  font-size: 16px;
+  color: #3a75ed;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+.request-sidebar .request__file-button:hover {
+  color: #2856b5;
+}
+.request-sidebar .request__button {
+  margin-top: 0;
+  color: white;
+  border-radius: 15px;
+  background-color: #3a75ed;
+  font-family: "Montserrat";
+  font-size: 18px;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+  font-weight: 500;
+  line-height: 29.26px;
+  letter-spacing: 0%;
+  border: 1px solid transparent;
+  padding: 12px 61px;
+  align-self: flex-start;
+}
+.request-sidebar .request__button:hover {
+  box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
 @media (max-width: 888px) {
   .request-sidebar {
     transform: translateX(-100%);
   }
+  .request-sidebar .close-btn {
+    right: 15px;
+  }
 }
 .request-sidebar.active {
   transform: translateX(0);
 }
-
-.request__form {
-  display: flex;
-  flex-direction: column;
-  gap: 56px;
+@media (min-width: 1676px) {
+  .request-sidebar {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
 }
-.request__form h2 {
-  margin-left: -3px;
-  margin-bottom: -27px;
+@media (max-width: 1675px) and (min-width: 1401px) {
+  .request-sidebar {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
 }
-.request__form_button {
-  width: 264px;
-  border-radius: 15px;
-  background-color: #3a75ed;
-  color: white;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 28.8px;
-  font-family: "Montserrat";
-  padding: 15px 65px 15px 63px;
-  border: 1px solid transparent;
-  margin-left: 2px;
-  cursor: pointer;
-  box-sizing: border-box;
+@media (max-width: 1400px) and (min-width: 1201px) {
+  .request-sidebar {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
 }
-.request__form_button:hover {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
-  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+@media (max-width: 1200px) and (min-width: 993px) {
+  .request-sidebar {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
 }
-.request__form_input {
-  border: none;
-  padding: 28px 0 10px 0;
-  border-bottom: 1px solid #151515;
-  outline: none;
-  font-size: 20px;
-  width: 100%;
-  box-sizing: border-box;
+@media (max-width: 992px) and (min-width: 769px) {
+  .request-sidebar {
+    padding: 60px 45px 100px 45px;
+  }
+  .request-sidebar .logo {
+    width: 85px;
+    height: 85px;
+  }
 }
-.request__form_input::placeholder {
-  font-size: 20px;
-  font-weight: 365;
-  color: #959595;
-  text-align: left !important;
-  padding-left: 0 !important;
-  text-indent: 0;
-  opacity: 1;
-  text-indent: -2px;
+@media (max-width: 768px) and (min-width: 577px) {
+  .request-sidebar {
+    padding: 50px 30px 80px 30px;
+  }
+  .request-sidebar .logo {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media (max-width: 576px) {
+  .request-sidebar {
+    padding: 20px 15px 60px 15px;
+  }
+  .request-sidebar .logo {
+    width: 44px;
+    height: 44px;
+  }
+}
+@media (max-width: 358px) {
+  .request-sidebar {
+    padding: 15px 15px 50px 15px;
+  }
+  .request-sidebar .logo {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 html,
@@ -904,10 +959,6 @@ body {
   h1 {
     font-size: 50px;
   }
-  .header {
-    padding-top: 50px;
-    padding-bottom: 25px;
-  }
   .description {
     margin-bottom: 25px;
   }
@@ -975,7 +1026,6 @@ body {
     line-height: 39px;
   }
 }
-/* Телефоны (от 359px до 576px) */
 /* Маленькие телефоны (меньше 359px) */
 @media (max-width: 358px) {
   .wrapper {

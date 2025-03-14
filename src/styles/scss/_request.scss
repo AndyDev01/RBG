@@ -5,7 +5,6 @@
     background-color: #3a75ed;
     font-family: "Montserrat";
     font-size: 18px;
-    margin-bottom: 49px;
     cursor: pointer;
     transition: box-shadow 0.3s ease;
     font-weight: 500;
@@ -17,43 +16,6 @@
       box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
       border: 1px solid white;
-    }
-  }
-  &__form {
-    margin-top: 168px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    h2 {
-      font-family: "Montserrat";
-      font-weight: 600;
-      font-size: 33px;
-      line-height: 40.23px;
-      letter-spacing: 0%;
-    }
-  }
-  &__inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  &__textarea {
-    height: 102px;
-    margin-top: 31px;
-    background-color: #e7e7e7;
-    outline: none;
-    font-family: "Montserrat";
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24.38px;
-    border: none;
-    border-radius: 11px;
-    padding: 14px 18px 14px 18px;
-    resize: none;
-    &::placeholder {
-      font-size: 20px;
-      font-weight: 350;
-      color: #959595;
     }
   }
 }
@@ -208,18 +170,6 @@ h1 {
     &__button {
       font-size: 20px;
       padding: 16px 40px;
-      margin-bottom: 55px;
-    }
-    &__form {
-      margin-top: 180px;
-      h2 {
-        font-size: 36px;
-        line-height: 44px;
-      }
-    }
-    &__textarea {
-      height: 110px;
-      font-size: 22px;
     }
   }
 
@@ -255,18 +205,6 @@ h1 {
     &__button {
       font-size: 20px;
       padding: 16px 40px;
-      margin-bottom: 55px;
-    }
-    &__form {
-      margin-top: 180px;
-      h2 {
-        font-size: 36px;
-        line-height: 44px;
-      }
-    }
-    &__textarea {
-      height: 110px;
-      font-size: 22px;
     }
   }
 
@@ -302,18 +240,6 @@ h1 {
     &__button {
       font-size: 19px;
       padding: 15px 38px;
-      margin-bottom: 50px;
-    }
-    &__form {
-      margin-top: 170px;
-      h2 {
-        font-size: 34px;
-        line-height: 41px;
-      }
-    }
-    &__textarea {
-      height: 105px;
-      font-size: 21px;
     }
   }
 
@@ -354,18 +280,6 @@ h1 {
     &__button {
       font-size: 18px;
       padding: 14px 35px;
-      margin-bottom: 45px;
-    }
-    &__form {
-      margin-top: 150px;
-      h2 {
-        font-size: 32px;
-        line-height: 39px;
-      }
-    }
-    &__textarea {
-      height: 100px;
-      font-size: 19px;
     }
   }
 
@@ -400,19 +314,6 @@ h1 {
     &__button {
       font-size: 17px;
       padding: 13px 32px;
-      margin-bottom: 150px;
-    }
-    &__form {
-      margin-top: 130px;
-      h2 {
-        font-size: 30px;
-        line-height: 37px;
-      }
-    }
-    &__textarea {
-      height: 90px;
-      font-size: 18px;
-      margin-top: 25px;
     }
   }
 
@@ -453,19 +354,6 @@ h1 {
     &__button {
       font-size: 16px;
       padding: 12px 30px;
-      margin-bottom: 35px;
-    }
-    &__form {
-      margin-top: 110px;
-      h2 {
-        font-size: 28px;
-        line-height: 34px;
-      }
-    }
-    &__textarea {
-      height: 85px;
-      font-size: 17px;
-      margin-top: 20px;
     }
   }
 
@@ -511,18 +399,6 @@ h1 {
       display: block;
       width: 100%;
       max-width: 250px;
-    }
-    &__form {
-      margin-top: 90px;
-      h2 {
-        font-size: 24px;
-        line-height: 29px;
-      }
-    }
-    &__textarea {
-      height: 80px;
-      font-size: 16px;
-      margin-top: 18px;
     }
   }
 

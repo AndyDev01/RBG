@@ -1,5 +1,5 @@
 .header {
-  padding-top: 72px;
+  padding-top: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -29,6 +29,7 @@
 @media (min-width: 1401px) {
   .header {
     padding-top: 80px;
+    padding-bottom: 80px;
   }
 }
 
@@ -36,7 +37,6 @@
 @media (max-width: 992px) and (min-width: 769px) {
   .header {
     padding-top: 60px;
-    padding-bottom: 20px;
   }
   .logo {
     width: 85px;
