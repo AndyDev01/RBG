@@ -46,7 +46,6 @@
   }
 
   .request__input {
-    width: 100%;
     padding: 12px;
     border-radius: 11px;
     border: none;
@@ -77,7 +76,6 @@
   }
 
   .request__textarea {
-    width: 100%;
     padding: 12px;
     border-radius: 10px;
     border: none;
@@ -240,13 +238,43 @@
       width: 44px;
       height: 44px;
     }
-  }
+    .request__title {
+      font-size: 26px;
+      font-weight: 600;
+    }
+    .request__subtitle {
+      font-size: 14px;
+    }
+    .request__input {
+      padding: 9px 15px;
+    }
+    .request__textarea {
+      font-size: 14px;
+    }
+    .request__policy {
+      font-size: 11px;
+      max-width: 250px;
+    }
+    .request__button {
+      font-size: 15px;
+      padding: 7.4px 12px;
+      border-radius: 15px;
+      max-width: 164px;
+    }
+    .request__file-button {
+      font-size: 14px;
+    }
 
-  @media (max-width: 358px) {
-    padding: 15px 15px 50px 15px;
-    .logo {
-      width: 44px;
-      height: 44px;
+    .request__actions {
+      justify-content: space-between;
+    }
+
+    @media (max-width: 358px) {
+      padding: 15px 15px 50px 15px;
+      .logo {
+        width: 44px;
+        height: 44px;
+      }
     }
   }
 }

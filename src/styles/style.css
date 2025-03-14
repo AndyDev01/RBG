@@ -716,7 +716,6 @@ h1 {
   width: 100%;
 }
 .request-sidebar .request__input {
-  width: 100%;
   padding: 12px;
   border-radius: 11px;
   border: none;
@@ -742,7 +741,6 @@ h1 {
   box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
 }
 .request-sidebar .request__textarea {
-  width: 100%;
   padding: 12px;
   border-radius: 10px;
   border: none;
@@ -897,8 +895,37 @@ h1 {
     width: 44px;
     height: 44px;
   }
+  .request-sidebar .request__title {
+    font-size: 26px;
+    font-weight: 600;
+  }
+  .request-sidebar .request__subtitle {
+    font-size: 14px;
+  }
+  .request-sidebar .request__input {
+    padding: 9px 15px;
+  }
+  .request-sidebar .request__textarea {
+    font-size: 14px;
+  }
+  .request-sidebar .request__policy {
+    font-size: 11px;
+    max-width: 250px;
+  }
+  .request-sidebar .request__button {
+    font-size: 15px;
+    padding: 7.4px 12px;
+    border-radius: 15px;
+    max-width: 164px;
+  }
+  .request-sidebar .request__file-button {
+    font-size: 14px;
+  }
+  .request-sidebar .request__actions {
+    justify-content: space-between;
+  }
 }
-@media (max-width: 358px) {
+@media (max-width: 576px) and (max-width: 358px) {
   .request-sidebar {
     padding: 15px 15px 50px 15px;
   }
