@@ -8,6 +8,16 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".request-sidebar").classList.add("active");
     document.querySelector(".overlay").classList.add("active");
   });
+
+  // Обработчик для открытия политики конфиденциальности
+  document
+    .querySelector(".request__policy-link")
+    .addEventListener("click", (e) => {
+      e.preventDefault();
+      document.querySelector(".policy-sidebar").classList.add("active");
+      document.querySelector(".overlay").classList.add("active");
+    });
+
   function closeSidebars() {
     document.querySelectorAll(".sidebar").forEach((sidebar) => {
       sidebar.classList.remove("active");

@@ -543,7 +543,7 @@ h1 {
   }
 }
 
-.sidebar, .request-sidebar, .contact-sidebar {
+.sidebar, .policy-sidebar, .request-sidebar, .contact-sidebar {
   position: fixed;
   top: 0;
   height: 100vh;
@@ -554,11 +554,11 @@ h1 {
   visibility: hidden;
   opacity: 0;
 }
-.sidebar.active, .active.request-sidebar, .active.contact-sidebar {
+.sidebar.active, .active.policy-sidebar, .active.request-sidebar, .active.contact-sidebar {
   visibility: visible;
   opacity: 1;
 }
-.sidebar .close-btn, .request-sidebar .close-btn, .contact-sidebar .close-btn {
+.sidebar .close-btn, .policy-sidebar .close-btn, .request-sidebar .close-btn, .contact-sidebar .close-btn {
   display: none;
   position: absolute;
   top: 20px;
@@ -569,27 +569,27 @@ h1 {
   height: 20px;
   transition: all 0.2s ease;
 }
-.sidebar .close-btn svg, .request-sidebar .close-btn svg, .contact-sidebar .close-btn svg {
+.sidebar .close-btn svg, .policy-sidebar .close-btn svg, .request-sidebar .close-btn svg, .contact-sidebar .close-btn svg {
   width: 20px;
   height: 20px;
 }
-.sidebar .close-btn circle, .request-sidebar .close-btn circle, .contact-sidebar .close-btn circle {
+.sidebar .close-btn circle, .policy-sidebar .close-btn circle, .request-sidebar .close-btn circle, .contact-sidebar .close-btn circle {
   transition: fill 0.2s ease;
 }
-.sidebar .close-btn path, .request-sidebar .close-btn path, .contact-sidebar .close-btn path {
+.sidebar .close-btn path, .policy-sidebar .close-btn path, .request-sidebar .close-btn path, .contact-sidebar .close-btn path {
   transition: stroke 0.2s ease;
 }
-.sidebar .close-btn:hover path, .request-sidebar .close-btn:hover path, .contact-sidebar .close-btn:hover path {
+.sidebar .close-btn:hover path, .policy-sidebar .close-btn:hover path, .request-sidebar .close-btn:hover path, .contact-sidebar .close-btn:hover path {
   stroke: #3a75ed;
 }
-.sidebar .close-btn:hover circle, .request-sidebar .close-btn:hover circle, .contact-sidebar .close-btn:hover circle {
+.sidebar .close-btn:hover circle, .policy-sidebar .close-btn:hover circle, .request-sidebar .close-btn:hover circle, .contact-sidebar .close-btn:hover circle {
   fill: white;
 }
 @media (max-width: 888px) {
-  .sidebar, .request-sidebar, .contact-sidebar {
+  .sidebar, .policy-sidebar, .request-sidebar, .contact-sidebar {
     width: 100% !important;
   }
-  .sidebar .close-btn, .request-sidebar .close-btn, .contact-sidebar .close-btn {
+  .sidebar .close-btn, .policy-sidebar .close-btn, .request-sidebar .close-btn, .contact-sidebar .close-btn {
     display: block;
   }
 }
@@ -712,7 +712,7 @@ h1 {
 .request-sidebar .request__form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 9px;
   width: 100%;
 }
 .request-sidebar .request__input {
@@ -749,7 +749,7 @@ h1 {
   font-size: 16px;
   color: #333;
   resize: none;
-  min-height: 108px;
+  max-height: 54px;
   outline: none;
   transition: all 0.3s ease;
   border: 1px solid transparent;
@@ -932,6 +932,129 @@ h1 {
   .request-sidebar .logo {
     width: 44px;
     height: 44px;
+  }
+}
+
+.policy-sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 80px 150px 80px 150px;
+  left: 0;
+  width: 864px;
+  transform: translateX(-100%);
+  overflow-y: auto;
+}
+.policy-sidebar .logo {
+  width: 85px;
+  height: 85px;
+  margin-left: 0;
+}
+.policy-sidebar .policy__title {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 32px;
+  color: #000;
+  margin: 40px 0 20px 0;
+}
+.policy-sidebar .policy__content {
+  font-family: "Montserrat";
+  font-weight: 400;
+  font-size: 16px;
+  color: #151515;
+  line-height: 1.5;
+}
+.policy-sidebar .policy__content p {
+  margin-bottom: 15px;
+}
+.policy-sidebar .policy__content ul {
+  padding-left: 20px;
+  margin-bottom: 15px;
+}
+.policy-sidebar .policy__content li {
+  margin-bottom: 8px;
+}
+@media (max-width: 888px) {
+  .policy-sidebar {
+    transform: translateX(-100%);
+  }
+  .policy-sidebar .close-btn {
+    right: 15px;
+  }
+}
+.policy-sidebar.active {
+  transform: translateX(0);
+}
+@media (min-width: 1676px) {
+  .policy-sidebar {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
+@media (max-width: 1675px) and (min-width: 1401px) {
+  .policy-sidebar {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+}
+@media (max-width: 1400px) and (min-width: 1201px) {
+  .policy-sidebar {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+}
+@media (max-width: 1200px) and (min-width: 993px) {
+  .policy-sidebar {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+@media (max-width: 992px) and (min-width: 769px) {
+  .policy-sidebar {
+    padding: 60px 45px 60px 45px;
+  }
+  .policy-sidebar .logo {
+    width: 85px;
+    height: 85px;
+  }
+  .policy-sidebar .policy__title {
+    font-size: 28px;
+  }
+}
+@media (max-width: 768px) and (min-width: 577px) {
+  .policy-sidebar {
+    padding: 50px 30px 50px 30px;
+  }
+  .policy-sidebar .logo {
+    width: 70px;
+    height: 70px;
+  }
+  .policy-sidebar .policy__title {
+    font-size: 26px;
+  }
+  .policy-sidebar .policy__content {
+    font-size: 15px;
+  }
+}
+@media (max-width: 576px) {
+  .policy-sidebar {
+    padding: 20px 15px 40px 15px;
+  }
+  .policy-sidebar .logo {
+    width: 44px;
+    height: 44px;
+  }
+  .policy-sidebar .policy__title {
+    font-size: 24px;
+    margin: 20px 0 15px 0;
+  }
+  .policy-sidebar .policy__content {
+    font-size: 14px;
+  }
+}
+@media (max-width: 358px) {
+  .policy-sidebar {
+    padding: 15px 15px 30px 15px;
   }
 }
 

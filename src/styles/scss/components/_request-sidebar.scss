@@ -41,7 +41,7 @@
   .request__form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 9px;
     width: 100%;
   }
 
@@ -84,7 +84,7 @@
     font-size: 16px;
     color: #333;
     resize: none;
-    min-height: 108px;
+    max-height: 54px;
     outline: none;
     transition: all 0.3s ease;
     border: 1px solid transparent;
@@ -276,5 +276,129 @@
         height: 44px;
       }
     }
+  }
+}
+
+.policy-sidebar {
+  @extend .sidebar;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 80px 150px 80px 150px;
+  left: 0;
+  width: $sidebar-request-width;
+  transform: translateX(-100%);
+  overflow-y: auto;
+
+  .logo {
+    width: 85px;
+    height: 85px;
+    margin-left: 0;
+  }
+
+  .policy__title {
+    font-family: "Montserrat";
+    font-weight: 600;
+    font-size: 32px;
+    color: #000;
+    margin: 40px 0 20px 0;
+  }
+
+  .policy__content {
+    font-family: "Montserrat";
+    font-weight: 400;
+    font-size: 16px;
+    color: #151515;
+    line-height: 1.5;
+
+    p {
+      margin-bottom: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    li {
+      margin-bottom: 8px;
+    }
+  }
+
+  @include mobile {
+    transform: translateX(-100%);
+
+    .close-btn {
+      right: 15px;
+    }
+  }
+
+  &.active {
+    transform: translateX(0);
+  }
+
+  // Медиа запросы для обеспечения резиновости
+  @media (min-width: 1676px) {
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+
+  @media (max-width: 1675px) and (min-width: 1401px) {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+
+  @media (max-width: 1400px) and (min-width: 1201px) {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+
+  @media (max-width: 1200px) and (min-width: 993px) {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+
+  @media (max-width: 992px) and (min-width: 769px) {
+    padding: 60px 45px 60px 45px;
+    .logo {
+      width: 85px;
+      height: 85px;
+    }
+    .policy__title {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 577px) {
+    padding: 50px 30px 50px 30px;
+    .logo {
+      width: 70px;
+      height: 70px;
+    }
+    .policy__title {
+      font-size: 26px;
+    }
+    .policy__content {
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 20px 15px 40px 15px;
+    .logo {
+      width: 44px;
+      height: 44px;
+    }
+    .policy__title {
+      font-size: 24px;
+      margin: 20px 0 15px 0;
+    }
+    .policy__content {
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 358px) {
+    padding: 15px 15px 30px 15px;
   }
 }
