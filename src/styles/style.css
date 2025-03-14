@@ -725,12 +725,21 @@ h1 {
   font-size: 16px;
   color: #151515;
   outline: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 .request-sidebar .request__input::placeholder {
   color: #959595;
 }
 .request-sidebar .request__input:focus {
   box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+}
+.request-sidebar .request__input.invalid {
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.05);
+}
+.request-sidebar .request__input.invalid:focus {
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
 }
 .request-sidebar .request__textarea {
   width: 100%;
@@ -744,12 +753,21 @@ h1 {
   resize: none;
   min-height: 108px;
   outline: none;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 .request-sidebar .request__textarea::placeholder {
   color: #959595;
 }
 .request-sidebar .request__textarea:focus {
   box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+}
+.request-sidebar .request__textarea.invalid {
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.05);
+}
+.request-sidebar .request__textarea.invalid:focus {
+  box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
 }
 .request-sidebar .request__policy {
   display: flex;

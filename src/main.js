@@ -32,6 +32,88 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.style.overflow = "";
     }
   });
+
+  // Валидация формы запроса
+  const requestForm = document.querySelector(".request__form");
+  if (requestForm) {
+    const nameInput = requestForm.querySelector('input[placeholder="Имя"]');
+    const emailInput = requestForm.querySelector(
+      'input[placeholder="Ваша эл. почта"]'
+    );
+    const phoneInput = requestForm.querySelector(
+      'input[placeholder="Номер телефона"]'
+    );
+
+    // Функция валидации имени (только русские символы)
+    function validateName() {
+      const nameValue = nameInput.value.trim();
+      const isRussianOnly = /^[А-Яа-яЁё\s-]+$/.test(nameValue);
+
+      if (!isRussianOnly && nameValue.length > 0) {
+        nameInput.classList.add("invalid");
+        return false;
+      } else {
+        nameInput.classList.remove("invalid");
+        return nameValue.length > 0;
+      }
+    }
+
+    // Функция валидации email (содержит @)
+    function validateEmail() {
+      const emailValue = emailInput.value.trim();
+      const hasAtSymbol = emailValue.includes("@");
+
+      if (!hasAtSymbol && emailValue.length > 0) {
+        emailInput.classList.add("invalid");
+        return false;
+      } else {
+        emailInput.classList.remove("invalid");
+        return hasAtSymbol;
+      }
+    }
+
+    // Функция валидации телефона (только цифры и символ +)
+    function validatePhone() {
+      const phoneValue = phoneInput.value.trim();
+      const isValidPhone = /^[0-9+]+$/.test(phoneValue);
+
+      if (phoneValue.length === 0) {
+        phoneInput.classList.add("invalid");
+        return false;
+      } else if (!isValidPhone) {
+        phoneInput.classList.add("invalid");
+        return false;
+      } else {
+        phoneInput.classList.remove("invalid");
+        return true;
+      }
+    }
+
+    // Добавление обработчиков событий для валидации в реальном времени
+    nameInput.addEventListener("input", validateName);
+    emailInput.addEventListener("input", validateEmail);
+    phoneInput.addEventListener("input", validatePhone);
+
+    // Валидация формы при отправке
+    requestForm.addEventListener("submit", function (event) {
+      const isNameValid = validateName();
+      const isEmailValid = validateEmail();
+      const isPhoneValid = validatePhone();
+
+      if (!isNameValid || !isEmailValid || !isPhoneValid) {
+        event.preventDefault();
+
+        // Подсветка невалидных полей
+        if (!isNameValid) {
+          nameInput.focus();
+        } else if (!isEmailValid) {
+          emailInput.focus();
+        } else if (!isPhoneValid) {
+          phoneInput.focus();
+        }
+      }
+    });
+  }
 });
 
 document.querySelector(".contact_button").addEventListener("click", () => {
