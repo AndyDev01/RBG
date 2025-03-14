@@ -296,6 +296,16 @@
     margin-left: 0;
   }
 
+  // Всегда отображаем кнопку закрытия в сайдбаре политики
+  .close-btn {
+    display: block;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+    z-index: 10;
+  }
+
   .policy__title {
     font-family: "Montserrat";
     font-weight: 600;
@@ -316,21 +326,47 @@
     }
 
     ul {
-      padding-left: 20px;
+      padding-left: 0;
       margin-bottom: 15px;
+      list-style-type: none;
     }
 
     li {
+      position: relative;
       margin-bottom: 8px;
+      padding-left: 22px;
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: 8px;
+        top: 10px;
+        width: 5px;
+        height: 5px;
+        background-color: #000000;
+        border-radius: 50%;
+      }
+
+      &:not(:last-child) {
+        margin-bottom: 12px;
+      }
+    }
+
+    // Дополнительные стили для улучшения читаемости
+    strong {
+      font-weight: 600;
+    }
+
+    // Интервалы между блоками
+    h3 {
+      font-weight: 600;
+      font-size: 18px;
+      margin: 20px 0 10px;
     }
   }
 
   @include mobile {
     transform: translateX(-100%);
-
-    .close-btn {
-      right: 15px;
-    }
   }
 
   &.active {
@@ -396,9 +432,19 @@
     .policy__content {
       font-size: 14px;
     }
+
+    .close-btn {
+      top: 15px;
+      right: 15px;
+    }
   }
 
   @media (max-width: 358px) {
     padding: 15px 15px 30px 15px;
+
+    .close-btn {
+      top: 10px;
+      right: 10px;
+    }
   }
 }
