@@ -138,7 +138,7 @@ document.querySelector(".contact_button").addEventListener("click", () => {
 const script = document.createElement("script");
 script.src = `https://api-maps.yandex.ru/2.1/?apikey=${
   import.meta.env.VITE_API_KEY
-}&lang=ru_RU&theme=dark`;
+}`;
 document.head.appendChild(script);
 script.onload = () => {
   ymaps.ready(initMap);
