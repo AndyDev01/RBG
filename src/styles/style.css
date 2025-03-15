@@ -35,6 +35,11 @@
     padding-bottom: 80px;
   }
 }
+@media (max-width: 1401px) {
+  .header {
+    padding-bottom: 80px;
+  }
+}
 /* Планшеты (от 768px до 992px) */
 @media (max-width: 992px) and (min-width: 769px) {
   .header {
@@ -114,6 +119,9 @@
     max-width: 44px;
     max-height: 44px;
   }
+}
+.request {
+  margin-bottom: auto;
 }
 .request__button {
   color: white;
