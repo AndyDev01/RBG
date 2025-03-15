@@ -808,7 +808,7 @@ h1 {
   color: #959595;
 }
 .request-sidebar .request__input:focus {
-  box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+  box-shadow: 0 0 0 2px rgb(58, 117, 237);
 }
 .request-sidebar .request__input.invalid {
   border-color: red;
@@ -835,7 +835,7 @@ h1 {
   color: #959595;
 }
 .request-sidebar .request__textarea:focus {
-  box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+  box-shadow: 0 0 0 2px rgb(58, 117, 237);
 }
 .request-sidebar .request__textarea.invalid {
   border-color: red;

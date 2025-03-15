@@ -62,7 +62,8 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+      // box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+      box-shadow: 0 0 0 2px rgb(58, 117, 237);
     }
 
     &.invalid {
@@ -94,7 +95,7 @@
     }
 
     &:focus {
-      box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
+      box-shadow: 0 0 0 2px rgb(58, 117, 237);
     }
 
     &.invalid {
