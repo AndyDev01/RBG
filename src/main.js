@@ -1,3 +1,49 @@
+// Управление прелоадером
+window.addEventListener("load", function () {
+  // Интерфейс загружен, можно использовать сайт
+  document.body.style.overflow = "auto";
+
+  // Проверяем загрузку видео
+  const videoElement = document.getElementById("video-background");
+
+  // Функция для скрытия прелоадера
+  function hidePreloader() {
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+      preloader.classList.add("loaded");
+    }
+  }
+
+  // Функция для проверки состояния загрузки видео
+  function checkVideoLoaded() {
+    if (
+      videoElement &&
+      (videoElement.readyState >= 3 || videoElement.played.length > 0)
+    ) {
+      // Видео загружено и готово к воспроизведению
+      hidePreloader();
+      return true;
+    }
+    return false;
+  }
+
+  // Проверяем сразу
+  if (!checkVideoLoaded()) {
+    // Если видео не готово, слушаем события
+    if (videoElement) {
+      videoElement.addEventListener("canplay", hidePreloader);
+      videoElement.addEventListener("playing", hidePreloader);
+    }
+
+    // Резервный таймаут, если видео не загружается долго
+    setTimeout(function () {
+      if (!checkVideoLoaded()) {
+        hidePreloader();
+      }
+    }, 5000);
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".contact_button").addEventListener("click", () => {
     document.querySelector(".contact-sidebar").classList.add("active");
