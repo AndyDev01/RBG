@@ -146,7 +146,7 @@ script.onload = () => {
 
 function init() {
   const map = new ymaps.Map("map", {
-    center: [55.835335004821715, 38.37710203910369],
+    center: [55.76259, 38.357773],
     zoom: 9,
     controls: ["zoomControl"],
   });
