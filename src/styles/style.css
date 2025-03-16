@@ -75,7 +75,7 @@
   }
   .header {
     padding-top: 20px;
-    padding-bottom: 15px;
+    padding-bottom: 0;
   }
   .logo {
     width: 44px;
@@ -113,7 +113,8 @@
   .header {
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 57px;
+    padding-bottom: 0;
   }
   .logo {
     max-width: 44px;
