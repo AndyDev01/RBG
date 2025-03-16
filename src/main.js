@@ -66,13 +66,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function closeSidebars() {
     document.querySelectorAll(".sidebar").forEach((sidebar) => {
-      sidebar.classList.remove("active");
+      // Добавляем класс closing для анимации закрытия
+      sidebar.classList.add("closing");
+
+      // Удаляем класс active и closing после завершения анимации
+      setTimeout(() => {
+        sidebar.classList.remove("active");
+        sidebar.classList.remove("closing");
+      }, 300); // 300ms - длительность анимации в CSS
     });
+
     document.querySelector(".overlay").classList.remove("active");
   }
+
+  // Функция для закрытия только конкретного сайдбара
+  function closeSingleSidebar(sidebarElement) {
+    // Добавляем класс closing для анимации закрытия
+    sidebarElement.classList.add("closing");
+
+    // Удаляем класс active и closing после завершения анимации
+    setTimeout(() => {
+      sidebarElement.classList.remove("active");
+      sidebarElement.classList.remove("closing");
+    }, 300); // 300ms - длительность анимации в CSS
+
+    // Проверяем, есть ли еще активные сайдбары
+    const activeSidebars = document.querySelectorAll(".sidebar.active");
+    if (activeSidebars.length <= 1) {
+      // Если это последний/единственный активный сайдбар, скрываем оверлей
+      document.querySelector(".overlay").classList.remove("active");
+    }
+  }
+
   document.querySelector(".overlay").addEventListener("click", closeSidebars);
+
+  // Изменяем обработчики для кнопок закрытия
   document.querySelectorAll(".close-btn").forEach((btn) => {
-    btn.addEventListener("click", closeSidebars);
+    btn.addEventListener("click", (e) => {
+      // Получаем ближайший родительский элемент с классом sidebar
+      const sidebar = e.currentTarget.closest(".sidebar");
+      if (sidebar) {
+        closeSingleSidebar(sidebar);
+      }
+    });
   });
 
   document

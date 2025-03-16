@@ -7,6 +7,7 @@
   left: 0;
   width: $sidebar-request-width;
   transform: translateX(-100%);
+  transition: transform 0.3s ease;
 
   .logo {
     width: 85px;
@@ -196,6 +197,10 @@
     transform: translateX(0);
   }
 
+  &.closing {
+    transform: translateX(-100%);
+  }
+
   // Медиа запросы для обеспечения резиновости
   @media (min-width: 1676px) {
     padding-left: 150px;
@@ -291,6 +296,7 @@
   width: $sidebar-request-width;
   transform: translateX(-100%);
   overflow-y: auto;
+  transition: transform 0.3s ease;
 
   .logo {
     width: 85px;
@@ -373,6 +379,10 @@
 
   &.active {
     transform: translateX(0);
+  }
+
+  &.closing {
+    transform: translateX(-100%);
   }
 
   // Медиа запросы для обеспечения резиновости

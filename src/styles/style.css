@@ -120,6 +120,9 @@
     max-height: 44px;
   }
 }
+.request {
+  margin-bottom: auto;
+}
 .request__button {
   color: white;
   border-radius: 15px;
@@ -461,9 +464,6 @@ h1 {
 }
 /* До 576px - показываем 3 элемента */
 @media (max-width: 576px) {
-  .request {
-    margin-bottom: auto;
-  }
   .request__button {
     font-size: 16px;
     padding: 12px 25px;
@@ -611,6 +611,7 @@ h1 {
   right: 0;
   width: 888px;
   transform: translateX(100%);
+  transition: transform 0.3s ease;
 }
 @media (max-width: 888px) {
   .contact-sidebar {
@@ -623,6 +624,9 @@ h1 {
 }
 .contact-sidebar.active {
   transform: translateX(0);
+}
+.contact-sidebar.closing {
+  transform: translateX(100%);
 }
 .contact-sidebar__content {
   padding: 20px;
@@ -761,6 +765,7 @@ h1 {
   left: 0;
   width: 864px;
   transform: translateX(-100%);
+  transition: transform 0.3s ease;
 }
 .request-sidebar .logo {
   width: 85px;
@@ -923,6 +928,9 @@ h1 {
 .request-sidebar.active {
   transform: translateX(0);
 }
+.request-sidebar.closing {
+  transform: translateX(-100%);
+}
 @media (min-width: 1676px) {
   .request-sidebar {
     padding-left: 150px;
@@ -1023,6 +1031,7 @@ h1 {
   width: 864px;
   transform: translateX(-100%);
   overflow-y: auto;
+  transition: transform 0.3s ease;
 }
 .policy-sidebar .logo {
   width: 85px;
@@ -1092,6 +1101,9 @@ h1 {
 }
 .policy-sidebar.active {
   transform: translateX(0);
+}
+.policy-sidebar.closing {
+  transform: translateX(-100%);
 }
 @media (min-width: 1676px) {
   .policy-sidebar {
@@ -1267,7 +1279,7 @@ body {
   padding: 0 142px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: start;
   height: 100vh;
 }
 

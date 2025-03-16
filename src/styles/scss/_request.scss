@@ -1,5 +1,5 @@
 .request {
-  // margin-bottom: auto;
+  margin-bottom: auto;
   &__button {
     color: white;
     border-radius: 15px;
@@ -402,7 +402,6 @@ h1 {
 /* До 576px - показываем 3 элемента */
 @media (max-width: 576px) {
   .request {
-    margin-bottom: auto;
     &__button {
       font-size: 16px;
       padding: 12px 25px;
