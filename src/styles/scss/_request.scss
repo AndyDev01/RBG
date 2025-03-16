@@ -1,5 +1,5 @@
 .request {
-  margin-bottom: auto;
+  // margin-bottom: auto;
   &__button {
     color: white;
     border-radius: 15px;
@@ -402,14 +402,15 @@ h1 {
 /* До 576px - показываем 3 элемента */
 @media (max-width: 576px) {
   .request {
+    margin-bottom: auto;
     &__button {
       font-size: 16px;
       padding: 12px 25px;
-
       border-radius: 10px;
       display: block;
       width: 100%;
       max-width: 250px;
+      // margin-bottom: auto;
     }
   }
 
@@ -417,6 +418,7 @@ h1 {
     overflow-x: auto;
     padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
     gap: 10px;
+    padding-bottom: 6.1vh;
   }
 
   .item {
