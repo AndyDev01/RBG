@@ -144,6 +144,7 @@
     align-items: center;
     gap: 56px;
     margin-top: 10px;
+    justify-content: space-between;
   }
 
   .request__file-button {
@@ -163,6 +164,30 @@
     }
   }
 
+  .request__file-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+
+  .request__file-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .request__file-info {
+    // padding-left: 12px;
+    font-family: "Montserrat";
+    font-size: 14px;
+    color: #959595;
+    margin-top: 5px;
+  }
+
   .request__button {
     margin-top: 0;
     color: white;
@@ -171,7 +196,7 @@
     font-family: "Montserrat";
     font-size: 18px;
     cursor: pointer;
-    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease;
     font-weight: 500;
     line-height: 29.26px;
     letter-spacing: 0%;
@@ -179,10 +204,49 @@
     padding: 12px 61px;
     align-self: flex-start;
 
-    &:hover {
+    &:hover:not(:disabled) {
       box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
     }
+
+    &:disabled {
+      cursor: not-allowed;
+      background-color: rgba(58, 117, 237, 0.67);
+    }
+  }
+
+  // Стили для сообщения об успешной отправке
+  .request__success-message {
+    display: none;
+    font-family: "Montserrat";
+    font-size: 18px;
+    color: #28a745;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(40, 167, 69, 0.1);
+    text-align: center;
+  }
+
+  .request__success-message.active {
+    display: block;
+  }
+
+  // Стили для сообщения об ошибке
+  .request__error-message {
+    display: none;
+    font-family: "Montserrat";
+    font-size: 18px;
+    color: #dc3545;
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: rgba(220, 53, 69, 0.1);
+    text-align: center;
+  }
+
+  .request__error-message.active {
+    display: block;
   }
 
   @include mobile {

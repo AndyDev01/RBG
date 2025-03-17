@@ -55,6 +55,29 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".overlay").classList.add("active");
   });
 
+  // Обработчик для кнопки проверки модального окна
+  const testModalButton = document.querySelector(".test-modal-button");
+  if (testModalButton) {
+    testModalButton.addEventListener("click", () => {
+      console.log("Клик по кнопке проверки модального окна");
+      const successModal = document.getElementById("success-modal");
+      if (successModal) {
+        document.querySelector(".overlay").classList.add("active");
+        successModal.classList.add("active");
+        console.log("Модальное окно должно быть активировано");
+
+        // Автоматически скрываем через 3 секунды
+        setTimeout(() => {
+          closeSuccessModal();
+        }, 3000);
+      } else {
+        console.error("Элемент success-modal не найден");
+      }
+    });
+  } else {
+    console.error("Кнопка test-modal-button не найдена");
+  }
+
   // Обработчик для открытия политики конфиденциальности
   document
     .querySelector(".request__policy-link")
@@ -125,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Валидация формы запроса
+  // Валидация формы запроса и отправка на email
   const requestForm = document.querySelector(".request__form");
   if (requestForm) {
     const nameInput = requestForm.querySelector('input[placeholder="Имя"]');
@@ -135,6 +158,56 @@ document.addEventListener("DOMContentLoaded", () => {
     const phoneInput = requestForm.querySelector(
       'input[placeholder="Номер телефона"]'
     );
+    const companyInput = requestForm.querySelector(
+      'input[placeholder="Компания"]'
+    );
+    const messageTextarea = requestForm.querySelector(
+      'textarea[placeholder="Текст запроса"]'
+    );
+    const fileInput = document.getElementById("file-upload");
+    const fileButton = document.getElementById("file-button");
+    const fileInfo = document.querySelector(".request__file-info");
+    const policyCheckbox = document.getElementById("policy-checkbox");
+    const submitButton = document.getElementById("submit-button");
+    const successMessage = document.getElementById("success-message");
+    const errorMessage = document.getElementById("error-message");
+
+    // Настройка EmailJS
+    // Эти параметры нужно заменить на реальные
+    const emailJsServiceId = "your_service_id"; // Заменить на ID сервиса EmailJS
+    const emailJsTemplateId = "your_template_id"; // Заменить на ID шаблона EmailJS
+    const emailJsUserId = "your_user_id"; // Заменить на ID пользователя EmailJS
+
+    // Или настройка FormSubmit
+    const formSubmitEmail = "your_email@domain.com"; // Заменить на актуальный email для FormSubmit
+
+    // Обработка нажатия на кнопку прикрепления файла
+    if (fileButton) {
+      fileButton.addEventListener("click", () => {
+        fileInput.click();
+      });
+    }
+
+    // Обработка выбора файла
+    if (fileInput) {
+      fileInput.addEventListener("change", (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          fileInfo.textContent = `Файл: ${file.name} (${Math.round(
+            file.size / 1024
+          )} KB)`;
+        } else {
+          fileInfo.textContent = "Файл не выбран";
+        }
+      });
+    }
+
+    // Обработка состояния чекбокса политики
+    if (policyCheckbox) {
+      policyCheckbox.addEventListener("change", () => {
+        submitButton.disabled = !policyCheckbox.checked;
+      });
+    }
 
     // Функция валидации имени (только русские символы)
     function validateName() {
@@ -186,25 +259,154 @@ document.addEventListener("DOMContentLoaded", () => {
     emailInput.addEventListener("input", validateEmail);
     phoneInput.addEventListener("input", validatePhone);
 
-    // Валидация формы при отправке
-    requestForm.addEventListener("submit", function (event) {
+    // Отправка формы
+    requestForm.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      // Скрываем сообщения статуса
+      successMessage.classList.remove("active");
+      errorMessage.classList.remove("active");
+
+      // Валидация полей
       const isNameValid = validateName();
       const isEmailValid = validateEmail();
       const isPhoneValid = validatePhone();
+      const isPolicyChecked = policyCheckbox.checked;
 
-      if (!isNameValid || !isEmailValid || !isPhoneValid) {
-        event.preventDefault();
-
-        // Подсветка невалидных полей
+      if (!isNameValid || !isEmailValid || !isPhoneValid || !isPolicyChecked) {
+        // Фокус на первом невалидном поле
         if (!isNameValid) {
           nameInput.focus();
         } else if (!isEmailValid) {
           emailInput.focus();
         } else if (!isPhoneValid) {
           phoneInput.focus();
+        } else if (!isPolicyChecked) {
+          policyCheckbox.focus();
         }
+        return;
+      }
+
+      // Подготовка данных формы
+      try {
+        // Опция 1: отправка через FormSubmit
+        // Находим форму и меняем action перед отправкой
+        const form = document.getElementById("request-form");
+        form.action = `https://formsubmit.co/${formSubmitEmail}`;
+
+        // Отправляем форму
+        form.submit();
+
+        // Очищаем форму после успешной отправки
+        form.reset();
+        fileInfo.textContent = "Файл не выбран";
+        submitButton.disabled = true;
+
+        // Показываем сообщение об успехе
+        successMessage.classList.add("active");
+
+        /* 
+        // Опция 2: отправка через EmailJS
+        if (fileInput.files.length > 0) {
+          // Если есть файл, читаем его и отправляем
+          const reader = new FileReader();
+          reader.readAsDataURL(fileInput.files[0]);
+          
+          reader.onload = async () => {
+            const params = {
+              name: nameInput.value,
+              company: companyInput.value,
+              email: emailInput.value,
+              phone: phoneInput.value,
+              message: messageTextarea.value,
+              file: reader.result
+            };
+            
+            try {
+              await emailjs.send(emailJsServiceId, emailJsTemplateId, params, emailJsUserId);
+              
+              // Очищаем форму после успешной отправки
+              requestForm.reset();
+              fileInfo.textContent = 'Файл не выбран';
+              submitButton.disabled = true;
+              
+              // Показываем сообщение об успехе
+              successMessage.classList.add('active');
+            } catch (error) {
+              console.error("Ошибка отправки:", error);
+              errorMessage.classList.add('active');
+            }
+          };
+          
+          reader.onerror = () => {
+            console.error("Ошибка чтения файла");
+            errorMessage.classList.add('active');
+          };
+        } else {
+          // Отправка без файла
+          const params = {
+            name: nameInput.value,
+            company: companyInput.value,
+            email: emailInput.value,
+            phone: phoneInput.value,
+            message: messageTextarea.value
+          };
+          
+          try {
+            await emailjs.send(emailJsServiceId, emailJsTemplateId, params, emailJsUserId);
+            
+            // Очищаем форму после успешной отправки
+            requestForm.reset();
+            submitButton.disabled = true;
+            
+            // Показываем сообщение об успехе
+            successMessage.classList.add('active');
+          } catch (error) {
+            console.error("Ошибка отправки:", error);
+            errorMessage.classList.add('active');
+          }
+        }
+        */
+      } catch (error) {
+        console.error("Ошибка отправки:", error);
+        errorMessage.classList.add("active");
       }
     });
+  }
+
+  // Функция для плавного закрытия модального окна
+  function closeSuccessModal() {
+    const modal = document.getElementById("success-modal");
+    if (modal && modal.classList.contains("active")) {
+      modal.classList.add("closing");
+
+      setTimeout(() => {
+        modal.classList.remove("active");
+        modal.classList.remove("closing");
+
+        // Проверяем, есть ли активные сайдбары
+        const activeSidebars = document.querySelectorAll(".sidebar.active");
+        if (activeSidebars.length === 0) {
+          document.querySelector(".overlay").classList.remove("active");
+        }
+      }, 300); // 300ms - длительность анимации в CSS
+    }
+  }
+
+  // Обработчик клика на модальное окно для его закрытия
+  const successModal = document.getElementById("success-modal");
+  if (successModal) {
+    successModal.addEventListener("click", (e) => {
+      closeSuccessModal();
+    });
+
+    // Предотвращаем закрытие при клике на содержимое модального окна
+    const modalContent = successModal.querySelector(".success-modal__content");
+    if (modalContent) {
+      modalContent.addEventListener("click", (e) => {
+        e.stopPropagation(); // Предотвращаем всплытие события клика
+      });
+    }
   }
 });
 

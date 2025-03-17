@@ -39,7 +39,14 @@
           Надежный поставщик систем холодоснабжения, вентиляции и
           кондиционирования.
         </p>
-        <button class="request__button">Отправить запрос</button>
+        <div class="main-screen__buttons">
+          <button class="main-screen__button request__button">
+            Оставить запрос
+          </button>
+          <button class="main-screen__button test-modal-button">
+            Проверка модалки
+          </button>
+        </div>
       </section>
       <div class="items-container">
         <div class="items">
@@ -232,37 +239,58 @@
           и рады новым интересным проектам.
         </p>
 
-        <form class="request__form">
+        <form
+          class="request__form"
+          id="request-form"
+          method="POST"
+          enctype="multipart/form-data"
+        >
           <input
             type="text"
             class="request__input"
             placeholder="Имя"
+            name="name"
             required
           />
           <input
             type="text"
             class="request__input"
             placeholder="Компания"
+            name="company"
             required
           />
           <input
             type="tel"
             class="request__input"
             placeholder="Номер телефона"
+            name="phone"
             required
           />
           <input
             type="email"
             class="request__input"
             placeholder="Ваша эл. почта"
+            name="email"
             required
           />
           <textarea
             class="request__textarea"
             placeholder="Текст запроса"
+            name="message"
             rows="5"
             required
           ></textarea>
+
+          <div class="request__file-wrapper">
+            <input
+              type="file"
+              class="request__file-input"
+              id="file-upload"
+              name="attachment"
+              accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
+            />
+            <div class="request__file-info">Файл не выбран</div>
+          </div>
 
           <div class="request__policy">
             <input
@@ -280,11 +308,38 @@
           </div>
 
           <div class="request__actions">
-            <button class="request__button" type="submit">Отправить</button>
-            <button type="button" class="request__file-button">
+            <button
+              class="request__button"
+              type="submit"
+              id="submit-button"
+              disabled
+            >
+              Отправить
+            </button>
+            <button type="button" class="request__file-button" id="file-button">
               Прикрепить файл
             </button>
           </div>
+
+          <!-- Сообщения о статусе отправки -->
+          <div class="request__success-message" id="success-message">
+            Ваш запрос успешно отправлен! Мы свяжемся с вами в ближайшее время.
+          </div>
+
+          <!-- Сообщение об ошибке отправки -->
+          <div class="request__error-message" id="error-message">
+            Произошла ошибка при отправке запроса. Пожалуйста, попробуйте еще
+            раз или свяжитесь с нами по телефону.
+          </div>
+
+          <!-- Скрытые поля для FormSubmit -->
+          <input
+            type="hidden"
+            name="_subject"
+            value="Новый запрос с сайта РБГ"
+          />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
         </form>
       </div>
 
@@ -304,6 +359,20 @@
             stroke-linecap="round"
           />
         </svg>
+      </div>
+    </div>
+
+    <!-- Модальное окно успешной отправки формы -->
+    <div class="success-modal" id="success-modal">
+      <div class="success-modal__content">
+        <div class="success-modal__icon">
+          <img
+            src="./public/icons/success-modal_icon.svg"
+            alt="success-modal_icon"
+          />
+        </div>
+
+        <div class="success-modal__text">Запрос отправлен</div>
       </div>
     </div>
 
