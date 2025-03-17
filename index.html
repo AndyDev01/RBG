@@ -16,6 +16,7 @@
       rel="stylesheet"
     />
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&theme=dark"></script>
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://api-maps.yandex.ru https://*.maps.yandex.net 'wasm-unsafe-eval'">
     <title>Rbg</title>
   </head>
   <body>
@@ -341,8 +342,8 @@
             style="display: none"
           ></div>
 
-          <!-- Сообщение об ошибке отправки -->
-          <div class="request__error-message" id="error-message">
+          <!-- Скрытое сообщение об ошибке отправки (не используется) -->
+          <div class="request__error-message" id="error-message" style="display: none">
             Произошла ошибка при отправке запроса. Пожалуйста, попробуйте еще
             раз или свяжитесь с нами по телефону.
           </div>

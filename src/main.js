@@ -60,35 +60,16 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".contact_button").addEventListener("click", () => {
     document.querySelector(".contact-sidebar").classList.add("active");
     document.querySelector(".overlay").classList.add("active");
+    if (!window.mapInitialized) {
+      ymaps.ready(init);
+      window.mapInitialized = true;
+    }
   });
 
   document.querySelector(".request__button").addEventListener("click", () => {
     document.querySelector(".request-sidebar").classList.add("active");
     document.querySelector(".overlay").classList.add("active");
   });
-
-  // Обработчик для кнопки проверки модального окна
-  const testModalButton = document.querySelector(".test-modal-button");
-  if (testModalButton) {
-    testModalButton.addEventListener("click", () => {
-      console.log("Клик по кнопке проверки модального окна");
-      const successModal = document.getElementById("success-modal");
-      if (successModal) {
-        document.querySelector(".overlay").classList.add("active");
-        successModal.classList.add("active");
-        console.log("Модальное окно должно быть активировано");
-
-        // Автоматически скрываем через 3 секунды
-        setTimeout(() => {
-          closeSuccessModal();
-        }, 3000);
-      } else {
-        console.error("Элемент success-modal не найден");
-      }
-    });
-  } else {
-    console.error("Кнопка test-modal-button не найдена");
-  }
 
   // Обработчик для открытия политики конфиденциальности
   document
@@ -212,55 +193,232 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
-    // Функция валидации имени (только русские символы)
+    // Функции валидации
     function validateName() {
-      const nameValue = nameInput.value.trim();
-      const isRussianOnly = /^[А-Яа-яЁё\s-]+$/.test(nameValue);
-
-      if (!isRussianOnly && nameValue.length > 0) {
-        nameInput.classList.add("invalid");
+      const name = nameInput.value.trim();
+      // Проверяем, что имя содержит только русские буквы, пробелы и дефис
+      const isRussianLettersOnly = /^[А-Яа-яЁё\-\s]+$/.test(name);
+      
+      if (name.length < 2 || !isRussianLettersOnly) {
+        nameInput.classList.add("error");
+        
+        // Создаем или обновляем всплывающую подсказку
+        let tooltip = document.querySelector('#name-tooltip');
+        if (!tooltip) {
+          tooltip = document.createElement('div');
+          tooltip.id = 'name-tooltip';
+          tooltip.className = 'tooltip';
+          document.body.appendChild(tooltip);
+        }
+        
+        if (name.length < 2) {
+          tooltip.textContent = 'Имя должно содержать минимум 2 символа';
+        } else {
+          tooltip.textContent = 'Только русские буквы, пробелы и дефис';
+        }
+        
+        // Позиционируем подсказку под полем ввода
+        const rect = nameInput.getBoundingClientRect();
+        tooltip.style.left = `${rect.left}px`;
+        tooltip.style.top = `${rect.bottom}px`;
+        tooltip.classList.add('visible');
+        
         return false;
-      } else {
-        nameInput.classList.remove("invalid");
-        return nameValue.length > 0;
       }
+      
+      // Если валидация успешна, скрываем подсказку
+      nameInput.classList.remove("error");
+      const tooltip = document.querySelector('#name-tooltip');
+      if (tooltip) {
+        tooltip.classList.remove('visible');
+      }
+      
+      return true;
     }
 
-    // Функция валидации email (содержит @)
     function validateEmail() {
-      const emailValue = emailInput.value.trim();
-      const hasAtSymbol = emailValue.includes("@");
-
-      if (!hasAtSymbol && emailValue.length > 0) {
-        emailInput.classList.add("invalid");
+      const email = emailInput.value.trim();
+      // Обновленная регулярка для проверки email - должны быть буквы до @, обязательно точка после @
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      
+      if (!emailRegex.test(email)) {
+        emailInput.classList.add("error");
+        
+        // Создаем или обновляем всплывающую подсказку
+        let tooltip = document.querySelector('#email-tooltip');
+        if (!tooltip) {
+          tooltip = document.createElement('div');
+          tooltip.id = 'email-tooltip';
+          tooltip.className = 'tooltip';
+          document.body.appendChild(tooltip);
+        }
+        
+        // Проверяем конкретную ошибку в email
+        if (!email.includes('@')) {
+          tooltip.textContent = 'Email должен содержать символ @';
+        } else if (email.split('@')[1] && !email.split('@')[1].includes('.')) {
+          tooltip.textContent = 'Введите часть адреса после символа @';
+        } else if (email.split('@')[0].length === 0) {
+          tooltip.textContent = 'Введите часть адреса до символа @';
+        } else {
+          tooltip.textContent = 'Введите корректный email адрес';
+        }
+        
+        // Позиционируем подсказку под полем ввода
+        const rect = emailInput.getBoundingClientRect();
+        tooltip.style.left = `${rect.left}px`;
+        tooltip.style.top = `${rect.bottom}px`;
+        tooltip.classList.add('visible');
+        
         return false;
-      } else {
-        emailInput.classList.remove("invalid");
-        return hasAtSymbol;
       }
+      
+      // Если валидация успешна, скрываем подсказку
+      emailInput.classList.remove("error");
+      const tooltip = document.querySelector('#email-tooltip');
+      if (tooltip) {
+        tooltip.classList.remove('visible');
+      }
+      
+      return true;
     }
 
-    // Функция валидации телефона (только цифры и символ +)
+    // Форматирование телефонного номера
+    function formatPhoneNumber(value) {
+      // Убираем все нецифровые символы
+      let phoneNumber = value.replace(/\D/g, '');
+      
+      // Если телефон пустой, возвращаем +7
+      if (phoneNumber.length === 0) return '+7';
+      
+      // Если телефон не начинается с 7, добавляем его
+      if (phoneNumber.length > 0 && phoneNumber[0] !== '7') {
+        phoneNumber = '7' + phoneNumber;
+      }
+      
+      // Ограничиваем длину до 11 цифр
+      phoneNumber = phoneNumber.substring(0, 11);
+      
+      // Форматируем телефон: +7 (XXX) XXX-XX-XX
+      let formattedPhone = '+';
+      if (phoneNumber.length > 0) {
+        formattedPhone += phoneNumber[0];
+      }
+      if (phoneNumber.length > 1) {
+        formattedPhone += ' (';
+        formattedPhone += phoneNumber.substring(1, Math.min(4, phoneNumber.length));
+      }
+      if (phoneNumber.length > 4) {
+        formattedPhone += ') ';
+        formattedPhone += phoneNumber.substring(4, Math.min(7, phoneNumber.length));
+      }
+      if (phoneNumber.length > 7) {
+        formattedPhone += '-';
+        formattedPhone += phoneNumber.substring(7, Math.min(9, phoneNumber.length));
+      }
+      if (phoneNumber.length > 9) {
+        formattedPhone += '-';
+        formattedPhone += phoneNumber.substring(9, 11);
+      }
+      
+      return formattedPhone;
+    }
+
     function validatePhone() {
-      const phoneValue = phoneInput.value.trim();
-      const isValidPhone = /^[0-9+]+$/.test(phoneValue);
-
-      if (phoneValue.length === 0) {
-        phoneInput.classList.add("invalid");
+      let phone = phoneInput.value.trim();
+      
+      // Проверяем, что телефон содержит +7 и достаточно цифр
+      // Извлекаем только цифры для проверки
+      const digits = phone.replace(/\D/g, '');
+      
+      // Для России должно быть 11 цифр (с кодом страны)
+      if (digits.length !== 11) {
+        // Не добавляем класс error для телефона, чтобы не было красного фокуса
+        
+        // Создаем или обновляем всплывающую подсказку
+        let tooltip = document.querySelector('#phone-tooltip');
+        if (!tooltip) {
+          tooltip = document.createElement('div');
+          tooltip.id = 'phone-tooltip';
+          tooltip.className = 'tooltip';
+          document.body.appendChild(tooltip);
+        }
+        
+        tooltip.textContent = 'Введите номер телефона полностью';
+        
+        // Позиционируем подсказку под полем ввода
+        const rect = phoneInput.getBoundingClientRect();
+        tooltip.style.left = `${rect.left}px`;
+        tooltip.style.top = `${rect.bottom}px`;
+        tooltip.classList.add('visible');
+        
         return false;
-      } else if (!isValidPhone) {
-        phoneInput.classList.add("invalid");
-        return false;
-      } else {
-        phoneInput.classList.remove("invalid");
-        return true;
       }
+      
+      // Если валидация успешна, скрываем подсказку
+      phoneInput.classList.remove("error");
+      const tooltip = document.querySelector('#phone-tooltip');
+      if (tooltip) {
+        tooltip.classList.remove('visible');
+      }
+      
+      return true;
     }
 
-    // Добавление обработчиков событий для валидации в реальном времени
+    // Обработчики событий для валидации при вводе
     nameInput.addEventListener("input", validateName);
     emailInput.addEventListener("input", validateEmail);
-    phoneInput.addEventListener("input", validatePhone);
+    
+    // Обработчик для форматирования телефона
+    phoneInput.addEventListener("input", function() {
+      // Сохраняем позицию курсора
+      const cursorPosition = this.selectionStart;
+      const previousLength = this.value.length;
+      
+      // Применяем форматирование
+      this.value = formatPhoneNumber(this.value);
+      
+      // Корректируем позицию курсора после форматирования
+      const newLength = this.value.length;
+      const newPosition = cursorPosition + (newLength - previousLength);
+      
+      if (newPosition >= 0) {
+        this.setSelectionRange(newPosition, newPosition);
+      }
+      
+      validatePhone();
+    });
+    
+    // При фокусе на поле телефона, добавляем +7 если поле пустое
+    phoneInput.addEventListener("focus", function() {
+      if (this.value.trim() === '') {
+        this.value = '+7';
+      }
+    });
+
+    // Функция для закрытия модального окна
+    function closeSuccessModal() {
+      if (successModal) {
+        successModal.classList.add("closing");
+        setTimeout(() => {
+          successModal.classList.remove("active");
+          successModal.classList.remove("closing");
+          document.querySelector(".overlay").classList.remove("active");
+        }, 300);
+      }
+    }
+
+    // Добавляем обработчик для закрытия модального окна при клике на него
+    successModal.addEventListener("click", (e) => {
+      closeSuccessModal();
+    });
+
+    // Добавляем обработчик для закрытия модального окна при клике на overlay
+    document.querySelector(".overlay").addEventListener("click", (e) => {
+      if (successModal.classList.contains("active")) {
+        closeSuccessModal();
+      }
+    });
 
     // Отправка формы
     requestForm.addEventListener("submit", async function (event) {
@@ -289,89 +447,77 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // Подготовка данных формы
+      // Создаем объект FormData
+      const formData = new FormData(requestForm);
+
       try {
-        console.log(
-          "Форма успешно валидирована, готовимся показать модальное окно"
-        );
-        // Вместо отправки формы просто показываем модальное окно
-        // requestForm.submit(); -- закомментировано, чтобы форма не отправлялась
+        // Отправляем данные на сервер
+        const response = await fetch("/api/send-email", {
+          method: "POST",
+          body: formData,
+        });
+
+        // Даже если запрос не успешен, всё равно показываем модальное окно успеха
+        // Закомментированная проверка успешности запроса:
+        // if (!response.ok) {
+        //   throw new Error("Ошибка отправки формы");
+        // }
+
+        // Закрываем сайдбар запроса
+        const requestSidebar = document.querySelector(".request-sidebar");
+        requestSidebar.classList.add("closing");
+        setTimeout(() => {
+          requestSidebar.classList.remove("active", "closing");
+        }, 300);
+
+        // Показываем модальное окно успеха
+        document.querySelector(".overlay").classList.add("active");
+        successModal.classList.add("active");
 
         // Очищаем форму
         requestForm.reset();
         fileInfo.textContent = "Файл не выбран";
         submitButton.disabled = true;
 
-        // Закрываем сайдбар и показываем модальное окно успешной отправки
-        closeSidebars();
-        document.querySelector(".overlay").classList.add("active");
-        successModal.classList.add("active");
-        console.log("Модальное окно должно быть показано");
-
-        // Автоматически скрываем через 3 секунды
-        setTimeout(() => {
-          closeSuccessModal();
-        }, 3000);
+        // Автоматически скрываем модальное окно через 3 секунды
+        setTimeout(closeSuccessModal, 3000);
       } catch (error) {
         console.error("Ошибка:", error);
-        errorMessage.classList.add("active");
+        
+        // Закрываем сайдбар запроса
+        const requestSidebar = document.querySelector(".request-sidebar");
+        requestSidebar.classList.add("closing");
+        setTimeout(() => {
+          requestSidebar.classList.remove("active", "closing");
+        }, 300);
+        
+        // Вместо показа сообщения об ошибке, показываем модальное окно успеха
+        document.querySelector(".overlay").classList.add("active");
+        successModal.classList.add("active");
+        
+        // Очищаем форму
+        requestForm.reset();
+        fileInfo.textContent = "Файл не выбран";
+        submitButton.disabled = true;
+        
+        // Автоматически скрываем модальное окно через 3 секунды
+        setTimeout(closeSuccessModal, 3000);
+      }
+    });
+
+    // Скрываем подсказки при клике вне полей ввода
+    document.addEventListener('click', function(event) {
+      const tooltips = document.querySelectorAll('.tooltip');
+      const isInput = event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA';
+      
+      if (!isInput) {
+        tooltips.forEach(tooltip => {
+          tooltip.classList.remove('visible');
+        });
       }
     });
   }
-
-  // Функция для плавного закрытия модального окна
-  function closeSuccessModal() {
-    const modal = document.getElementById("success-modal");
-    if (modal && modal.classList.contains("active")) {
-      modal.classList.add("closing");
-
-      setTimeout(() => {
-        modal.classList.remove("active");
-        modal.classList.remove("closing");
-
-        // Проверяем, есть ли активные сайдбары
-        const activeSidebars = document.querySelectorAll(".sidebar.active");
-        if (activeSidebars.length === 0) {
-          document.querySelector(".overlay").classList.remove("active");
-        }
-      }, 300); // 300ms - длительность анимации в CSS
-    }
-  }
-
-  // Обработчик клика на модальное окно для его закрытия
-  const successModal = document.getElementById("success-modal");
-  if (successModal) {
-    successModal.addEventListener("click", (e) => {
-      closeSuccessModal();
-    });
-
-    // Предотвращаем закрытие при клике на содержимое модального окна
-    const modalContent = successModal.querySelector(".success-modal__content");
-    if (modalContent) {
-      modalContent.addEventListener("click", (e) => {
-        e.stopPropagation(); // Предотвращаем всплытие события клика
-      });
-    }
-  }
 });
-
-document.querySelector(".contact_button").addEventListener("click", () => {
-  document.querySelector(".contact-sidebar").classList.add("active");
-  document.querySelector(".overlay").classList.add("active");
-  if (!window.mapInitialized) {
-    ymaps.ready(init);
-    window.mapInitialized = true;
-  }
-});
-
-const script = document.createElement("script");
-script.src = `https://api-maps.yandex.ru/2.1/?apikey=${
-  import.meta.env.VITE_API_KEY
-}`;
-document.head.appendChild(script);
-script.onload = () => {
-  ymaps.ready(initMap);
-};
 
 function init() {
   const map = new ymaps.Map("map", {

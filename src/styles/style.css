@@ -829,17 +829,28 @@ h1 {
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }
+
+/* Отключаем желтую подсветку при автозаполнении */
+.request-sidebar .request__input:-webkit-autofill,
+.request-sidebar .request__input:-webkit-autofill:hover,
+.request-sidebar .request__input:-webkit-autofill:focus,
+.request-sidebar .request__input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #e7e7e7 inset !important;
+  -webkit-text-fill-color: #151515 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .request-sidebar .request__input::placeholder {
   color: #959595;
 }
 .request-sidebar .request__input:focus {
   box-shadow: 0 0 0 2px rgb(58, 117, 237);
 }
-.request-sidebar .request__input.invalid {
+.request-sidebar .request__input.error {
   border-color: red;
   background-color: rgba(255, 0, 0, 0.05);
 }
-.request-sidebar .request__input.invalid:focus {
+.request-sidebar .request__input.error:focus {
   box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
 }
 .request-sidebar .request__textarea {
@@ -849,13 +860,24 @@ h1 {
   background-color: #e7e7e7;
   font-family: "Montserrat";
   font-size: 16px;
-  color: #333;
-  resize: none;
-  height: 130px;
+  color: #151515;
   outline: none;
   transition: all 0.3s ease;
   border: 1px solid transparent;
+  resize: none;
+  min-height: 100px;
 }
+
+/* Отключаем желтую подсветку при автозаполнении */
+.request-sidebar .request__textarea:-webkit-autofill,
+.request-sidebar .request__textarea:-webkit-autofill:hover,
+.request-sidebar .request__textarea:-webkit-autofill:focus,
+.request-sidebar .request__textarea:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #e7e7e7 inset !important;
+  -webkit-text-fill-color: #151515 !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .request-sidebar .request__textarea::placeholder {
   color: #959595;
 }
@@ -1550,4 +1572,60 @@ body {
     line-height: 120%;
     letter-spacing: 0;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* Стиль для сообщения об ошибке */
+.input-error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-family: "Montserrat";
+}
+
+/* Стили для всплывающих подсказок */
+.tooltip {
+  position: absolute;
+  background-color: #ffffff;
+  color: #151515;
+  padding: 8px 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-family: "Montserrat";
+  z-index: 1000;
+  max-width: 300px;
+  top: 100%;
+  left: 0;
+  margin-top: 5px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.tooltip::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 15px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+}
+
+.tooltip:not(.visible) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Отключаем красный фокус для телефона */
+input[placeholder="Номер телефона"].error:focus {
+  box-shadow: 0 0 0 2px rgb(58, 117, 237) !important;
+}
+
+input[placeholder="Номер телефона"].error {
+  border-color: transparent !important;
+  background-color: #e7e7e7 !important;
+}
