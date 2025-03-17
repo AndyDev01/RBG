@@ -48,12 +48,29 @@ window.addEventListener("load", function () {
     const doc = document.documentElement;
     const vh = window.innerHeight * 0.01;
     doc.style.setProperty('--vh', `${vh}px`);
+    
+    // Проверка ориентации и настройка контейнера элементов
+    if (window.innerHeight < window.innerWidth) {
+      // Горизонтальная ориентация
+      document.querySelector('.items-container').style.overflow = 'visible';
+      document.querySelector('.items-container').style.height = 'auto';
+      document.querySelector('.items-container').style.minHeight = 'min-content';
+      
+      document.querySelector('.items').style.overflowX = 'auto';
+      document.querySelector('.items').style.overflowY = 'visible';
+      document.querySelector('.items').style.minHeight = 'fit-content';
+    }
   }
   
   // Вызываем функцию сразу и при изменении размера/ориентации
   setAppHeight();
   window.addEventListener('resize', setAppHeight);
   window.addEventListener('orientationchange', setAppHeight);
+  
+  // Обработчик ориентации устройства
+  window.addEventListener('orientationchange', function() {
+    setTimeout(setAppHeight, 100); // Добавляем небольшую задержку для корректной перерисовки
+  });
 });
 
 document.addEventListener("DOMContentLoaded", () => {

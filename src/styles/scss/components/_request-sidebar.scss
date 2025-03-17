@@ -279,16 +279,28 @@
   @media (max-width: 1675px) and (min-width: 1401px) {
     padding-left: 120px;
     padding-right: 120px;
+    .request__textarea {
+      font-size: 14px;
+      max-height: 65px;
+    }
   }
 
   @media (max-width: 1400px) and (min-width: 1201px) {
     padding-left: 90px;
     padding-right: 90px;
+    .request__textarea {
+      font-size: 14px;
+      max-height: 65px;
+    }
   }
 
   @media (max-width: 1200px) and (min-width: 993px) {
     padding-left: 60px;
     padding-right: 60px;
+    .request__textarea {
+      font-size: 14px;
+      max-height: 65px;
+    }
   }
 
   @media (max-width: 992px) and (min-width: 769px) {
@@ -296,6 +308,10 @@
     .logo {
       width: 85px;
       height: 85px;
+    }
+    .request__textarea {
+      font-size: 14px;
+      max-height: 65px;
     }
   }
 
