@@ -391,7 +391,7 @@ function init() {
     }
   );
   const placemark2 = new ymaps.Placemark(
-    [55.888917, 38.797438],
+    [55.890025, 38.798681],
     {},
     {
       preset: "islands#redIcon",
