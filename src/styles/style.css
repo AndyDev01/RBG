@@ -898,20 +898,26 @@ h1 {
 }
 .request-sidebar .request__policy label {
   line-height: 1.4;
+  white-space: normal;
+  max-width: 280px;
 }
+
 .request-sidebar .request__checkbox {
   width: 19px;
   height: 19px;
   accent-color: #3a75ed;
   margin-left: 2px;
 }
+
 .request-sidebar .request__policy-link {
   color: #3a75ed;
   text-decoration: none;
 }
+
 .request-sidebar .request__policy-link:hover {
   text-decoration: underline;
 }
+
 .request-sidebar .request__actions {
   display: flex;
   align-items: center;
@@ -919,6 +925,7 @@ h1 {
   margin-top: 10px;
   justify-content: space-between;
 }
+
 .request-sidebar .request__file-button {
   background: none;
   border: none;
@@ -931,9 +938,11 @@ h1 {
   font-weight: 400;
   font-size: 20px;
 }
+
 .request-sidebar .request__file-button:hover {
   color: #2856b5;
 }
+
 .request-sidebar .request__file-input {
   position: absolute;
   width: 0.1px;
@@ -942,6 +951,7 @@ h1 {
   overflow: hidden;
   z-index: -1;
 }
+
 .request-sidebar .request__button {
   margin-top: 0;
   color: white;
@@ -958,14 +968,17 @@ h1 {
   padding: 12px 61px;
   align-self: flex-start;
 }
+
 .request-sidebar .request__button:hover:not(:disabled) {
   box-shadow: 0 0 10px 3px rgba(58, 117, 237, 0.7);
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
 }
+
 .request-sidebar .request__button:disabled {
   cursor: not-allowed;
   background-color: rgba(58, 117, 237, 0.67);
 }
+
 .request-sidebar .request__success-message {
   display: none;
   font-family: "Montserrat";
@@ -977,9 +990,11 @@ h1 {
   background-color: rgba(40, 167, 69, 0.1);
   text-align: center;
 }
+
 .request-sidebar .request__success-message.active {
   display: block;
 }
+
 .request-sidebar .request__error-message {
   display: none;
   font-family: "Montserrat";
@@ -991,9 +1006,34 @@ h1 {
   background-color: rgba(220, 53, 69, 0.1);
   text-align: center;
 }
+
 .request-sidebar .request__error-message.active {
   display: block;
 }
+
+/* Стили для средних экранов - текст в одну строку */
+@media (max-width: 1675px) and (min-width: 577px) {
+  .request-sidebar .request__policy label {
+    white-space: nowrap;
+  }
+}
+
+/* Стили для больших десктопов - текст в две строки */
+@media (min-width: 1676px) {
+  .request-sidebar .request__policy label {
+    white-space: normal;
+    max-width: 230px;
+  }
+}
+
+/* Стили для мобильных устройств - текст переносится */
+@media (max-width: 576px) {
+  .request-sidebar .request__policy label {
+    white-space: normal;
+    max-width: 220px;
+  }
+}
+
 @media (max-width: 888px) {
   .request-sidebar {
     transform: translateX(-100%);
@@ -1002,18 +1042,22 @@ h1 {
     right: 15px;
   }
 }
+
 .request-sidebar.active {
   transform: translateX(0);
 }
+
 .request-sidebar.closing {
   transform: translateX(-100%);
 }
+
 @media (min-width: 1676px) {
   .request-sidebar {
     padding-left: 150px;
     padding-right: 150px;
   }
 }
+
 @media (max-width: 1675px) and (min-width: 1401px) {
   .request-sidebar {
     padding-left: 120px;
@@ -1024,6 +1068,7 @@ h1 {
     max-height: 65px;
   }
 }
+
 @media (max-width: 1400px) and (min-width: 1201px) {
   .request-sidebar {
     padding-left: 90px;
@@ -1034,6 +1079,7 @@ h1 {
     max-height: 65px;
   }
 }
+
 @media (max-width: 1200px) and (min-width: 993px) {
   .request-sidebar {
     padding-left: 60px;
@@ -1044,6 +1090,7 @@ h1 {
     max-height: 65px;
   }
 }
+
 @media (max-width: 992px) and (min-width: 769px) {
   .request-sidebar {
     padding: 60px 45px 100px 45px;
@@ -1057,6 +1104,7 @@ h1 {
     max-height: 65px;
   }
 }
+
 @media (max-width: 768px) and (min-width: 577px) {
   .request-sidebar {
     padding: 50px 30px 80px 30px;
@@ -1070,6 +1118,8 @@ h1 {
     max-height: 65px;
   }
 }
+
+/* Медиа-запросы для request-sidebar на мобильных устройствах */
 @media (max-width: 576px) {
   .request-sidebar {
     padding: 20px 15px 60px 15px;
@@ -1109,7 +1159,8 @@ h1 {
     justify-content: space-between;
   }
 }
-@media (max-width: 576px) and (max-width: 358px) {
+
+@media (max-width: 358px) {
   .request-sidebar {
     padding: 15px 15px 50px 15px;
   }
@@ -1578,29 +1629,5 @@ body {
     font-size: 16px;
     line-height: 120%;
     letter-spacing: 0;
-  }
-}
-
-/* Базовый стиль для логотипа в контакт-сайдбаре - скрыт по умолчанию */
-.contact-sidebar .contact-logo {
-  display: none;
-}
-
-/* Стили только для мобильной версии (max-width: 576px) */
-@media (max-width: 576px) {
-  .contact-sidebar .contact-logo {
-    display: block;
-    width: 44px;
-    height: 44px;
-    margin-left: 15px;
-    margin-top: 20px;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  /* Увеличиваем отступ сверху для контента, чтобы не перекрывался логотипом */
-  .contact-sidebar_wrapper {
-    padding-top: 88px;
   }
 }
