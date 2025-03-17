@@ -435,6 +435,11 @@ h1 {
     font-size: 13px;
   }
 }
+@media (max-width: 992px) and (orientation: landscape) {
+  .request {
+    margin-bottom: 70px;
+  }
+}
 /* От 577px до 768px - показываем 3 элемента */
 @media (max-width: 768px) and (min-width: 577px) {
   .request__button {
@@ -1558,10 +1563,4 @@ body {
     line-height: 120%;
     letter-spacing: 0;
   }
-}
-/* Добавляем margin-bottom для горизонтальной ориентации на мобильных устройствах */
-@media (max-width: 992px) and (orientation: landscape) {
-  .items {
-    margin-bottom: 70px;
-  }
-}
+}/*# sourceMappingURL=style.css.map */
