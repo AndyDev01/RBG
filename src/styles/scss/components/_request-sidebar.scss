@@ -149,7 +149,7 @@
     align-items: center;
     gap: 56px;
     margin-top: 10px;
-    justify-content: space-between;
+    justify-content: flex-start;
   }
 
   .request__file-button {
@@ -281,7 +281,7 @@
     padding-right: 120px;
     .request__textarea {
       font-size: 14px;
-      max-height: 65px;
+      max-height: 18.4px;
     }
   }
 
@@ -290,7 +290,9 @@
     padding-right: 90px;
     .request__textarea {
       font-size: 14px;
-      max-height: 65px;
+      max-height: 18.4px;
+      
+      
     }
   }
 
@@ -299,7 +301,7 @@
     padding-right: 60px;
     .request__textarea {
       font-size: 14px;
-      max-height: 65px;
+      max-height: 18.4px;
     }
   }
 
