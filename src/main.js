@@ -169,17 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileInfo = document.querySelector(".request__file-info");
     const policyCheckbox = document.getElementById("policy-checkbox");
     const submitButton = document.getElementById("submit-button");
-    const successMessage = document.getElementById("success-message");
     const errorMessage = document.getElementById("error-message");
-
-    // Настройка EmailJS
-    // Эти параметры нужно заменить на реальные
-    const emailJsServiceId = "your_service_id"; // Заменить на ID сервиса EmailJS
-    const emailJsTemplateId = "your_template_id"; // Заменить на ID шаблона EmailJS
-    const emailJsUserId = "your_user_id"; // Заменить на ID пользователя EmailJS
-
-    // Или настройка FormSubmit
-    const formSubmitEmail = "your_email@domain.com"; // Заменить на актуальный email для FormSubmit
+    const successModal = document.getElementById("success-modal");
 
     // Обработка нажатия на кнопку прикрепления файла
     if (fileButton) {
@@ -264,7 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
       event.preventDefault();
 
       // Скрываем сообщения статуса
-      successMessage.classList.remove("active");
       errorMessage.classList.remove("active");
 
       // Валидация полей
@@ -289,86 +279,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Подготовка данных формы
       try {
-        // Опция 1: отправка через FormSubmit
-        // Находим форму и меняем action перед отправкой
-        const form = document.getElementById("request-form");
-        form.action = `https://formsubmit.co/${formSubmitEmail}`;
+        console.log(
+          "Форма успешно валидирована, готовимся показать модальное окно"
+        );
+        // Вместо отправки формы просто показываем модальное окно
+        // requestForm.submit(); -- закомментировано, чтобы форма не отправлялась
 
-        // Отправляем форму
-        form.submit();
-
-        // Очищаем форму после успешной отправки
-        form.reset();
+        // Очищаем форму
+        requestForm.reset();
         fileInfo.textContent = "Файл не выбран";
         submitButton.disabled = true;
 
-        // Показываем сообщение об успехе
-        successMessage.classList.add("active");
+        // Закрываем сайдбар и показываем модальное окно успешной отправки
+        closeSidebars();
+        document.querySelector(".overlay").classList.add("active");
+        successModal.classList.add("active");
+        console.log("Модальное окно должно быть показано");
 
-        /* 
-        // Опция 2: отправка через EmailJS
-        if (fileInput.files.length > 0) {
-          // Если есть файл, читаем его и отправляем
-          const reader = new FileReader();
-          reader.readAsDataURL(fileInput.files[0]);
-          
-          reader.onload = async () => {
-            const params = {
-              name: nameInput.value,
-              company: companyInput.value,
-              email: emailInput.value,
-              phone: phoneInput.value,
-              message: messageTextarea.value,
-              file: reader.result
-            };
-            
-            try {
-              await emailjs.send(emailJsServiceId, emailJsTemplateId, params, emailJsUserId);
-              
-              // Очищаем форму после успешной отправки
-              requestForm.reset();
-              fileInfo.textContent = 'Файл не выбран';
-              submitButton.disabled = true;
-              
-              // Показываем сообщение об успехе
-              successMessage.classList.add('active');
-            } catch (error) {
-              console.error("Ошибка отправки:", error);
-              errorMessage.classList.add('active');
-            }
-          };
-          
-          reader.onerror = () => {
-            console.error("Ошибка чтения файла");
-            errorMessage.classList.add('active');
-          };
-        } else {
-          // Отправка без файла
-          const params = {
-            name: nameInput.value,
-            company: companyInput.value,
-            email: emailInput.value,
-            phone: phoneInput.value,
-            message: messageTextarea.value
-          };
-          
-          try {
-            await emailjs.send(emailJsServiceId, emailJsTemplateId, params, emailJsUserId);
-            
-            // Очищаем форму после успешной отправки
-            requestForm.reset();
-            submitButton.disabled = true;
-            
-            // Показываем сообщение об успехе
-            successMessage.classList.add('active');
-          } catch (error) {
-            console.error("Ошибка отправки:", error);
-            errorMessage.classList.add('active');
-          }
-        }
-        */
+        // Автоматически скрываем через 3 секунды
+        setTimeout(() => {
+          closeSuccessModal();
+        }, 3000);
       } catch (error) {
-        console.error("Ошибка отправки:", error);
+        console.error("Ошибка:", error);
         errorMessage.classList.add("active");
       }
     });
