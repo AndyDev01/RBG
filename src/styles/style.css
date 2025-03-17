@@ -674,7 +674,7 @@ h1 {
 .contact-title {
   font-size: 33px;
   font-weight: 600;
-  margin-bottom: 9px;
+  margin-bottom: 25px;
 }
 
 .contact-subtitle {
@@ -737,11 +737,23 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
 }
 
-@media (max-width: 888px) {
+@media (max-width: 1675px) {
   .contact-sidebar_wrapper {
-    padding: 88px 45px;
+    padding-bottom: 44px;
+  }
+  .contact-sidebar_content {
+    gap: 30px;
+  }
+  .contact {
+    gap: 30px;
+  }
+}
+@media (max-width: 888px) {
+  .contact {
+    gap: 30px;
   }
 }
 @media (max-width: 576px) {
@@ -1052,6 +1064,10 @@ h1 {
   .request-sidebar .logo {
     width: 70px;
     height: 70px;
+  }
+  .request-sidebar .request__textarea {
+    font-size: 14px;
+    max-height: 65px;
   }
 }
 @media (max-width: 576px) {
@@ -1563,4 +1579,28 @@ body {
     line-height: 120%;
     letter-spacing: 0;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/* Базовый стиль для логотипа в контакт-сайдбаре - скрыт по умолчанию */
+.contact-sidebar .contact-logo {
+  display: none;
+}
+
+/* Стили только для мобильной версии (max-width: 576px) */
+@media (max-width: 576px) {
+  .contact-sidebar .contact-logo {
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin-left: 15px;
+    margin-top: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  /* Увеличиваем отступ сверху для контента, чтобы не перекрывался логотипом */
+  .contact-sidebar_wrapper {
+    padding-top: 88px;
+  }
+}

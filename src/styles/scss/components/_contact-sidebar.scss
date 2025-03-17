@@ -46,7 +46,7 @@
 .contact-title {
   font-size: 33px;
   font-weight: 600;
-  margin-bottom: 9px;
+  margin-bottom: 25px;
 }
 
 .contact-subtitle {
@@ -106,11 +106,27 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
 }
-@media (max-width: 888px) {
+
+@media (max-width: 1675px) {
   .contact-sidebar_wrapper {
-    padding: 88px 45px;
+    padding-bottom: 44px;
   }
+  .contact-sidebar_content{
+    gap: 30px;
+  }
+  .contact {
+    gap: 30px;
+  }
+  
+}
+
+@media (max-width: 888px) {
+  .contact {
+    gap: 30px;
+  }
+
 }
 
 @media (max-width: 576px) {

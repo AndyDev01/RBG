@@ -321,6 +321,10 @@
       width: 70px;
       height: 70px;
     }
+    .request__textarea {
+      font-size: 14px;
+      max-height: 65px;
+    }
   }
 
   @media (max-width: 576px) {
