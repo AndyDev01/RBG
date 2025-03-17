@@ -899,12 +899,6 @@ h1 {
 .request-sidebar .request__file-button:hover {
   color: #2856b5;
 }
-.request-sidebar .request__file-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-top: 5px;
-  margin-bottom: 10px;
-}
 .request-sidebar .request__file-input {
   position: absolute;
   width: 0.1px;
@@ -912,12 +906,6 @@ h1 {
   opacity: 0;
   overflow: hidden;
   z-index: -1;
-}
-.request-sidebar .request__file-info {
-  font-family: "Montserrat";
-  font-size: 14px;
-  color: #959595;
-  margin-top: 5px;
 }
 .request-sidebar .request__button {
   margin-top: 0;

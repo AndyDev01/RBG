@@ -164,12 +164,12 @@
     }
   }
 
-  .request__file-wrapper {
-    display: flex;
-    flex-direction: column;
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
+  // .request__file-wrapper {
+  //   display: flex;
+  //   flex-direction: column;
+  //   margin-top: 5px;
+  //   margin-bottom: 10px;
+  // }
 
   .request__file-input {
     position: absolute;
@@ -180,13 +180,13 @@
     z-index: -1;
   }
 
-  .request__file-info {
-    // padding-left: 12px;
-    font-family: "Montserrat";
-    font-size: 14px;
-    color: #959595;
-    margin-top: 5px;
-  }
+  // .request__file-info {
+  //   // padding-left: 12px;
+  //   font-family: "Montserrat";
+  //   font-size: 14px;
+  //   color: #959595;
+  //   margin-top: 5px;
+  // }
 
   .request__button {
     margin-top: 0;
