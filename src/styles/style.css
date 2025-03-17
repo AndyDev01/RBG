@@ -573,7 +573,7 @@ h1 {
   opacity: 1;
 }
 .sidebar .close-btn, .policy-sidebar .close-btn, .request-sidebar .close-btn, .contact-sidebar .close-btn {
-  display: none;
+  display: block;
   position: absolute;
   top: 20px;
   right: 20px;
@@ -772,6 +772,10 @@ h1 {
   width: 85px;
   height: 85px;
   margin-left: 0;
+}
+.request-sidebar .close-btn {
+  top: 25px;
+  right: 25px;
 }
 .request-sidebar .request__form-container {
   width: 100%;
