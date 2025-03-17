@@ -2,12 +2,23 @@
   position: fixed;
   top: 0;
   height: 100vh;
+  /* Учитываем системные панели браузера в iOS */
+  height: calc(100vh - env(safe-area-inset-bottom, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: #fff;
   transition: transform 0.3s ease;
   z-index: 1001;
   box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
+  
+  /* Добавляем поддержку для iOS */
+  @supports (-webkit-overflow-scrolling: touch) {
+    /* Для iOS устройств */
+    padding-top: max(env(safe-area-inset-top, 0px), 20px);
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+  }
 
   &.active {
     visibility: visible;

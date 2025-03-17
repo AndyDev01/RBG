@@ -42,6 +42,18 @@ window.addEventListener("load", function () {
       }
     }, 5000);
   }
+
+  // Функция для установки правильной высоты на iOS
+  function setAppHeight() {
+    const doc = document.documentElement;
+    const vh = window.innerHeight * 0.01;
+    doc.style.setProperty('--vh', `${vh}px`);
+  }
+  
+  // Вызываем функцию сразу и при изменении размера/ориентации
+  setAppHeight();
+  window.addEventListener('resize', setAppHeight);
+  window.addEventListener('orientationchange', setAppHeight);
 });
 
 document.addEventListener("DOMContentLoaded", () => {

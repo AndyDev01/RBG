@@ -186,6 +186,8 @@ h1 {
   flex-wrap: nowrap;
   justify-content: space-between;
   padding-bottom: 60px;
+  /* Защитный отступ снизу для iOS */
+  padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   margin-bottom: env(safe-area-inset-bottom, 20px);
   transition: transform 0.3s ease;
   -ms-overflow-style: none; /* IE и Edge */
@@ -477,7 +479,7 @@ h1 {
     overflow-x: auto;
     padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
     gap: 10px;
-    padding-bottom: 6.1vh;
+    padding-bottom: 12.2vh;
   }
   .item {
     width: calc((100% - 20px) / 3); /* 3 элемента */
@@ -561,12 +563,24 @@ h1 {
   position: fixed;
   top: 0;
   height: 100vh;
+  /* Учитываем системные панели браузера в iOS */
+  height: calc(100vh - env(safe-area-inset-bottom, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background: #fff;
   transition: transform 0.3s ease;
   z-index: 1001;
   box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
+  /* Добавляем поддержку для iOS */
+}
+@supports (-webkit-overflow-scrolling: touch) {
+  .sidebar, .policy-sidebar, .request-sidebar, .contact-sidebar {
+    /* Для iOS устройств */
+    padding-top: max(env(safe-area-inset-top, 0px), 20px);
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+  }
 }
 .sidebar.active, .active.policy-sidebar, .active.request-sidebar, .active.contact-sidebar {
   visibility: visible;
@@ -1348,6 +1362,10 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+  /* Добавляем поддержку для устройств с вырезами/системными панелями */
+  min-height: -webkit-fill-available;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
   background-color: #000000;
 }
 
@@ -1390,8 +1408,14 @@ body {
   padding: 0 142px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
-  height: 100vh;
+  justify-content: space-between;
+  height: 100vh; /* Стандартная высота */
+  /* Использование переменной --vh для iOS */
+  height: calc(var(--vh, 1vh) * 100);
+  /* Учитываем системные панели браузера в iOS */
+  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
 }
 
 /* Адаптивные стили для всех устройств */
@@ -1507,11 +1531,12 @@ body {
   }
   .wrapper {
     height: auto;
-    min-height: 100vh;
+    min-height: 100vh; /* Стандартная минимальная высота */
+    min-height: calc(var(--vh, 1vh) * 100); /* Использование переменной --vh для iOS */
+    min-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    padding-bottom: env(safe-area-inset-bottom, 30px) !important;
   }
   h1 {
     margin-bottom: 10px;
