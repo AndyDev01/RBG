@@ -1558,4 +1558,10 @@ body {
     line-height: 120%;
     letter-spacing: 0;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+/* Добавляем margin-bottom для горизонтальной ориентации на мобильных устройствах */
+@media (max-width: 992px) and (orientation: landscape) {
+  .items {
+    margin-bottom: 70px;
+  }
+}
