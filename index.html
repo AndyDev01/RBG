@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="description" content="РЕФБИЛИДИНГ ГРУПП - надежный поставщик систем холодоснабжения, вентиляции и кондиционирования. Проектирование, поставка и монтаж систем для промышленных и коммерческих объектов." />
+    <meta name="keywords" content="холодоснабжение, вентиляция, кондиционирование, промышленное оборудование, климатические системы, инженерные системы" />
+    <meta name="author" content="РЕФБИЛИДИНГ ГРУПП" />
+    <meta name="robots" content="index, follow" />
+    <link rel="icon" type="image/svg+xml" href="/rbg-logo-blue.svg" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1.0"
@@ -17,26 +21,26 @@
     />
     <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&theme=dark"></script>
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline' https://api-maps.yandex.ru https://*.maps.yandex.net 'wasm-unsafe-eval'">
-    <title>Rbg</title>
+    <title>РЕФБИЛИДИНГ ГРУПП | Системы холодоснабжения, вентиляции и кондиционирования</title>
   </head>
-  <body>
+  <body itemscope itemtype="http://schema.org/Organization">
     <div id="preloader" class="preloader">
       <div class="preloader-bg"></div>
     </div>
     <video autoplay muted loop playsinline id="video-background">
-      <source src="./public/videos/background.webm" type="video/webm" />
+      <source src="/videos/background.webm" type="video/webm" />
     </video>
     <div class="wrapper">
       <header class="header">
-        <img src="./public/rbg-logo-white.svg" class="logo" alt="logo" />
+        <img src="/rbg-logo-white.svg" class="logo" alt="Логотип РЕФБИЛИДИНГ ГРУПП" itemprop="logo" />
         <div>
           <button class="contact_button">Связаться с нами</button>
         </div>
       </header>
 
       <section class="request">
-        <h1 class="h1">РЕФБИЛИДИНГ ГРУПП</h1>
-        <p class="description">
+        <h1 class="h1" itemprop="name">РЕФБИЛИДИНГ ГРУПП</h1>
+        <p class="description" itemprop="description">
           Надежный поставщик систем холодоснабжения, вентиляции и
           кондиционирования.
         </p>
@@ -53,8 +57,8 @@
               <div class="item__bg">
                 <img
                   class="item__icon"
-                  src="./public/icons/service_icon.svg"
-                  alt="service_icon"
+                  src="/icons/service_icon.svg"
+                  alt="Иконка сервисной службы"
                 />
               </div>
             </div>
@@ -69,8 +73,8 @@
               <div class="item__bg">
                 <img
                   class="item__icon"
-                  src="./public/icons/gear_icon.svg"
-                  alt="gear_icon"
+                  src="/icons/gear_icon.svg"
+                  alt="Иконка собственного производства"
                 />
               </div>
             </div>
@@ -85,8 +89,8 @@
               <div class="item__bg">
                 <img
                   class="item__icon"
-                  src="./public/icons/snowflake_icon.svg"
-                  alt="snowflake_icon"
+                  src="/icons/snowflake_icon.svg"
+                  alt="Иконка экспертности"
                 />
               </div>
             </div>
@@ -101,8 +105,8 @@
               <div class="item__bg">
                 <img
                   class="item__icon"
-                  src="./public/icons/key_icon.svg"
-                  alt="key_icon"
+                  src="/icons/key_icon.svg"
+                  alt="Иконка комплексного подхода"
                 />
               </div>
             </div>
@@ -118,8 +122,8 @@
               <div class="item__bg">
                 <img
                   class="item__icon"
-                  src="./public/icons/popular_man_icon.svg"
-                  alt="popular_man_icon"
+                  src="/icons/popular_man_icon.svg"
+                  alt="Иконка накопленного опыта"
                 />
               </div>
             </div>
@@ -135,8 +139,8 @@
               <div class="item__bg">
                 <img
                   class="item__icon"
-                  src="./public/icons/warehouse_icon.svg"
-                  alt="warehouse_icon"
+                  src="/icons/warehouse_icon.svg"
+                  alt="Иконка склада ЗИП"
                 />
               </div>
             </div>
@@ -170,7 +174,7 @@
               />
             </svg>
           </div>
-          <img src="./public/rbg-logo-blue.svg" alt="Логотип" class="logo contact-logo">
+          <img src="/rbg-logo-blue.svg" alt="Логотип РЕФБИЛИДИНГ ГРУПП" class="logo contact-logo">
           <div class="contact-sidebar_content">
             <div>
               <h2 class="contact-title">Связаться с нами</h2>
@@ -179,40 +183,31 @@
                 готовы приехать к Вам на объект или пригласить в наш офис.
               </p>
             </div>
-            <li class="contact">
+            <li class="contact" itemscope itemtype="http://schema.org/ContactPoint">
               <ul class="phones_block">
                 <div class="contact-information">
                   <span class="contact-label">Телефоны:</span>
-                  <a href="tel:+7 (495) 521 19 15" class="phone"
-                    >+7 (495) 521 19 15</a
-                  >
-                  <span>,</span>
-                  <a href="tel:+7 (495) 521 30 16" class="phone"
-                    >+7 (495) 521 30 16</a
-                  >
+                  <a href="tel:+74955211915" class="phone" itemprop="telephone">+7 (495) 521 19 15,</a>
+                  <a href="tel:+74955213016" class="phone" itemprop="telephone">+7 (495) 521 30 16</a>
                 </div>
               </ul>
               <ul class="mail_block">
                 <div class="mail-information">
                   <div class="mail-line">
                     <span class="contact-label">Коммерческий отдел:</span>
-                    <a href="mailto:info@refbg.ru" class="contact-email"
-                      >info@refbg.ru</a
-                    >
+                    <a href="mailto:info@refbg.ru" class="contact-email" itemprop="email">info@refbg.ru</a>
                   </div>
                   <div class="mail-line">
                     <span class="contact-label">Сервисная служба:</span>
-                    <a href="mailto: service@refbg.ru" class="contact-email"
-                      >service@refbg.ru</a
-                    >
+                    <a href="mailto:service@refbg.ru" class="contact-email">service@refbg.ru</a>
                   </div>
                 </div>
               </ul>
               <ul class="location_block">
-                <div class="address-information">
+                <div class="address-information" itemscope itemtype="http://schema.org/PostalAddress">
                   <div class="address-line">
                     <span class="contact-label">Офис:</span>
-                    Московская обл., г. Балашиха, улица Белякова, д. 2Б
+                    <span itemprop="addressLocality">Московская обл., г. Балашиха, улица Белякова, д. 2Б</span>
                   </div>
                   <div class="address-line">
                     <span class="contact-label">Производство:</span>
@@ -228,7 +223,7 @@
     </div>
 
     <div class="sidebar request-sidebar">
-      <img src="./public/rbg-logo-blue.svg" class="logo" alt="logo" />
+      <img src="/rbg-logo-blue.svg" class="logo" alt="Логотип РЕФБИЛИДИНГ ГРУПП" />
       
       <div class="close-btn">
         <svg
@@ -365,7 +360,7 @@
       <div class="success-modal__content">
         <div class="success-modal__icon">
           <img
-            src="./public/icons/success-modal_icon.svg"
+            src="/icons/success-modal_icon.svg"
             alt="success-modal_icon"
           />
         </div>
@@ -375,7 +370,7 @@
     </div>
 
     <div class="sidebar policy-sidebar">
-      <img src="./public/rbg-logo-blue.svg" class="logo" alt="logo" />
+      <img src="/rbg-logo-blue.svg" class="logo" alt="logo" />
 
       <h2 class="policy__title">Условия обработки персональных данных</h2>
 
