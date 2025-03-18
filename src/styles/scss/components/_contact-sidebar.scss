@@ -46,7 +46,7 @@
 .contact-title {
   font-size: 33px;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
 .contact-subtitle {
@@ -161,4 +161,19 @@
   .phones_block {
     gap: 5px;
   }
+  .contact-sidebar .contact-logo {
+    display: block;
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    top: 20px;
+    left: 15px;
+  }
+  .contact-sidebar_wrapper {
+    padding-top: 80px;
+  }
+}
+
+.contact-sidebar .contact-logo {
+  display: none;
 }
