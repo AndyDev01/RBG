@@ -633,6 +633,27 @@ h1 {
   transform: translateX(100%);
   transition: transform 0.3s ease;
 }
+
+.contact-sidebar .contact-logo {
+  display: none; /* По умолчанию логотип скрыт */
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  width: 44px;
+  height: 44px;
+}
+
+@media (max-width: 576px) {
+  .contact-sidebar .contact-logo {
+    display: block; /* Показываем логотип только на мобильных устройствах */
+  }
+  
+  /* Корректируем отступ контента, чтобы не перекрывался логотипом */
+  .contact-sidebar_wrapper {
+    padding-top: 88px;
+  }
+}
+
 @media (max-width: 888px) {
   .contact-sidebar {
     transform: translateX(100%);
@@ -642,6 +663,7 @@ h1 {
     top: 20px;
   }
 }
+
 .contact-sidebar.active {
   transform: translateX(0);
 }
