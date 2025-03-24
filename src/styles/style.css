@@ -904,7 +904,7 @@ h1 {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  margin: 10px 0 0 0;
+  margin: 19px 0 19px 0;
   font-family: "Montserrat";
   font-size: 14px;
   color: #666;
@@ -930,7 +930,6 @@ h1 {
   display: flex;
   align-items: center;
   gap: 56px;
-  margin-top: 10px;
   justify-content: flex-start;
 }
 .request-sidebar .request__file-button {

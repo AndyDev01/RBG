@@ -118,7 +118,7 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    margin: 10px 0 0 0;
+    margin: 19px 0 19px 0;
     font-family: "Montserrat";
     font-size: 14px;
     color: #666;
@@ -148,7 +148,6 @@
     display: flex;
     align-items: center;
     gap: 56px;
-    margin-top: 10px;
     justify-content: flex-start;
   }
 
@@ -256,10 +255,6 @@
 
   @include mobile {
     transform: translateX(-100%);
-
-    // .close-btn {
-    //   right: 15px;
-    // }
   }
 
   &.active {
