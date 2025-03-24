@@ -633,13 +633,27 @@ h1 {
   transform: translateX(100%);
   transition: transform 0.3s ease;
 }
+.contact-sidebar .logo {
+  display: none;
+}
 @media (max-width: 888px) {
   .contact-sidebar {
     transform: translateX(100%);
   }
+  .contact-sidebar .logo {
+    display: block;
+    width: 44px;
+    height: 44px;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
   .contact-sidebar .close-btn {
     right: 15px;
     top: 15px;
+  }
+  .contact-sidebar .contact-sidebar_wrapper {
+    padding-top: 70px !important;
   }
 }
 .contact-sidebar.active {

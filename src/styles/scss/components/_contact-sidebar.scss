@@ -5,12 +5,29 @@
   transform: translateX(100%);
   transition: transform 0.3s ease;
 
+  .logo {
+    display: none;
+  }
+
   @include mobile {
     transform: translateX(100%);
+    
+    .logo {
+      display: block;
+      width: 44px;
+      height: 44px;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
 
     .close-btn {
       right: 15px;
       top: 15px;
+    }
+    
+    .contact-sidebar_wrapper {
+      padding-top: 70px !important;
     }
   }
 
