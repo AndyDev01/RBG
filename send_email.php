@@ -61,13 +61,12 @@ $mail = new PHPMailer(true);
 
 try {
     // Настройки сервера
-    $mail->SMTPDebug = 0; // 0 - отключить вывод отладочной информации, 2 - показать подробный лог
     $mail->isSMTP();
     $mail->Host = $smtp_server;
     $mail->SMTPAuth = true;
     $mail->Username = $smtp_user;
     $mail->Password = $smtp_password;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // SSL для порта 465
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // для порта 465
     $mail->Port = $smtp_port;
     $mail->CharSet = 'UTF-8';
 
@@ -88,10 +87,8 @@ try {
 
     // Отправляем
     $mail->send();
-    echo json_encode(['success' => true, 'message' => 'Ваше сообщение успешно отправлено']);
+    echo json_encode(['success' => true]);
 } catch (Exception $e) {
-    // Записываем ошибку в лог
-    error_log("Ошибка отправки: " . $mail->ErrorInfo . " - " . date('Y-m-d H:i:s'), 3, "mail_error.log");
-    echo json_encode(['success' => false, 'message' => 'Ошибка при отправке сообщения. Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.']);
+    echo json_encode(['success' => false, 'message' => 'Ошибка при отправке письма: ' . $mail->ErrorInfo]);
 }
 ?> 
