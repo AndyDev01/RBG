@@ -16,8 +16,8 @@
   }
 
   .close-btn {
-    top: 25px;
-    right: 25px;
+    top: 15px;
+    right: 15px;
   }
 
   // Стили для формы запроса
@@ -118,7 +118,7 @@
     display: flex;
     align-items: flex-start;
     gap: 10px;
-    margin-top: 5px;
+    margin: 10px 0 0 0;
     font-family: "Montserrat";
     font-size: 14px;
     color: #666;
@@ -257,9 +257,9 @@
   @include mobile {
     transform: translateX(-100%);
 
-    .close-btn {
-      right: 15px;
-    }
+    // .close-btn {
+    //   right: 15px;
+    // }
   }
 
   &.active {
@@ -400,8 +400,8 @@
   .close-btn {
     display: block;
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
     cursor: pointer;
     z-index: 10;
   }
@@ -541,10 +541,6 @@
       font-size: 14px;
     }
 
-    .close-btn {
-      top: 15px;
-      right: 15px;
-    }
   }
 
   @media (max-width: 358px) {

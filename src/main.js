@@ -196,43 +196,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // Функции валидации
     function validateName() {
       const name = nameInput.value.trim();
-      // Проверяем, что имя содержит только русские буквы, пробелы и дефис
-      const isRussianLettersOnly = /^[А-Яа-яЁё\-\s]+$/.test(name);
       
-      if (name.length < 2 || !isRussianLettersOnly) {
+      if (name.length < 2) {
         nameInput.classList.add("error");
-        
-        // Создаем или обновляем всплывающую подсказку
-        let tooltip = document.querySelector('#name-tooltip');
-        if (!tooltip) {
-          tooltip = document.createElement('div');
-          tooltip.id = 'name-tooltip';
-          tooltip.className = 'tooltip';
-          document.body.appendChild(tooltip);
-        }
-        
-        if (name.length < 2) {
-          tooltip.textContent = 'Имя должно содержать минимум 2 символа';
-        } else {
-          tooltip.textContent = 'Только русские буквы, пробелы и дефис';
-        }
-        
-        // Позиционируем подсказку под полем ввода
-        const rect = nameInput.getBoundingClientRect();
-        tooltip.style.left = `${rect.left}px`;
-        tooltip.style.top = `${rect.bottom}px`;
-        tooltip.classList.add('visible');
-        
         return false;
       }
       
-      // Если валидация успешна, скрываем подсказку
       nameInput.classList.remove("error");
-      const tooltip = document.querySelector('#name-tooltip');
-      if (tooltip) {
-        tooltip.classList.remove('visible');
-      }
-      
       return true;
     }
 
@@ -452,16 +422,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         // Отправляем данные на сервер
-        const response = await fetch("/api/send-email", {
+        const response = await fetch("send_email.php", {
           method: "POST",
           body: formData,
         });
 
-        // Даже если запрос не успешен, всё равно показываем модальное окно успеха
-        // Закомментированная проверка успешности запроса:
-        // if (!response.ok) {
-        //   throw new Error("Ошибка отправки формы");
-        // }
+        let result = { success: true };
+        try {
+          result = await response.json();
+        } catch (e) {
+          console.error("Ошибка при разборе ответа:", e);
+        }
 
         // Закрываем сайдбар запроса
         const requestSidebar = document.querySelector(".request-sidebar");
@@ -515,6 +486,26 @@ document.addEventListener("DOMContentLoaded", () => {
           tooltip.classList.remove('visible');
         });
       }
+    });
+  }
+
+  // Добавляем обработчик клика на overlay для закрытия всех сайдбаров
+  const overlay = document.querySelector(".overlay");
+  
+  if (overlay) {
+    overlay.addEventListener("click", function() {
+      // Находим все активные сайдбары и закрываем их
+      const activeSidebars = document.querySelectorAll(".sidebar.active, .contact-sidebar.active, .request-sidebar.active, .policy-sidebar.active");
+      
+      activeSidebars.forEach(sidebar => {
+        sidebar.classList.add("closing");
+        setTimeout(() => {
+          sidebar.classList.remove("active", "closing");
+        }, 300);
+      });
+      
+      // Скрываем overlay
+      overlay.classList.remove("active");
     });
   }
 });
