@@ -237,9 +237,14 @@ body {
 @media (max-width: 576px) {
   body {
     background-color: #000000;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100vh;
     
     @media (orientation: landscape) {
       overflow-y: auto !important;
+      height: auto !important;
+      min-height: 100vh !important;
     }
   }
   
@@ -252,6 +257,13 @@ body {
     display: flex;
     flex-direction: column;
     padding: 0 15px;
+    overflow-y: auto;
+    
+    @media (orientation: landscape) {
+      height: auto !important;
+      min-height: 100vh !important;
+      overflow-y: auto !important;
+    }
   }
 
   h1 {
@@ -268,13 +280,24 @@ body {
     letter-spacing: 0;
   }
 
+  .items-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
   .items {
     display: flex;
     gap: 10px;
-    overflow-x: auto;
     padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
+    flex-wrap: nowrap;
     
     &::-webkit-scrollbar {
       display: none;
@@ -283,7 +306,7 @@ body {
 
   .item {
     width: calc((100% - 20px) / 3);
-    flex-shrink: 0;
+    flex: 0 0 auto;
     scroll-snap-align: start;
   }
 
@@ -293,6 +316,7 @@ body {
       margin: 20px 0;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
+      width: 100%;
       
       &::-webkit-scrollbar {
         display: none;
@@ -306,12 +330,13 @@ body {
       padding-bottom: 0;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
+      width: max-content;
     }
     
     .item {
       width: 150px;
       min-width: 150px;
-      flex-shrink: 0;
+      flex: 0 0 auto;
     }
 
     /* Стили для сайдбаров */
@@ -319,6 +344,7 @@ body {
       max-height: 100vh;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      height: 100vh;
       
       &::-webkit-scrollbar {
         display: none;
@@ -330,6 +356,7 @@ body {
         height: auto;
         min-height: auto;
         padding-bottom: 30px;
+        overflow-y: auto;
       }
     }
   }
