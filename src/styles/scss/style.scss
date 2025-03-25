@@ -102,27 +102,47 @@ body {
 }
 
 .wrapper {
-  padding: 0 142px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh; /* Стандартная высота */
-  /* Использование переменной --vh для iOS */
+  height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
-  /* Учитываем системные панели браузера в iOS */
   height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
   padding-bottom: env(safe-area-inset-bottom, 0px);
   box-sizing: border-box;
+  padding: 0 160px; // Максимальный отступ по умолчанию
+
+  // Адаптивные отступы от большего к меньшему
+  @media (max-width: 1675px) {
+    padding: 0 150px;
+  }
+
+  @media (max-width: 1400px) {
+    padding: 0 120px;
+  }
+
+  @media (max-width: 1200px) {
+    padding: 0 90px;
+  }
+
+  @media (max-width: 992px) {
+    padding: 0 60px;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0 30px;
+  }
+
+  @media (max-width: 576px) {
+    padding: 0 15px;
+    height: auto;
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+    min-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* Адаптивные стили для всех устройств */
-
-/* Большие десктопы (больше 1600px) */
-@media (min-width: 1400px) {
-  .wrapper {
-    padding: 0 160px;
-  }
-}
 
 @media (max-width: 1640px) and (min-width: 1201px) {
   h1 {
@@ -130,106 +150,11 @@ body {
   }
   .description {
     margin-bottom: 25px;
-  }
-
-  .description {
     font-size: 27px;
   }
   .item__bg {
     width: 85px;
     height: 85px;
-  }
-}
-
-/* Стандартные десктопы (от 1200px до 1400px) */
-@media (max-width: 1400px) and (min-width: 1201px) {
-  .wrapper {
-    padding: 0 150px;
-  }
-
-  h1 {
-    font-size: 50px;
-    line-height: 67px;
-  }
-
-  h2 {
-    font-size: 44px;
-    line-height: 54px;
-  }
-}
-
-/* Маленькие десктопы и большие планшеты (от 992px до 1200px) */
-@media (max-width: 1200px) and (min-width: 993px) {
-  .wrapper {
-    padding: 0 120px;
-  }
-
-  h1 {
-    font-size: 50px;
-    line-height: 61px;
-  }
-
-  h2 {
-    font-size: 40px;
-    line-height: 49px;
-  }
-}
-
-/* Планшеты (от 768px до 992px) */
-@media (max-width: 992px) and (min-width: 769px) {
-  .wrapper {
-    padding: 0 90px;
-  }
-
-  h1 {
-    font-size: 45px;
-    line-height: 55px;
-  }
-
-  h2 {
-    font-size: 36px;
-    line-height: 44px;
-  }
-}
-
-/* Маленькие планшеты и большие телефоны (от 576px до 768px) */
-@media (max-width: 768px) and (min-width: 577px) {
-  .wrapper {
-    padding: 0 60px;
-  }
-
-  h1 {
-    font-size: 40px;
-    line-height: 49px;
-  }
-
-  h2 {
-    font-size: 32px;
-    line-height: 39px;
-  }
-}
-
-/* Маленькие телефоны (меньше 359px) */
-@media (max-width: 358px) {
-  .wrapper {
-    padding: 0 15px;
-  }
-
-  h1 {
-    font-size: 32px;
-    line-height: 39px;
-    margin-top: 10px;
-  }
-
-  h2 {
-    font-size: 24px;
-    line-height: 29px;
-  }
-
-  .description {
-    font-size: 14px;
-    line-height: 18px;
-    margin-bottom: 20px;
   }
 }
 

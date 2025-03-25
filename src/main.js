@@ -196,175 +196,40 @@ document.addEventListener("DOMContentLoaded", () => {
     // Функции валидации
     function validateName() {
       const name = nameInput.value.trim();
-      
       if (name.length < 2) {
-        nameInput.classList.add("error");
         return false;
       }
-      
-      nameInput.classList.remove("error");
       return true;
     }
 
     function validateEmail() {
       const email = emailInput.value.trim();
-      // Обновленная регулярка для проверки email - должны быть буквы до @, обязательно точка после @
-      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-      
-      if (!emailRegex.test(email)) {
-        emailInput.classList.add("error");
-        
-        // Создаем или обновляем всплывающую подсказку
-        let tooltip = document.querySelector('#email-tooltip');
-        if (!tooltip) {
-          tooltip = document.createElement('div');
-          tooltip.id = 'email-tooltip';
-          tooltip.className = 'tooltip';
-          document.body.appendChild(tooltip);
-        }
-        
-        // Проверяем конкретную ошибку в email
-        if (!email.includes('@')) {
-          tooltip.textContent = 'Email должен содержать символ @';
-        } else if (email.split('@')[1] && !email.split('@')[1].includes('.')) {
-          tooltip.textContent = 'Введите часть адреса после символа @';
-        } else if (email.split('@')[0].length === 0) {
-          tooltip.textContent = 'Введите часть адреса до символа @';
-        } else {
-          tooltip.textContent = 'Введите корректный email адрес';
-        }
-        
-        // Позиционируем подсказку под полем ввода
-        const rect = emailInput.getBoundingClientRect();
-        tooltip.style.left = `${rect.left}px`;
-        tooltip.style.top = `${rect.bottom}px`;
-        tooltip.classList.add('visible');
-        
-        return false;
-      }
-      
-      // Если валидация успешна, скрываем подсказку
-      emailInput.classList.remove("error");
-      const tooltip = document.querySelector('#email-tooltip');
-      if (tooltip) {
-        tooltip.classList.remove('visible');
-      }
-      
-      return true;
-    }
-
-    // Форматирование телефонного номера
-    function formatPhoneNumber(value) {
-      // Убираем все нецифровые символы
-      let phoneNumber = value.replace(/\D/g, '');
-      
-      // Если телефон пустой, возвращаем +7
-      if (phoneNumber.length === 0) return '+7';
-      
-      // Если телефон не начинается с 7, добавляем его
-      if (phoneNumber.length > 0 && phoneNumber[0] !== '7') {
-        phoneNumber = '7' + phoneNumber;
-      }
-      
-      // Ограничиваем длину до 11 цифр
-      phoneNumber = phoneNumber.substring(0, 11);
-      
-      // Форматируем телефон: +7 (XXX) XXX-XX-XX
-      let formattedPhone = '+';
-      if (phoneNumber.length > 0) {
-        formattedPhone += phoneNumber[0];
-      }
-      if (phoneNumber.length > 1) {
-        formattedPhone += ' (';
-        formattedPhone += phoneNumber.substring(1, Math.min(4, phoneNumber.length));
-      }
-      if (phoneNumber.length > 4) {
-        formattedPhone += ') ';
-        formattedPhone += phoneNumber.substring(4, Math.min(7, phoneNumber.length));
-      }
-      if (phoneNumber.length > 7) {
-        formattedPhone += '-';
-        formattedPhone += phoneNumber.substring(7, Math.min(9, phoneNumber.length));
-      }
-      if (phoneNumber.length > 9) {
-        formattedPhone += '-';
-        formattedPhone += phoneNumber.substring(9, 11);
-      }
-      
-      return formattedPhone;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
     }
 
     function validatePhone() {
-      let phone = phoneInput.value.trim();
-      
-      // Проверяем, что телефон содержит +7 и достаточно цифр
-      // Извлекаем только цифры для проверки
-      const digits = phone.replace(/\D/g, '');
-      
-      // Для России должно быть 11 цифр (с кодом страны)
-      if (digits.length !== 11) {
-        // Не добавляем класс error для телефона, чтобы не было красного фокуса
-        
-        // Создаем или обновляем всплывающую подсказку
-        let tooltip = document.querySelector('#phone-tooltip');
-        if (!tooltip) {
-          tooltip = document.createElement('div');
-          tooltip.id = 'phone-tooltip';
-          tooltip.className = 'tooltip';
-          document.body.appendChild(tooltip);
-        }
-        
-        tooltip.textContent = 'Введите номер телефона полностью';
-        
-        // Позиционируем подсказку под полем ввода
-        const rect = phoneInput.getBoundingClientRect();
-        tooltip.style.left = `${rect.left}px`;
-        tooltip.style.top = `${rect.bottom}px`;
-        tooltip.classList.add('visible');
-        
-        return false;
-      }
-      
-      // Если валидация успешна, скрываем подсказку
-      phoneInput.classList.remove("error");
-      const tooltip = document.querySelector('#phone-tooltip');
-      if (tooltip) {
-        tooltip.classList.remove('visible');
-      }
-      
-      return true;
+      const phone = phoneInput.value.replace(/\D/g, '');
+      return phone.length >= 10;
     }
 
-    // Обработчики событий для валидации при вводе
-    nameInput.addEventListener("input", validateName);
-    emailInput.addEventListener("input", validateEmail);
-    
-    // Обработчик для форматирования телефона
-    phoneInput.addEventListener("input", function() {
-      // Сохраняем позицию курсора
-      const cursorPosition = this.selectionStart;
-      const previousLength = this.value.length;
-      
-      // Применяем форматирование
-      this.value = formatPhoneNumber(this.value);
-      
-      // Корректируем позицию курсора после форматирования
-      const newLength = this.value.length;
-      const newPosition = cursorPosition + (newLength - previousLength);
-      
-      if (newPosition >= 0) {
-        this.setSelectionRange(newPosition, newPosition);
-      }
-      
-      validatePhone();
+    // Обработчики событий для валидации в реальном времени
+    const inputs = [nameInput, emailInput, phoneInput];
+    inputs.forEach(input => {
+      input.addEventListener('input', () => {
+        const isValid = validateForm();
+        submitButton.disabled = !isValid || !policyCheckbox.checked;
+      });
     });
-    
-    // При фокусе на поле телефона, добавляем +7 если поле пустое
-    phoneInput.addEventListener("focus", function() {
-      if (this.value.trim() === '') {
-        this.value = '+7';
-      }
-    });
+
+    function validateForm() {
+      return (
+        validateName() &&
+        validateEmail() &&
+        validatePhone() &&
+        policyCheckbox.checked
+      );
+    }
 
     // Функция для закрытия модального окна
     function closeSuccessModal() {

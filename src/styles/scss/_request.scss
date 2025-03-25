@@ -1,46 +1,64 @@
+// Миксины
+@mixin hover-effect {
+  box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+@mixin montserrat-text {
+  font-family: "Montserrat";
+  letter-spacing: 0%;
+  color: #ffffff;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Переменные
+$primary-blue: #3a75ed;
+
 .request {
   margin-bottom: auto;
+  
   &__button {
+    @include montserrat-text;
     color: white;
     border-radius: 15px;
-    background-color: #3a75ed;
-    font-family: "Montserrat";
+    background-color: $primary-blue;
     font-size: 18px;
     cursor: pointer;
     transition: box-shadow 0.3s ease;
     font-weight: 500;
     line-height: 29.26px;
-    letter-spacing: 0%;
     border: 1px solid transparent;
     padding: 15px 37px 17px 36px;
+
     &:hover {
-      box-shadow: 0 0 10px 3px rgba(255, 255, 255, 0.7);
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+      @include hover-effect;
       border: 1px solid white;
     }
   }
 }
 
 h1 {
+  @include montserrat-text;
   font-weight: 700;
   font-size: 64px;
   line-height: 78.02px;
-  letter-spacing: 0%;
-  color: #ffffff;
-  margin-top: 0;
-  margin-bottom: 25px;
+  margin: 0 0 25px;
 }
+
 .description {
+  @include montserrat-text;
   max-width: 859px;
-  font-family: Montserrat;
   font-weight: 400;
   font-size: 33px;
   line-height: 40.23px;
-  letter-spacing: 0%;
-  color: #ffffff;
-  margin-top: 0;
-  margin-bottom: 49px;
+  margin: 0 0 49px;
 }
+
 .icon {
   display: flex;
   flex-direction: column;
@@ -55,26 +73,22 @@ h1 {
   padding-bottom: env(safe-area-inset-bottom, 20px);
 }
 
-/* Базовые стили для items */
 .items {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  padding-bottom: 60px;
-  /* Защитный отступ снизу для iOS */
   padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px));
   margin-bottom: env(safe-area-inset-bottom, 20px);
   transition: transform 0.3s ease;
-  -ms-overflow-style: none; /* IE и Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   overflow-y: hidden !important;
-}
 
-/* Скрываем скроллбар для Chrome, Safari и Opera */
-.items::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
 }
 
 .item {
@@ -83,89 +97,34 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   &__text {
-    font-family: Montserrat;
+    @include montserrat-text;
     font-weight: 500;
-    color: #ffffff;
     font-size: 19px;
     line-height: 100%;
-    letter-spacing: 0%;
   }
+
   &__description {
+    @include montserrat-text;
     text-align: center;
-    margin: 8px 0 0 0;
-    font-family: Montserrat;
+    margin: 8px 0 0;
     font-weight: 250;
-    color: #ffffff;
     font-size: 15px;
     line-height: 100%;
-    letter-spacing: 0%;
   }
+
   &__bg {
+    @include flex-center;
     position: relative;
     height: 116px;
     width: 116px;
     border-radius: 50%;
-    background-color: #3a75ed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background-color: $primary-blue;
   }
 }
 
-/* Адаптивные стили для wrapper - уменьшение падинга с каждым брейкпоинтом */
-@media (min-width: 1676px) {
-  .wrapper {
-    padding-left: 150px !important;
-    padding-right: 150px !important;
-  }
-}
-
-@media (max-width: 1675px) and (min-width: 1401px) {
-  .wrapper {
-    padding-left: 120px !important;
-    padding-right: 120px !important;
-  }
-}
-
-@media (max-width: 1400px) and (min-width: 1201px) {
-  .wrapper {
-    padding-left: 90px !important;
-    padding-right: 90px !important;
-  }
-}
-
-@media (max-width: 1200px) and (min-width: 993px) {
-  .wrapper {
-    padding-left: 60px !important;
-    padding-right: 60px !important;
-  }
-}
-
-@media (max-width: 992px) and (min-width: 769px) {
-  .wrapper {
-    padding-left: 45px !important;
-    padding-right: 45px !important;
-  }
-}
-
-@media (max-width: 768px) and (min-width: 577px) {
-  .wrapper {
-    padding-left: 30px !important;
-    padding-right: 30px !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .wrapper {
-    padding-left: 15px !important;
-    padding-right: 15px !important;
-  }
-}
-
-/* Адаптивные стили для request */
-
-/* Большие десктопы (больше 1675px) - все элементы */
+// Адаптивные стили для больших десктопов
 @media (min-width: 1676px) {
   .request {
     &__button {
@@ -179,7 +138,7 @@ h1 {
   }
 
   .item {
-    width: calc((100% - 180px) / 7); /* 7 элементов */
+    width: calc((100% - 180px) / 7);
     min-width: 220px;
 
     &__bg {

@@ -1,23 +1,36 @@
+// Миксины
+@mixin ios-safe-area {
+  padding-top: max(env(safe-area-inset-top, 0px), 20px);
+  padding-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+}
+
+@mixin close-button {
+  display: block;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  cursor: pointer;
+  z-index: 10;
+  width: 20px;
+  height: 20px;
+  transition: all 0.2s ease;
+}
+
 .sidebar {
   position: fixed;
   top: 0;
-  height: 100vh;
-  /* Учитываем системные панели браузера в iOS */
   height: calc(100vh - env(safe-area-inset-bottom, 0px));
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   background: #fff;
-  transition: transform 0.3s ease;
-  z-index: 1001;
+  transition: transform $transition-duration ease;
+  z-index: $z-index-sidebar;
   box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
   
-  /* Добавляем поддержку для iOS */
   @supports (-webkit-overflow-scrolling: touch) {
-    /* Для iOS устройств */
-    padding-top: max(env(safe-area-inset-top, 0px), 20px);
-    padding-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
+    @include ios-safe-area;
   }
 
   &.active {
@@ -26,32 +39,20 @@
   }
 
   .close-btn {
-    display: block;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    cursor: pointer;
-    z-index: 10;
-    width: 20px;
-    height: 20px;
-    transition: all 0.2s ease;
+    @include close-button;
 
     svg {
-      width: 20px;
-      height: 20px;
+      width: 100%;
+      height: 100%;
     }
 
-    circle {
-      transition: fill 0.2s ease;
-    }
-
-    path {
-      transition: stroke 0.2s ease;
+    circle, path {
+      transition: all 0.2s ease;
     }
 
     &:hover {
       path {
-        stroke: #3a75ed;
+        stroke: $primary-blue;
       }
 
       circle {

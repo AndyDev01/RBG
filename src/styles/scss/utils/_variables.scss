@@ -1,8 +1,72 @@
+// Размеры сайдбаров
 $sidebar-contact-width: 888px;
 $sidebar-request-width: 864px;
-$overlay-bg: rgba(0, 0, 0, 0.5);
-$transition-duration: 0.3s;
+
+// Z-индексы
 $z-index-overlay: 1000;
 $z-index-sidebar: 1001;
-$overlay-color: rgba(21, 21, 21, 0.85); // #151515 с 85% прозрачности
+
+// Цвета
+$primary-blue: #3a75ed;
+$overlay-color: rgba(21, 21, 21, 0.85);
+
+// Эффекты
 $backdrop-blur: blur(4px);
+$transition-duration: 0.3s;
+
+// Брейкпоинты
+$breakpoints: (
+  mobile: 576px,
+  tablet: 768px,
+  desktop-sm: 992px,
+  desktop-md: 1200px,
+  desktop-lg: 1400px,
+  desktop-xl: 1675px
+);
+
+// Отступы для wrapper
+$wrapper-paddings: (
+  mobile: 15px,
+  tablet: 60px,
+  desktop-sm: 90px,
+  desktop-md: 120px,
+  desktop-lg: 150px,
+  desktop-xl: 160px
+);
+
+// Миксины для медиа-запросов
+@mixin mobile {
+  @media (max-width: map-get($breakpoints, "mobile")) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{map-get($breakpoints, "mobile") + 1px}) and (max-width: #{map-get($breakpoints, "tablet")}) {
+    @content;
+  }
+}
+
+@mixin desktop-sm {
+  @media (min-width: #{map-get($breakpoints, "tablet") + 1px}) and (max-width: #{map-get($breakpoints, "desktop-sm")}) {
+    @content;
+  }
+}
+
+@mixin desktop-md {
+  @media (min-width: #{map-get($breakpoints, "desktop-sm") + 1px}) and (max-width: #{map-get($breakpoints, "desktop-md")}) {
+    @content;
+  }
+}
+
+@mixin desktop-lg {
+  @media (min-width: #{map-get($breakpoints, "desktop-md") + 1px}) and (max-width: #{map-get($breakpoints, "desktop-lg")}) {
+    @content;
+  }
+}
+
+@mixin desktop-xl {
+  @media (min-width: #{map-get($breakpoints, "desktop-lg") + 1px}) {
+    @content;
+  }
+}
