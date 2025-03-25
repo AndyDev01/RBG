@@ -33,6 +33,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: 1;
 }
 
 .preloader.loaded {
@@ -64,6 +65,8 @@ body {
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
   background-color: #000000;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 ul,
@@ -240,11 +243,13 @@ body {
     overflow-y: auto;
     height: auto;
     min-height: 100vh;
+    -webkit-overflow-scrolling: touch;
     
     @media (orientation: landscape) {
       overflow-y: auto !important;
       height: auto !important;
       min-height: 100vh !important;
+      position: relative;
     }
   }
   
@@ -258,11 +263,13 @@ body {
     flex-direction: column;
     padding: 0 15px;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     
     @media (orientation: landscape) {
       height: auto !important;
       min-height: 100vh !important;
       overflow-y: auto !important;
+      position: relative;
     }
   }
 
@@ -285,6 +292,7 @@ body {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin: 20px 0;
+    position: relative;
     
     &::-webkit-scrollbar {
       display: none;
@@ -298,6 +306,7 @@ body {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     flex-wrap: nowrap;
+    position: relative;
     
     &::-webkit-scrollbar {
       display: none;
@@ -317,6 +326,7 @@ body {
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       width: 100%;
+      position: relative;
       
       &::-webkit-scrollbar {
         display: none;
@@ -331,6 +341,7 @@ body {
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       width: max-content;
+      position: relative;
     }
     
     .item {
@@ -345,6 +356,7 @@ body {
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
       height: 100vh;
+      position: relative;
       
       &::-webkit-scrollbar {
         display: none;
@@ -357,6 +369,7 @@ body {
         min-height: auto;
         padding-bottom: 30px;
         overflow-y: auto;
+        position: relative;
       }
     }
   }
