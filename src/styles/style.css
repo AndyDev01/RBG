@@ -1488,29 +1488,24 @@ body {
   body {
     background-color: #000000;
   }
+  /* Стили для горизонтальной ориентации */
+}
+@media (max-width: 576px) and (orientation: landscape) {
+  body {
+    overflow-y: auto !important;
+  }
+}
+@media (max-width: 576px) {
   .wrapper {
     height: auto;
-    min-height: 100vh; /* Стандартная минимальная высота */
-    min-height: calc(var(--vh, 1vh) * 100); /* Использование переменной --vh для iOS */
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
     min-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
     padding-bottom: env(safe-area-inset-bottom, 0px);
     display: flex;
     flex-direction: column;
     padding: 0 15px;
-    /* Стили для горизонтальной ориентации на мобильных */
   }
-  /* Стили для items в горизонтальной ориентации на мобильных */
-  /* Стили для сайдбаров в горизонтальной ориентации на мобильных */
-}
-@media (max-width: 576px) and (orientation: landscape) {
-  .wrapper {
-    overflow-y: auto;
-    height: auto;
-    min-height: 100%;
-    padding-bottom: 30px;
-  }
-}
-@media (max-width: 576px) {
   h1 {
     margin-bottom: 10px;
     font-size: 35px;
@@ -1523,49 +1518,65 @@ body {
     line-height: 120%;
     letter-spacing: 0;
   }
-}
-@media (max-width: 576px) and (orientation: landscape) {
-  .items-container {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-}
-@media (max-width: 576px) {
   .items {
     display: flex;
     gap: 10px;
     overflow-x: auto;
     padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
   }
-}
-@media (max-width: 576px) and (orientation: landscape) {
-  .items {
-    flex-wrap: wrap;
-    overflow-x: visible;
-    justify-content: flex-start;
-    gap: 15px;
-    padding-bottom: 0;
+  .items::-webkit-scrollbar {
+    display: none;
   }
-}
-@media (max-width: 576px) {
   .item {
     width: calc((100% - 20px) / 3);
+    flex-shrink: 0;
+    scroll-snap-align: start;
   }
 }
 @media (max-width: 576px) and (orientation: landscape) {
+  .items-container {
+    margin: 20px 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .items-container::-webkit-scrollbar {
+    display: none;
+  }
+  .items {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 15px;
+    padding-bottom: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+  }
   .item {
-    width: calc((100% - 45px) / 4);
+    width: 150px;
+    min-width: 150px;
+    flex-shrink: 0;
   }
-}
-@media (max-width: 576px) and (orientation: landscape) {
+  /* Стили для сайдбаров */
   .sidebar, .contact-sidebar, .request-sidebar, .policy-sidebar {
+    max-height: 100vh;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .sidebar::-webkit-scrollbar, .contact-sidebar::-webkit-scrollbar, .request-sidebar::-webkit-scrollbar, .policy-sidebar::-webkit-scrollbar {
+    display: none;
   }
   .sidebar .contact-sidebar_content, .contact-sidebar .contact-sidebar_content, .request-sidebar .contact-sidebar_content, .policy-sidebar .contact-sidebar_content,
   .sidebar .request__form-container,
   .contact-sidebar .request__form-container,
   .request-sidebar .request__form-container,
-  .policy-sidebar .request__form-container {
-    padding-bottom: 20px;
+  .policy-sidebar .request__form-container,
+  .sidebar .policy__content,
+  .contact-sidebar .policy__content,
+  .request-sidebar .policy__content,
+  .policy-sidebar .policy__content {
+    height: auto;
+    min-height: auto;
+    padding-bottom: 30px;
   }
 }/*# sourceMappingURL=style.css.map */
