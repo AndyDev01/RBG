@@ -51,6 +51,7 @@ const initVideoBackground = (videoElement) => {
       playPromise.catch(error => {
         console.warn("Ошибка автовоспроизведения:", error);
         isPlaying = false;
+        videoElement.classList.remove('ready');
       });
     }
   };
@@ -81,7 +82,7 @@ const initVideoBackground = (videoElement) => {
   // Таймаут для проверки загрузки
   setTimeout(() => {
     if (!isPlaying) {
-      console.warn("Видео не загрузилось за отведенное время, проверьте путь к файлу и его формат");
+      console.warn("Видео не загрузилось за отведенное время");
     }
   }, VIDEO_LOAD_TIMEOUT);
 };
@@ -97,12 +98,12 @@ document.addEventListener("DOMContentLoaded", function() {
   // Инициализация видео фона
   initVideoBackground(videoElement);
 
-  // Плавно показываем контент
+  // Показываем контент после небольшой задержки
   if (contentWrapper) {
-    // Небольшая задержка для гарантии применения стилей
-    requestAnimationFrame(() => {
+    // Даем время для применения стилей и загрузки шрифтов
+    setTimeout(() => {
       contentWrapper.classList.add("loaded");
-    });
+    }, 100);
   }
 
   // iOS высота

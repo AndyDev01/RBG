@@ -8,37 +8,25 @@
 @import "components/request-sidebar";
 @import "components/success-modal";
 
-/* Фон и прелоадер */
+/* Фоны и контент */
 body {
   background-color: #000;
 }
 
-.preloader-bg {
+/* Статичный фон */
+.static-background {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-image: url('/preloader-bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -2;
   opacity: 1;
-  will-change: opacity;
-}
-
-/* Обертка для контента */
-.content-wrapper {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  opacity: 0;
-  transition: opacity 0.8s ease-out;
-  will-change: opacity;
-  
-  &.loaded {
-    opacity: 1;
-  }
+  transition: opacity 1.5s ease-in-out;
 }
 
 /* Видео фон */
@@ -52,9 +40,25 @@ body {
   z-index: -1;
   opacity: 0;
   transition: opacity 1.5s ease-in-out;
-  will-change: opacity;
   
   &.ready {
+    opacity: 1;
+    
+    & ~ .static-background {
+      opacity: 0;
+    }
+  }
+}
+
+/* Обертка для контента */
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  
+  &.loaded {
     opacity: 1;
   }
 }
@@ -78,7 +82,7 @@ body {
   opacity: 0;
   visibility: hidden;
   
-  & + .preloader-bg {
+  & + .static-background {
     opacity: 1;
   }
 }
