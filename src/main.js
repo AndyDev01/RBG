@@ -1,6 +1,6 @@
 // Константы
 const ANIMATION_DURATION = 300;
-const PRELOADER_TIMEOUT = 5000;
+const VIDEO_LOAD_TIMEOUT = 8000;
 
 // Утилиты
 const hideElement = (element, removeActive = true) => {
@@ -18,27 +18,84 @@ const hideElement = (element, removeActive = true) => {
   }, ANIMATION_DURATION);
 };
 
-// Управление прелоадером
-window.addEventListener("load", function () {
-  document.body.style.overflow = "auto";
-  const videoElement = document.getElementById("video-background");
-  const preloader = document.getElementById("preloader");
+// Управление загрузкой видео
+const initVideoBackground = (videoElement) => {
+  if (!videoElement) return;
 
-  const hidePreloader = () => preloader?.classList.add("loaded");
+  // Сброс стилей видео
+  videoElement.style.removeProperty('opacity');
+  videoElement.style.removeProperty('transition');
 
-  const checkVideoLoaded = () => {
-    if (videoElement && (videoElement.readyState >= 3 || videoElement.played.length > 0)) {
-      hidePreloader();
-      return true;
+  // Установка начальных параметров
+  videoElement.playsInline = true;
+  videoElement.muted = true;
+  videoElement.loop = true;
+  videoElement.setAttribute('playsinline', '');
+  videoElement.setAttribute('muted', '');
+  videoElement.setAttribute('loop', '');
+
+  // Функция для показа видео
+  const showVideo = () => {
+    videoElement.style.transition = "opacity 1s ease-in-out";
+    videoElement.style.opacity = "1";
+    
+    // Попытка воспроизведения
+    const playPromise = videoElement.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.warn("Ошибка автовоспроизведения:", error);
+      });
     }
-    return false;
   };
 
-  if (!checkVideoLoaded() && videoElement) {
-    videoElement.addEventListener("canplay", hidePreloader);
-    videoElement.addEventListener("playing", hidePreloader);
-    setTimeout(hidePreloader, PRELOADER_TIMEOUT);
+  // Обработчик готовности видео
+  const handleVideoReady = () => {
+    if (videoElement.readyState >= 3) {
+      showVideo();
+    }
+  };
+
+  // Обработчик ошибок
+  const handleVideoError = (error) => {
+    console.error("Ошибка загрузки видео:", error);
+    videoElement.style.display = 'none'; // Скрываем видео при ошибке
+  };
+
+  // Слушатели событий
+  videoElement.addEventListener("loadeddata", handleVideoReady);
+  videoElement.addEventListener("canplay", handleVideoReady);
+  videoElement.addEventListener("error", handleVideoError);
+
+  // Проверка текущего состояния
+  if (videoElement.readyState >= 3) {
+    handleVideoReady();
   }
+
+  // Таймаут для проверки загрузки
+  setTimeout(() => {
+    if (videoElement.style.opacity !== "1") {
+      console.warn("Видео не загрузилось за отведенное время, проверьте путь к файлу и его формат");
+    }
+  }, VIDEO_LOAD_TIMEOUT);
+};
+
+// Управление загрузкой сайта
+window.addEventListener("DOMContentLoaded", function() {
+  // Разрешаем взаимодействие с сайтом сразу после загрузки DOM
+  document.body.style.overflow = "auto";
+  
+  const preloader = document.getElementById("preloader");
+  const videoElement = document.getElementById("video-background");
+
+  // Скрываем прелоадер после загрузки основного контента
+  if (preloader) {
+    window.addEventListener("load", () => {
+      preloader.classList.add("loaded");
+    });
+  }
+
+  // Инициализация видео фона
+  initVideoBackground(videoElement);
 
   // iOS высота
   const setAppHeight = () => {

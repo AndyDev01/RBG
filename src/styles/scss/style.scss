@@ -33,6 +33,8 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  opacity: 1;
+  transition: opacity 0.5s ease;
 }
 
 .preloader.loaded {
@@ -91,6 +93,7 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+/* Видео фон */
 #video-background {
   position: fixed;
   top: 0;
@@ -99,6 +102,8 @@ body {
   height: 100vh;
   object-fit: cover;
   z-index: -1;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
 }
 
 .wrapper {
