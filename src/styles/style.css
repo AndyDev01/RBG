@@ -1290,7 +1290,7 @@ h1 {
   visibility: visible;
   transition: opacity 0.8s ease-out;
   pointer-events: none;
-  background: #000;
+  background: transparent;
 }
 
 .preloader-bg {
@@ -1304,8 +1304,8 @@ h1 {
   background-position: center;
   background-repeat: no-repeat;
   z-index: -2;
-  opacity: 0;
-  transition: opacity 0.8s ease-out;
+  opacity: 1;
+  transition: opacity 1.5s ease-in-out;
 }
 
 .preloader.loaded {
@@ -1382,7 +1382,7 @@ body {
 #video-background.ready {
   opacity: 1;
 }
-#video-background.ready + .preloader-bg {
+#video-background.ready ~ .preloader-bg {
   opacity: 0;
 }
 

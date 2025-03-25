@@ -55,7 +55,7 @@ const initVideoBackground = (videoElement) => {
           isPlaying = false;
         });
       }
-    }, 800); // Задержка равна времени перехода фона
+    }, 800);
   };
 
   // Обработчики событий загрузки
@@ -97,16 +97,15 @@ document.addEventListener("DOMContentLoaded", function() {
   const preloader = document.getElementById("preloader");
   const videoElement = document.getElementById("video-background");
 
-  // Показываем контент сразу после загрузки DOM
-  if (preloader) {
-    // Небольшая задержка для гарантии применения стилей
-    setTimeout(() => {
-      preloader.classList.add("loaded");
-    }, 100);
-  }
-
   // Инициализация видео фона
   initVideoBackground(videoElement);
+
+  // Показываем контент сразу после загрузки DOM
+  if (preloader) {
+    requestAnimationFrame(() => {
+      preloader.classList.add("loaded");
+    });
+  }
 
   // iOS высота
   const setAppHeight = () => {
