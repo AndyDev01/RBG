@@ -43,16 +43,19 @@ const initVideoBackground = (videoElement) => {
   const showAndPlayVideo = () => {
     if (isPlaying) return;
     
-    isPlaying = true;
-    videoElement.classList.add('ready');
-    
-    const playPromise = videoElement.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.warn("Ошибка автовоспроизведения:", error);
-        isPlaying = false;
-      });
-    }
+    // Даем время для завершения анимации фона
+    setTimeout(() => {
+      isPlaying = true;
+      videoElement.classList.add('ready');
+      
+      const playPromise = videoElement.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn("Ошибка автовоспроизведения:", error);
+          isPlaying = false;
+        });
+      }
+    }, 800); // Задержка равна времени перехода фона
   };
 
   // Обработчики событий загрузки
@@ -87,18 +90,19 @@ const initVideoBackground = (videoElement) => {
 };
 
 // Управление загрузкой сайта
-window.addEventListener("DOMContentLoaded", function() {
-  // Разрешаем взаимодействие с сайтом сразу после загрузки DOM
+document.addEventListener("DOMContentLoaded", function() {
+  // Разрешаем взаимодействие с сайтом сразу
   document.body.style.overflow = "auto";
   
   const preloader = document.getElementById("preloader");
   const videoElement = document.getElementById("video-background");
 
-  // Скрываем прелоадер после загрузки основного контента
+  // Показываем контент сразу после загрузки DOM
   if (preloader) {
-    window.addEventListener("load", () => {
+    // Небольшая задержка для гарантии применения стилей
+    setTimeout(() => {
       preloader.classList.add("loaded");
-    });
+    }, 100);
   }
 
   // Инициализация видео фона

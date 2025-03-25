@@ -15,9 +15,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; // Понижаем z-index, чтобы UI был доступен
-  background-color: transparent; // Убираем черный фон
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease-out;
   pointer-events: none;
+  background: #000;
 }
 
 .preloader-bg {
@@ -30,12 +33,18 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -2; // Помещаем под видео
+  z-index: -2;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
 }
 
 .preloader.loaded {
   opacity: 0;
   visibility: hidden;
+  
+  & + .preloader-bg {
+    opacity: 1;
+  }
 }
 
 /* Основные стили */
@@ -103,6 +112,10 @@ body {
   
   &.ready {
     opacity: 1;
+    
+    & + .preloader-bg {
+      opacity: 0;
+    }
   }
 }
 
