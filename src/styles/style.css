@@ -1278,19 +1278,9 @@ h1 {
   text-align: center;
 }
 
-/* Прелоадер и фон */
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.8s ease-out;
-  pointer-events: none;
-  background: transparent;
+/* Фон и прелоадер */
+body {
+  background-color: #000;
 }
 
 .preloader-bg {
@@ -1305,7 +1295,49 @@ h1 {
   background-repeat: no-repeat;
   z-index: -2;
   opacity: 1;
+}
+
+/* Обертка для контента */
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+}
+.content-wrapper.loaded {
+  opacity: 1;
+}
+
+/* Видео фон */
+#video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+  opacity: 0;
   transition: opacity 1.5s ease-in-out;
+}
+#video-background.ready {
+  opacity: 1;
+}
+
+/* Прелоадер и фон */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease-out;
+  pointer-events: none;
+  background: transparent;
 }
 
 .preloader.loaded {
@@ -1339,7 +1371,6 @@ body {
   min-height: -webkit-fill-available;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
-  background-color: #000000;
 }
 
 ul,
@@ -1365,71 +1396,6 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none; /* IE, Edge */
   scrollbar-width: none; /* Firefox */
-}
-
-/* Видео фон */
-#video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-}
-#video-background.ready {
-  opacity: 1;
-}
-#video-background.ready ~ .preloader-bg {
-  opacity: 0;
-}
-
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  box-sizing: border-box;
-  padding: 0 160px;
-}
-@media (max-width: 1675px) {
-  .wrapper {
-    padding: 0 150px;
-  }
-}
-@media (max-width: 1400px) {
-  .wrapper {
-    padding: 0 120px;
-  }
-}
-@media (max-width: 1200px) {
-  .wrapper {
-    padding: 0 90px;
-  }
-}
-@media (max-width: 992px) {
-  .wrapper {
-    padding: 0 60px;
-  }
-}
-@media (max-width: 768px) {
-  .wrapper {
-    padding: 0 30px;
-  }
-}
-@media (max-width: 576px) {
-  .wrapper {
-    padding: 0 15px;
-    height: auto;
-    min-height: 100vh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    min-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  }
 }
 
 /* Адаптивные стили для всех устройств */

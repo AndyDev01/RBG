@@ -43,19 +43,16 @@ const initVideoBackground = (videoElement) => {
   const showAndPlayVideo = () => {
     if (isPlaying) return;
     
-    // Даем время для завершения анимации фона
-    setTimeout(() => {
-      isPlaying = true;
-      videoElement.classList.add('ready');
-      
-      const playPromise = videoElement.play();
-      if (playPromise !== undefined) {
-        playPromise.catch(error => {
-          console.warn("Ошибка автовоспроизведения:", error);
-          isPlaying = false;
-        });
-      }
-    }, 800);
+    isPlaying = true;
+    videoElement.classList.add('ready');
+    
+    const playPromise = videoElement.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(error => {
+        console.warn("Ошибка автовоспроизведения:", error);
+        isPlaying = false;
+      });
+    }
   };
 
   // Обработчики событий загрузки
@@ -94,16 +91,17 @@ document.addEventListener("DOMContentLoaded", function() {
   // Разрешаем взаимодействие с сайтом сразу
   document.body.style.overflow = "auto";
   
-  const preloader = document.getElementById("preloader");
+  const contentWrapper = document.querySelector(".content-wrapper");
   const videoElement = document.getElementById("video-background");
 
   // Инициализация видео фона
   initVideoBackground(videoElement);
 
-  // Показываем контент сразу после загрузки DOM
-  if (preloader) {
+  // Плавно показываем контент
+  if (contentWrapper) {
+    // Небольшая задержка для гарантии применения стилей
     requestAnimationFrame(() => {
-      preloader.classList.add("loaded");
+      contentWrapper.classList.add("loaded");
     });
   }
 
