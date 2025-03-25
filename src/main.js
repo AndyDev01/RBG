@@ -146,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   document.querySelector(".request__policy-link")?.addEventListener("click", (e) => {
-    e.preventDefault();
+      e.preventDefault();
     showSidebar(elements.policySidebar);
   });
 
@@ -172,10 +172,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Управление скроллом
   elements.overlay?.addEventListener("transitionstart", (e) => {
-    if (e.target.classList.contains("active")) {
-      document.body.style.overflow = "hidden";
-    }
-  });
+      if (e.target.classList.contains("active")) {
+        document.body.style.overflow = "hidden";
+      }
+    });
 
   elements.overlay?.addEventListener("transitionend", (e) => {
     if (!e.target.classList.contains("active")) {
@@ -201,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Обработка файла
     formElements.fileButton?.addEventListener("click", () => formElements.fileInput.click());
     formElements.fileInput?.addEventListener("change", (e) => {
-      const file = e.target.files[0];
+        const file = e.target.files[0];
       formElements.fileInfo.textContent = file 
         ? `Файл: ${file.name} (${Math.round(file.size / 1024)} KB)`
         : "Файл не выбран";
@@ -235,7 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Отправка формы
     requestForm.addEventListener("submit", async function (event) {
       event.preventDefault();
-      
+
       if (!validateForm()) return;
 
       try {
@@ -263,25 +263,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function init() {
   try {
-    const map = new ymaps.Map("map", {
-      center: [55.76259, 38.357773],
-      zoom: 9,
-      controls: ["zoomControl"],
+  const map = new ymaps.Map("map", {
+    center: [55.76259, 38.357773],
+    zoom: 9,
+    controls: ["zoomControl"],
       suppressMapOpenBlock: true // Скрываем кнопку "Открыть в Яндекс.Картах"
-    });
+  });
 
     const placemarks = [
-      {
+    {
         coordinates: [55.800944, 37.967062],
         options: {
-          preset: "islands#redIcon",
+      preset: "islands#redIcon",
           iconColor: "#cc0000"
-        }
+    }
       },
-      {
+    {
         coordinates: [55.890025, 38.798681],
         options: {
-          preset: "islands#redIcon",
+      preset: "islands#redIcon",
           iconColor: "#cc0000"
         }
       }
@@ -293,10 +293,10 @@ function init() {
         {},
         mark.options
       );
-      map.geoObjects.add(placemark);
+  map.geoObjects.add(placemark);
     });
 
-    map.options.set("nightMode", true);
+  map.options.set("nightMode", true);
   } catch (error) {
     console.error("Ошибка при инициализации карты:", error);
   }

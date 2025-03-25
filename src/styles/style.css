@@ -1278,14 +1278,23 @@ h1 {
   text-align: center;
 }
 
-/* Фоны и контент */
-body {
+/* Прелоадер */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
   background-color: #000;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+  pointer-events: none; /* Позволяет взаимодействовать с элементами под прелоадером */
 }
 
-/* Статичный фон */
-.static-background {
-  position: fixed;
+.preloader-bg {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -1294,63 +1303,11 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  z-index: -2;
-  opacity: 1;
-  transition: opacity 1.5s ease-in-out;
-}
-
-/* Видео фон */
-#video-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  object-fit: cover;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-}
-#video-background.ready {
-  opacity: 1;
-}
-#video-background.ready ~ .static-background {
-  opacity: 0;
-}
-
-/* Обертка для контента */
-.content-wrapper {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
-  opacity: 0;
-  transition: opacity 0.8s ease-out;
-}
-.content-wrapper.loaded {
-  opacity: 1;
-}
-
-/* Прелоадер и фон */
-.preloader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  opacity: 1;
-  visibility: visible;
-  transition: opacity 0.8s ease-out;
-  pointer-events: none;
-  background: transparent;
 }
 
 .preloader.loaded {
   opacity: 0;
   visibility: hidden;
-}
-.preloader.loaded + .static-background {
-  opacity: 1;
 }
 
 /* Основные стили */
@@ -1376,6 +1333,7 @@ body {
   min-height: -webkit-fill-available;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
+  background-color: #000000;
 }
 
 ul,
@@ -1403,18 +1361,126 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+#video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.wrapper {
+  padding: 0 142px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh; /* Стандартная высота */
+  /* Использование переменной --vh для iOS */
+  height: calc(var(--vh, 1vh) * 100);
+  /* Учитываем системные панели браузера в iOS */
+  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
+}
+
 /* Адаптивные стили для всех устройств */
+/* Большие десктопы (больше 1600px) */
+@media (min-width: 1400px) {
+  .wrapper {
+    padding: 0 160px;
+  }
+}
 @media (max-width: 1640px) and (min-width: 1201px) {
   h1 {
     font-size: 50px;
   }
   .description {
     margin-bottom: 25px;
+  }
+  .description {
     font-size: 27px;
   }
   .item__bg {
     width: 85px;
     height: 85px;
+  }
+}
+/* Стандартные десктопы (от 1200px до 1400px) */
+@media (max-width: 1400px) and (min-width: 1201px) {
+  .wrapper {
+    padding: 0 150px;
+  }
+  h1 {
+    font-size: 50px;
+    line-height: 67px;
+  }
+  h2 {
+    font-size: 44px;
+    line-height: 54px;
+  }
+}
+/* Маленькие десктопы и большие планшеты (от 992px до 1200px) */
+@media (max-width: 1200px) and (min-width: 993px) {
+  .wrapper {
+    padding: 0 120px;
+  }
+  h1 {
+    font-size: 50px;
+    line-height: 61px;
+  }
+  h2 {
+    font-size: 40px;
+    line-height: 49px;
+  }
+}
+/* Планшеты (от 768px до 992px) */
+@media (max-width: 992px) and (min-width: 769px) {
+  .wrapper {
+    padding: 0 90px;
+  }
+  h1 {
+    font-size: 45px;
+    line-height: 55px;
+  }
+  h2 {
+    font-size: 36px;
+    line-height: 44px;
+  }
+}
+/* Маленькие планшеты и большие телефоны (от 576px до 768px) */
+@media (max-width: 768px) and (min-width: 577px) {
+  .wrapper {
+    padding: 0 60px;
+  }
+  h1 {
+    font-size: 40px;
+    line-height: 49px;
+  }
+  h2 {
+    font-size: 32px;
+    line-height: 39px;
+  }
+}
+/* Маленькие телефоны (меньше 359px) */
+@media (max-width: 358px) {
+  .wrapper {
+    padding: 0 15px;
+  }
+  h1 {
+    font-size: 32px;
+    line-height: 39px;
+    margin-top: 10px;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 29px;
+  }
+  .description {
+    font-size: 14px;
+    line-height: 18px;
+    margin-bottom: 20px;
   }
 }
 /* Общие стили для мобильных устройств */
@@ -1430,7 +1496,21 @@ body {
     padding-bottom: env(safe-area-inset-bottom, 0px);
     display: flex;
     flex-direction: column;
+    padding: 0 15px;
+    /* Стили для горизонтальной ориентации на мобильных */
   }
+  /* Стили для items в горизонтальной ориентации на мобильных */
+  /* Стили для сайдбаров в горизонтальной ориентации на мобильных */
+}
+@media (max-width: 576px) and (orientation: landscape) {
+  .wrapper {
+    overflow-y: auto;
+    height: auto;
+    min-height: 100%;
+    padding-bottom: 30px;
+  }
+}
+@media (max-width: 576px) {
   h1 {
     margin-bottom: 10px;
     font-size: 35px;
@@ -1444,48 +1524,48 @@ body {
     letter-spacing: 0;
   }
 }
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  box-sizing: border-box;
-  padding: 0 160px;
-}
-@media (max-width: 1675px) {
-  .wrapper {
-    padding: 0 150px;
-  }
-}
-@media (max-width: 1400px) {
-  .wrapper {
-    padding: 0 120px;
-  }
-}
-@media (max-width: 1200px) {
-  .wrapper {
-    padding: 0 90px;
-  }
-}
-@media (max-width: 992px) {
-  .wrapper {
-    padding: 0 60px;
-  }
-}
-@media (max-width: 768px) {
-  .wrapper {
-    padding: 0 30px;
+@media (max-width: 576px) and (orientation: landscape) {
+  .items-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 @media (max-width: 576px) {
-  .wrapper {
-    padding: 0 15px;
-    height: auto;
-    min-height: 100vh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    min-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  .items {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
+  }
+}
+@media (max-width: 576px) and (orientation: landscape) {
+  .items {
+    flex-wrap: wrap;
+    overflow-x: visible;
+    justify-content: flex-start;
+    gap: 15px;
+    padding-bottom: 0;
+  }
+}
+@media (max-width: 576px) {
+  .item {
+    width: calc((100% - 20px) / 3);
+  }
+}
+@media (max-width: 576px) and (orientation: landscape) {
+  .item {
+    width: calc((100% - 45px) / 4);
+  }
+}
+@media (max-width: 576px) and (orientation: landscape) {
+  .sidebar, .contact-sidebar, .request-sidebar, .policy-sidebar {
+    overflow-y: auto;
+  }
+  .sidebar .contact-sidebar_content, .contact-sidebar .contact-sidebar_content, .request-sidebar .contact-sidebar_content, .policy-sidebar .contact-sidebar_content,
+  .sidebar .request__form-container,
+  .contact-sidebar .request__form-container,
+  .request-sidebar .request__form-container,
+  .policy-sidebar .request__form-container {
+    padding-bottom: 20px;
   }
 }/*# sourceMappingURL=style.css.map */

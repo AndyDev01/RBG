@@ -22,7 +22,7 @@ if (empty($name) || empty($company) || empty($phone) || empty($email) || empty($
 $smtp_server = "smtp.yandex.ru";
 $smtp_port = 465;
 $smtp_user = "noreply@refbg.ru"; // Введите реальный адрес
-$smtp_password = "ваш_пароль_яндекса"; // Введите реальный пароль
+$smtp_password = "RbG$2025"; // Введите реальный пароль
 
 // Используем PHPMailer для отправки
 require 'PHPMailer/src/PHPMailer.php';
@@ -36,7 +36,7 @@ use PHPMailer\PHPMailer\Exception;
 $to = "info@refbg.ru";
 
 // Тема письма
-$subject = "Новый запрос с сайта РБГ";
+$subject = "Новый запрос с сайта Refbg.ru";
 
 // Формируем содержимое письма
 $body = "
