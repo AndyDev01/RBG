@@ -23,8 +23,8 @@ const initVideoBackground = (videoElement) => {
   if (!videoElement) return;
 
   // Сброс стилей видео
-  videoElement.style.removeProperty('opacity');
   videoElement.style.removeProperty('transition');
+  videoElement.classList.remove('ready');
 
   // Установка начальных параметров
   videoElement.playsInline = true;
@@ -33,47 +33,54 @@ const initVideoBackground = (videoElement) => {
   videoElement.setAttribute('playsinline', '');
   videoElement.setAttribute('muted', '');
   videoElement.setAttribute('loop', '');
+  
+  // Предварительная загрузка видео
+  videoElement.preload = 'auto';
+  
+  let isPlaying = false;
 
-  // Функция для показа видео
-  const showVideo = () => {
-    videoElement.style.transition = "opacity 1s ease-in-out";
-    videoElement.style.opacity = "1";
+  // Функция для показа и воспроизведения видео
+  const showAndPlayVideo = () => {
+    if (isPlaying) return;
     
-    // Попытка воспроизведения
+    isPlaying = true;
+    videoElement.classList.add('ready');
+    
     const playPromise = videoElement.play();
     if (playPromise !== undefined) {
       playPromise.catch(error => {
         console.warn("Ошибка автовоспроизведения:", error);
+        isPlaying = false;
       });
     }
   };
 
-  // Обработчик готовности видео
-  const handleVideoReady = () => {
-    if (videoElement.readyState >= 3) {
-      showVideo();
+  // Обработчики событий загрузки
+  const handleVideoLoad = () => {
+    if (videoElement.readyState >= 4) { // HAVE_ENOUGH_DATA
+      showAndPlayVideo();
     }
   };
 
   // Обработчик ошибок
   const handleVideoError = (error) => {
     console.error("Ошибка загрузки видео:", error);
-    videoElement.style.display = 'none'; // Скрываем видео при ошибке
+    videoElement.style.display = 'none';
   };
 
   // Слушатели событий
-  videoElement.addEventListener("loadeddata", handleVideoReady);
-  videoElement.addEventListener("canplay", handleVideoReady);
+  videoElement.addEventListener("loadeddata", handleVideoLoad);
+  videoElement.addEventListener("canplaythrough", handleVideoLoad);
   videoElement.addEventListener("error", handleVideoError);
 
   // Проверка текущего состояния
-  if (videoElement.readyState >= 3) {
-    handleVideoReady();
+  if (videoElement.readyState >= 4) {
+    handleVideoLoad();
   }
 
   // Таймаут для проверки загрузки
   setTimeout(() => {
-    if (videoElement.style.opacity !== "1") {
+    if (!isPlaying) {
       console.warn("Видео не загрузилось за отведенное время, проверьте путь к файлу и его формат");
     }
   }, VIDEO_LOAD_TIMEOUT);
