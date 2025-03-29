@@ -1287,6 +1287,7 @@ h1 {
   width: 100%;
   height: 100%;
   z-index: 9999;
+  background-color: transparent; /* Убираем черный фон, чтобы было видно картинку */
   opacity: 1;
   visibility: visible;
   transition: opacity 0.8s ease, visibility 0.8s ease;
@@ -1298,7 +1299,7 @@ h1 {
 }
 
 .preloader-bg {
-  position: absolute;
+  position: fixed; /* Фиксированная позиция вместо absolute */
   top: 0;
   left: 0;
   width: 100%;
@@ -1307,6 +1308,7 @@ h1 {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  z-index: -1;
 }
 
 /* Основные стили */
@@ -1328,7 +1330,7 @@ body {
   margin: 0;
   padding: 0;
   min-height: 100vh;
-  /* Добавляем поддержку для устройств с вырезами/системными панелями */
+  background-color: #000; /* Чёрный фон на случай проблем с изображением */
   overflow-y: auto;
 }
 
@@ -1374,12 +1376,13 @@ body {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -1;
+  z-index: -2; /* Ниже чем у preloader-bg */
   opacity: 0;
   transition: opacity 1s ease;
 }
 #video-background.ready {
   opacity: 1;
+  z-index: -1; /* Поднимаем над фоном когда видео готово */
 }
 
 .wrapper {

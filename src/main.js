@@ -31,6 +31,7 @@ const initVideoBackground = (videoElement) => {
   videoElement.playsInline = true;
   videoElement.muted = true;
   videoElement.loop = true;
+  videoElement.autoplay = true; // Добавляем autoplay программно
   videoElement.setAttribute('playsinline', '');
   videoElement.setAttribute('muted', '');
   videoElement.setAttribute('loop', '');
@@ -39,10 +40,11 @@ const initVideoBackground = (videoElement) => {
   videoElement.preload = 'auto';
   
   let isPlaying = false;
+  let videoFailed = false;
 
   // Функция для показа и воспроизведения видео
   const showAndPlayVideo = () => {
-    if (isPlaying) return;
+    if (isPlaying || videoFailed) return;
     
     isPlaying = true;
     videoElement.classList.add('ready');
@@ -52,6 +54,7 @@ const initVideoBackground = (videoElement) => {
       playPromise.catch(error => {
         console.warn("Ошибка автовоспроизведения:", error);
         isPlaying = false;
+        videoFailed = true;
         videoElement.classList.remove('ready');
       });
     }
@@ -68,6 +71,7 @@ const initVideoBackground = (videoElement) => {
   const handleVideoError = (error) => {
     console.error("Ошибка загрузки видео:", error);
     videoElement.style.display = 'none';
+    videoFailed = true;
   };
 
   // Слушатели событий
@@ -84,8 +88,14 @@ const initVideoBackground = (videoElement) => {
   setTimeout(() => {
     if (!isPlaying) {
       console.warn("Видео не загрузилось за отведенное время");
+      videoFailed = true;
     }
   }, VIDEO_LOAD_TIMEOUT);
+  
+  return {
+    isVideoPlaying: () => isPlaying,
+    hasVideoFailed: () => videoFailed
+  };
 };
 
 // Управление загрузкой сайта
@@ -97,6 +107,9 @@ document.addEventListener("DOMContentLoaded", function() {
   const contentWrapper = document.querySelector(".content-wrapper");
   const videoElement = document.getElementById("video-background");
 
+  // Инициализация видео фона
+  const videoController = initVideoBackground(videoElement);
+
   // Загрузка интерфейса
   window.addEventListener('load', function() {
     // Показываем контент после небольшой задержки
@@ -105,25 +118,34 @@ document.addEventListener("DOMContentLoaded", function() {
         contentWrapper.classList.add("loaded");
       }
       
-      // Убираем фоновое изображение прелоадера только когда видео загрузится
-      if (videoElement.readyState < 4) {
+      // При проблемах с видео оставляем фоновое изображение
+      if (videoElement.readyState < 4 || (videoController && videoController.hasVideoFailed())) {
+        // Не скрываем прелоадер, так как он отображает фоновую картинку
+        // Просто уберем обработчики, чтобы прелоадер не исчезал
+        videoElement.removeEventListener("canplaythrough", () => preloader?.classList.add('loaded'));
+        // Скрываем видео, чтобы оно не перекрывало фоновое изображение
+        videoElement.style.display = 'none';
+      } else if (videoElement.readyState >= 4) {
+        // Если видео уже загрузилось, скрываем прелоадер
+        preloader?.classList.add('loaded');
+      } else {
+        // Пытаемся дождаться загрузки видео
         videoElement.addEventListener("canplaythrough", () => {
-          preloader?.classList.add('loaded');
+          if (!videoController || !videoController.hasVideoFailed()) {
+            preloader?.classList.add('loaded');
+          }
         }, { once: true });
         
-        // Страховка на случай если видео не загрузится
+        // Страховка: если видео не загрузится за отведенное время, оставляем фоновое изображение
         setTimeout(() => {
-          preloader?.classList.add('loaded');
+          if (!videoController || !videoController.isVideoPlaying()) {
+            videoElement.style.display = 'none';
+            // Оставляем прелоадер (с фоновым изображением)
+          }
         }, VIDEO_LOAD_TIMEOUT);
-      } else {
-        // Если видео уже загрузилось
-        preloader?.classList.add('loaded');
       }
     }, CONTENT_LOAD_DELAY);
   });
-
-  // Инициализация видео фона
-  initVideoBackground(videoElement);
 
   // iOS высота
   const setAppHeight = () => {
