@@ -385,6 +385,7 @@
   overflow-y: auto;
   transition: transform 0.3s ease;
 
+
   .logo {
     width: 85px;
     height: 85px;
@@ -526,11 +527,12 @@
     padding: 15px 15px 40px 15px;
     .logo {
       width: 44px;
-      height: 44px;
+      min-height: 44px;
+      object-fit: cover;
     }
     .policy__title {
       font-size: 24px;
-      margin: 20px 0 15px 0;
+      margin: 40px 0 15px 0;
     }
     .policy__content {
       font-size: 14px;

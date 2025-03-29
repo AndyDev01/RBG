@@ -1193,11 +1193,12 @@ h1 {
   }
   .policy-sidebar .logo {
     width: 44px;
-    height: 44px;
+    min-height: 44px;
+    object-fit: cover;
   }
   .policy-sidebar .policy__title {
     font-size: 24px;
-    margin: 20px 0 15px 0;
+    margin: 40px 0 15px 0;
   }
   .policy-sidebar .policy__content {
     font-size: 14px;
