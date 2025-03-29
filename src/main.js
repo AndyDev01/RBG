@@ -1,6 +1,7 @@
 // Константы
 const ANIMATION_DURATION = 300;
 const VIDEO_LOAD_TIMEOUT = 8000;
+const CONTENT_LOAD_DELAY = 500; // Задержка перед показом контента
 
 // Утилиты
 const hideElement = (element, removeActive = true) => {
@@ -92,19 +93,37 @@ document.addEventListener("DOMContentLoaded", function() {
   // Разрешаем взаимодействие с сайтом сразу
   document.body.style.overflow = "auto";
   
+  const preloader = document.querySelector(".preloader");
   const contentWrapper = document.querySelector(".content-wrapper");
   const videoElement = document.getElementById("video-background");
 
+  // Загрузка интерфейса
+  window.addEventListener('load', function() {
+    // Показываем контент после небольшой задержки
+    setTimeout(() => {
+      if (contentWrapper) {
+        contentWrapper.classList.add("loaded");
+      }
+      
+      // Убираем фоновое изображение прелоадера только когда видео загрузится
+      if (videoElement.readyState < 4) {
+        videoElement.addEventListener("canplaythrough", () => {
+          preloader?.classList.add('loaded');
+        }, { once: true });
+        
+        // Страховка на случай если видео не загрузится
+        setTimeout(() => {
+          preloader?.classList.add('loaded');
+        }, VIDEO_LOAD_TIMEOUT);
+      } else {
+        // Если видео уже загрузилось
+        preloader?.classList.add('loaded');
+      }
+    }, CONTENT_LOAD_DELAY);
+  });
+
   // Инициализация видео фона
   initVideoBackground(videoElement);
-
-  // Показываем контент после небольшой задержки
-  if (contentWrapper) {
-    // Даем время для применения стилей и загрузки шрифтов
-    setTimeout(() => {
-      contentWrapper.classList.add("loaded");
-    }, 100);
-  }
 
   // iOS высота
   const setAppHeight = () => {
