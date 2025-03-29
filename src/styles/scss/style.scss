@@ -61,12 +61,8 @@ body {
   padding: 0;
   min-height: 100vh;
   /* Добавляем поддержку для устройств с вырезами/системными панелями */
-  min-height: -webkit-fill-available;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
   background-color: #000000;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 ul,
@@ -111,11 +107,11 @@ body {
   justify-content: space-between;
   height: 100vh; /* Стандартная высота */
   /* Использование переменной --vh для iOS */
-  height: calc(var(--vh, 1vh) * 100);
+  // height: calc(var(--vh, 1vh) * 100);
   /* Учитываем системные панели браузера в iOS */
-  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  box-sizing: border-box;
+  // height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  // padding-bottom: env(safe-area-inset-bottom, 0px);
+  // box-sizing: border-box;
 }
 
 /* Адаптивные стили для всех устройств */
@@ -180,8 +176,14 @@ body {
 
 /* Планшеты (от 768px до 992px) */
 @media (max-width: 992px) and (min-width: 769px) {
+
   .wrapper {
     padding: 0 90px;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    
   }
 
   h1 {
@@ -193,6 +195,85 @@ body {
     font-size: 36px;
     line-height: 44px;
   }
+
+  .items-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .items {
+    display: flex;
+    gap: 10px;
+    padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    flex-wrap: nowrap;
+    
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .item {
+    width: calc((100% - 20px) / 3);
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  // @media (orientation: landscape) {
+  //   .items-container {
+  //     margin: 20px 0;
+  //     overflow-x: auto;
+  //     -webkit-overflow-scrolling: touch;
+  //     width: 100%;
+      
+  //     &::-webkit-scrollbar {
+  //       display: none;
+  //     }
+  //   }
+    
+  //   .items {
+  //     display: flex;
+  //     flex-wrap: nowrap;
+  //     gap: 15px;
+  //     padding-bottom: 0;
+  //     overflow-x: auto;
+  //     scroll-snap-type: x mandatory;
+  //     width: max-content;
+  //   }
+    
+  //   .item {
+  //     width: 200px;
+  //     min-width: 200px;
+  //     flex: 0 0 auto;
+  //   }
+
+  //   .sidebar {
+  //     max-height: 100vh;
+  //     overflow-y: auto;
+  //     -webkit-overflow-scrolling: touch;
+  //     height: 100vh;
+      
+  //     &::-webkit-scrollbar {
+  //       display: none;
+  //     }
+
+  //     .contact-sidebar_content,
+  //     .request__form-container,
+  //     .policy__content {
+  //       height: auto;
+  //       min-height: auto;
+  //       padding-bottom: 30px;
+  //       overflow-y: auto;
+  //     }
+  //   }
+  // }
 }
 
 /* Маленькие планшеты и большие телефоны (от 576px до 768px) */
@@ -200,6 +281,12 @@ body {
   .wrapper {
     padding: 0 60px;
   }
+  body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    
+  }
+
 
   h1 {
     font-size: 40px;
@@ -244,33 +331,17 @@ body {
     height: auto;
     min-height: 100vh;
     -webkit-overflow-scrolling: touch;
-    
-    @media (orientation: landscape) {
-      overflow-y: auto !important;
-      height: auto !important;
-      min-height: 100vh !important;
-      position: relative;
-    }
+  
   }
   
   .wrapper {
     height: auto;
     min-height: 100vh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    min-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-    padding-bottom: env(safe-area-inset-bottom, 0px);
     display: flex;
     flex-direction: column;
     padding: 0 15px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    
-    @media (orientation: landscape) {
-      height: auto !important;
-      min-height: 100vh !important;
-      overflow-y: auto !important;
-      position: relative;
-    }
   }
 
   h1 {
@@ -287,90 +358,37 @@ body {
     letter-spacing: 0;
   }
 
-  .items-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 20px 0;
-    position: relative;
+  // .items-container {
+  //   width: 100%;
+  //   overflow-x: auto;
+  //   -webkit-overflow-scrolling: touch;
+  //   position: relative;
     
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
+  //   &::-webkit-scrollbar {
+  //     display: none;
+  //   }
+  // }
 
-  .items {
-    display: flex;
-    gap: 10px;
-    padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    flex-wrap: nowrap;
-    position: relative;
+  // .items {
+  //   display: flex;
+  //   gap: 10px;
+  //   padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
+  //   -webkit-overflow-scrolling: touch;
+  //   scroll-snap-type: x mandatory;
+  //   flex-wrap: nowrap;
+  //   position: relative;
     
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
+  //   &::-webkit-scrollbar {
+  //     display: none;
+  //   }
+  // }
 
-  .item {
-    width: calc((100% - 20px) / 3);
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-  }
+  // .item {
+  //   width: calc((100% - 20px) / 3);
+  //   flex: 0 0 auto;
+  //   scroll-snap-align: start;
+  // }
 
   /* Стили для горизонтальной ориентации */
-  @media (orientation: landscape) {
-    .items-container {
-      margin: 20px 0;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      width: 100%;
-      position: relative;
-      
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-    
-    .items {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 15px;
-      padding-bottom: 0;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      width: max-content;
-      position: relative;
-    }
-    
-    .item {
-      width: 150px;
-      min-width: 150px;
-      flex: 0 0 auto;
-    }
-
-    /* Стили для сайдбаров */
-    .sidebar {
-      max-height: 100vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      height: 100vh;
-      position: relative;
-      
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
-      .contact-sidebar_content,
-      .request__form-container,
-      .policy__content {
-        height: auto;
-        min-height: auto;
-        padding-bottom: 30px;
-        overflow-y: auto;
-        position: relative;
-      }
-    }
-  }
+ 
 }

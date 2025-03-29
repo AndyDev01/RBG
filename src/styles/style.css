@@ -160,7 +160,7 @@ h1 {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-bottom: env(safe-area-inset-bottom, 20px);
+  padding-bottom: env(safe-area-inset-bottom, 60px);
 }
 
 .items {
@@ -1331,12 +1331,8 @@ body {
   padding: 0;
   min-height: 100vh;
   /* Добавляем поддержку для устройств с вырезами/системными панелями */
-  min-height: -webkit-fill-available;
-  padding-top: env(safe-area-inset-top, 0px);
-  padding-bottom: env(safe-area-inset-bottom, 0px);
   background-color: #000000;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 ul,
@@ -1381,11 +1377,7 @@ body {
   justify-content: space-between;
   height: 100vh; /* Стандартная высота */
   /* Использование переменной --vh для iOS */
-  height: calc(var(--vh, 1vh) * 100);
   /* Учитываем системные панели браузера в iOS */
-  height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-  padding-bottom: env(safe-area-inset-bottom, 0px);
-  box-sizing: border-box;
 }
 
 /* Адаптивные стили для всех устройств */
@@ -1442,6 +1434,10 @@ body {
 @media (max-width: 992px) and (min-width: 769px) {
   .wrapper {
     padding: 0 90px;
+    height: auto;
+    min-height: 100vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   h1 {
     font-size: 45px;
@@ -1451,11 +1447,40 @@ body {
     font-size: 36px;
     line-height: 44px;
   }
+  .items-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 20px 0;
+  }
+  .items-container::-webkit-scrollbar {
+    display: none;
+  }
+  .items {
+    display: flex;
+    gap: 10px;
+    padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    flex-wrap: nowrap;
+  }
+  .items::-webkit-scrollbar {
+    display: none;
+  }
+  .item {
+    width: calc((100% - 20px) / 3);
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
 }
 /* Маленькие планшеты и большие телефоны (от 576px до 768px) */
 @media (max-width: 768px) and (min-width: 577px) {
   .wrapper {
     padding: 0 60px;
+  }
+  body {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   h1 {
     font-size: 40px;
@@ -1495,39 +1520,15 @@ body {
     min-height: 100vh;
     -webkit-overflow-scrolling: touch;
   }
-  /* Стили для горизонтальной ориентации */
-}
-@media (max-width: 576px) and (orientation: landscape) {
-  body {
-    overflow-y: auto !important;
-    height: auto !important;
-    min-height: 100vh !important;
-    position: relative;
-  }
-}
-@media (max-width: 576px) {
   .wrapper {
     height: auto;
     min-height: 100vh;
-    min-height: calc(var(--vh, 1vh) * 100);
-    min-height: calc(100vh - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
-    padding-bottom: env(safe-area-inset-bottom, 0px);
     display: flex;
     flex-direction: column;
     padding: 0 15px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
-}
-@media (max-width: 576px) and (orientation: landscape) {
-  .wrapper {
-    height: auto !important;
-    min-height: 100vh !important;
-    overflow-y: auto !important;
-    position: relative;
-  }
-}
-@media (max-width: 576px) {
   h1 {
     margin-bottom: 10px;
     font-size: 35px;
@@ -1540,84 +1541,5 @@ body {
     line-height: 120%;
     letter-spacing: 0;
   }
-  .items-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 20px 0;
-    position: relative;
-  }
-  .items-container::-webkit-scrollbar {
-    display: none;
-  }
-  .items {
-    display: flex;
-    gap: 10px;
-    padding-bottom: calc(15px + env(safe-area-inset-bottom, 20px));
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x mandatory;
-    flex-wrap: nowrap;
-    position: relative;
-  }
-  .items::-webkit-scrollbar {
-    display: none;
-  }
-  .item {
-    width: calc((100% - 20px) / 3);
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-  }
-}
-@media (max-width: 576px) and (orientation: landscape) {
-  .items-container {
-    margin: 20px 0;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-    position: relative;
-  }
-  .items-container::-webkit-scrollbar {
-    display: none;
-  }
-  .items {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 15px;
-    padding-bottom: 0;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    width: max-content;
-    position: relative;
-  }
-  .item {
-    width: 150px;
-    min-width: 150px;
-    flex: 0 0 auto;
-  }
-  /* Стили для сайдбаров */
-  .sidebar, .contact-sidebar, .request-sidebar, .policy-sidebar {
-    max-height: 100vh;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    height: 100vh;
-    position: relative;
-  }
-  .sidebar::-webkit-scrollbar, .contact-sidebar::-webkit-scrollbar, .request-sidebar::-webkit-scrollbar, .policy-sidebar::-webkit-scrollbar {
-    display: none;
-  }
-  .sidebar .contact-sidebar_content, .contact-sidebar .contact-sidebar_content, .request-sidebar .contact-sidebar_content, .policy-sidebar .contact-sidebar_content,
-  .sidebar .request__form-container,
-  .contact-sidebar .request__form-container,
-  .request-sidebar .request__form-container,
-  .policy-sidebar .request__form-container,
-  .sidebar .policy__content,
-  .contact-sidebar .policy__content,
-  .request-sidebar .policy__content,
-  .policy-sidebar .policy__content {
-    height: auto;
-    min-height: auto;
-    padding-bottom: 30px;
-    overflow-y: auto;
-    position: relative;
-  }
+  /* Стили для горизонтальной ориентации */
 }/*# sourceMappingURL=style.css.map */
