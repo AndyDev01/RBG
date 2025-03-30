@@ -1296,6 +1296,7 @@ h1 {
 .preloader.loaded {
   opacity: 0;
   visibility: hidden;
+  z-index: -999; /* Убираем его совсем из потока когда не нужен */
 }
 
 .preloader-bg {
@@ -1337,6 +1338,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-color: #000; /* Для случаев проблем с загрузкой изображения */
+  position: relative; /* Добавляем позиционирование */
 }
 
 ul,
@@ -1369,6 +1371,8 @@ body {
 .content-wrapper {
   opacity: 0;
   transition: opacity 0.8s ease;
+  position: relative; /* Добавляем позиционирование */
+  z-index: 1; /* Выше чем фон и видео */
 }
 .content-wrapper.loaded {
   opacity: 1;
@@ -1382,13 +1386,13 @@ body {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -1; /* На том же уровне, что и фон */
+  z-index: -2; /* Ниже всех элементов */
   opacity: 0; /* Изначально скрыто */
   transition: opacity 1s ease;
 }
 #video-background.ready {
   opacity: 1;
-  z-index: 0; /* Поднимаем над фоном */
+  z-index: -2; /* Оставляем ниже всех элементов */
 }
 
 .wrapper {
@@ -1563,4 +1567,15 @@ body {
     letter-spacing: 0;
   }
   /* Стили для горизонтальной ориентации */
+}
+/* Дополнительные стили для обеспечения видимости элементов интерфейса */
+header, .request, .items-container, .main-screen__buttons {
+  position: relative;
+  z-index: 2; /* Выше чем content-wrapper */
+}
+
+/* Убедимся, что все активные элементы видны */
+button, a, .logo, h1, .description {
+  position: relative;
+  z-index: 3;
 }/*# sourceMappingURL=style.css.map */

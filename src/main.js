@@ -79,6 +79,20 @@ document.addEventListener("DOMContentLoaded", function() {
   const contentWrapper = document.querySelector(".content-wrapper");
   const videoElement = document.getElementById("video-background");
   
+  // Функция для закрепления интерфейса
+  const stabilizeInterface = () => {
+    // Проверяем и восстанавливаем видимость элементов интерфейса
+    if (contentWrapper && !contentWrapper.classList.contains('loaded')) {
+      contentWrapper.classList.add('loaded');
+      contentWrapper.style.opacity = '1';
+      contentWrapper.style.visibility = 'visible';
+      console.log('Интерфейс восстановлен');
+    }
+    
+    // Убеждаемся, что скролл доступен
+    document.body.style.overflow = "auto";
+  };
+  
   // Ждем полной загрузки всех ресурсов (кроме видео) перед отображением интерфейса
   window.addEventListener('load', () => {
     // Добавляем небольшую задержку, чтобы CSS-анимации корректно работали
@@ -87,12 +101,27 @@ document.addEventListener("DOMContentLoaded", function() {
         contentWrapper.classList.add("loaded");
         console.log('Интерфейс отображен');
         
+        // Делаем интерфейс стабильным и обеспечиваем его видимость
+        contentWrapper.style.opacity = '1';
+        contentWrapper.style.visibility = 'visible';
+        
         // Только после отображения интерфейса начинаем загрузку видео
         setTimeout(() => {
+          // Гарантируем, что интерфейс останется видимым
+          document.body.style.overflow = "auto";
           initVideoBackground(videoElement);
         }, 500); // Небольшая задержка перед загрузкой видео
       }
     }, CONTENT_LOAD_DELAY);
+  });
+  
+  // Периодически проверяем стабильность интерфейса
+  setInterval(stabilizeInterface, 3000);
+  
+  // Защита от исчезновения интерфейса при скролле
+  window.addEventListener('scroll', () => {
+    document.body.style.overflow = "auto";
+    stabilizeInterface();
   });
 
   // iOS высота
