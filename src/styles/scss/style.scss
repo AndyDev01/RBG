@@ -113,15 +113,13 @@ body {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -2; /* Ниже статичного фона */
-  opacity: 0; /* Изначально полностью скрыто */
-  visibility: hidden; /* Добавляем visibility для большей надежности */
-  transition: opacity 1s ease, visibility 1s ease;
+  z-index: -1; /* На том же уровне, что и фон */
+  opacity: 0; /* Изначально скрыто */
+  transition: opacity 1s ease;
   
   &.ready {
     opacity: 1;
-    visibility: visible;
-    z-index: -1; /* Поднимаем над статичным фоном */
+    z-index: 0; /* Поднимаем над фоном */
   }
 }
 

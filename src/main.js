@@ -1,7 +1,7 @@
 // Константы
 const ANIMATION_DURATION = 300;
 const VIDEO_LOAD_TIMEOUT = 8000;
-const CONTENT_LOAD_DELAY = 100; // Небольшая задержка перед показом контента
+const CONTENT_LOAD_DELAY = 300; // Задержка перед показом контента
 
 // Утилиты
 const hideElement = (element, removeActive = true) => {
@@ -22,9 +22,6 @@ const hideElement = (element, removeActive = true) => {
 // Управление загрузкой видео
 const initVideoBackground = (videoElement) => {
   if (!videoElement) return;
-
-  // Скрываем видео изначально, пока не загрузится
-  videoElement.style.opacity = '0';
   
   // Установка начальных параметров
   videoElement.playsInline = true;
@@ -35,30 +32,10 @@ const initVideoBackground = (videoElement) => {
   videoElement.setAttribute('muted', '');
   videoElement.setAttribute('loop', '');
   
-  let isVideoReady = false;
-
-  // Функция для показа и воспроизведения видео
-  const showAndPlayVideo = () => {
-    if (isVideoReady) return;
-    
-    // Показываем видео только когда интерфейс уже отображен
-    const contentWrapper = document.querySelector(".content-wrapper");
-    if (!contentWrapper || !contentWrapper.classList.contains('loaded')) {
-      // Если интерфейс еще не загружен, ждем его загрузки
-      const checkInterface = setInterval(() => {
-        if (contentWrapper && contentWrapper.classList.contains('loaded')) {
-          clearInterval(checkInterface);
-          startVideo();
-        }
-      }, 100);
-      return;
-    }
-    
-    startVideo();
-    
-    function startVideo() {
-      console.log('Начинаем воспроизведение видео');
-      isVideoReady = true;
+  // Обработчик загрузки видео
+  const handleVideoLoad = () => {
+    if (videoElement.readyState >= 4) { // HAVE_ENOUGH_DATA
+      console.log('Видео полностью загружено, начинаем воспроизведение');
       videoElement.classList.add('ready');
       
       const playPromise = videoElement.play();
@@ -66,37 +43,29 @@ const initVideoBackground = (videoElement) => {
         playPromise.catch(error => {
           console.warn("Ошибка автовоспроизведения видео:", error);
           videoElement.classList.remove('ready');
-          isVideoReady = false;
         });
       }
-    }
-  };
-
-  // Обработчики событий загрузки
-  const handleVideoLoad = () => {
-    if (videoElement.readyState >= 4) { // HAVE_ENOUGH_DATA
-      showAndPlayVideo();
     }
   };
 
   // Обработчик ошибок
   const handleVideoError = (error) => {
     console.error("Ошибка загрузки видео:", error);
-    // При ошибке просто оставляем фоновое изображение
+    // При ошибке оставляем фоновое изображение
   };
 
-  // Слушатели событий
+  // Добавляем слушатели событий
   videoElement.addEventListener("canplaythrough", handleVideoLoad);
   videoElement.addEventListener("error", handleVideoError);
 
-  // Проверка текущего состояния
+  // Проверяем текущее состояние
   if (videoElement.readyState >= 4) {
     handleVideoLoad();
   }
 
   // Таймаут на случай, если видео не загрузится за отведенное время
   setTimeout(() => {
-    if (!isVideoReady) {
+    if (!videoElement.classList.contains('ready')) {
       console.warn("Видео не загрузилось за отведенное время");
     }
   }, VIDEO_LOAD_TIMEOUT);
@@ -110,16 +79,21 @@ document.addEventListener("DOMContentLoaded", function() {
   const contentWrapper = document.querySelector(".content-wrapper");
   const videoElement = document.getElementById("video-background");
   
-  // Показываем контент после небольшой задержки, не дожидаясь полной загрузки всех ресурсов
-  setTimeout(() => {
-    if (contentWrapper) {
-      contentWrapper.classList.add("loaded");
-      console.log('Интерфейс отображен');
-    }
-    
-    // Инициализация видео фона (асинхронно) только после отображения интерфейса
-    initVideoBackground(videoElement);
-  }, CONTENT_LOAD_DELAY);
+  // Ждем полной загрузки всех ресурсов (кроме видео) перед отображением интерфейса
+  window.addEventListener('load', () => {
+    // Добавляем небольшую задержку, чтобы CSS-анимации корректно работали
+    setTimeout(() => {
+      if (contentWrapper) {
+        contentWrapper.classList.add("loaded");
+        console.log('Интерфейс отображен');
+        
+        // Только после отображения интерфейса начинаем загрузку видео
+        setTimeout(() => {
+          initVideoBackground(videoElement);
+        }, 500); // Небольшая задержка перед загрузкой видео
+      }
+    }, CONTENT_LOAD_DELAY);
+  });
 
   // iOS высота
   const setAppHeight = () => {
