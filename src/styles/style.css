@@ -1331,10 +1331,12 @@ body {
   padding: 0;
   min-height: 100vh;
   overflow-y: auto;
+  /* Фоновое изображение на body для мгновенного отображения */
   background-image: url("/preloader-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-color: #000; /* Для случаев проблем с загрузкой изображения */
 }
 
 ul,
@@ -1353,6 +1355,7 @@ a {
   --wrapper-padding: 29px;
 }
 
+/* Убираем скроллбар */
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
@@ -1362,14 +1365,16 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
+/* Стили для основного контента */
 .content-wrapper {
   opacity: 0;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  transition: opacity 0.8s ease;
 }
 .content-wrapper.loaded {
   opacity: 1;
 }
 
+/* Видео фон */
 #video-background {
   position: fixed;
   top: 0;

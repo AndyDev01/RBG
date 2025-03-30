@@ -474,41 +474,5 @@
     </div>
 
     <script type="module" src="/src/main.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const videoElement = document.getElementById('video-background');
-      const contentWrapper = document.querySelector('.content-wrapper');
-      
-      // Показываем контент
-      window.addEventListener('load', () => {
-        setTimeout(() => {
-          contentWrapper.classList.add('loaded');
-        }, 100);
-      });
-      
-      // Настройка видео
-      if (videoElement) {
-        videoElement.muted = true;
-        videoElement.loop = true;
-        videoElement.playsInline = true;
-        videoElement.preload = 'auto';
-        
-        const handleVideoLoad = () => {
-          if (videoElement.readyState >= 4) {
-            videoElement.classList.add('ready');
-            videoElement.play().catch(err => {
-              console.warn('Ошибка воспроизведения видео:', err);
-            });
-          }
-        };
-        
-        videoElement.addEventListener('canplaythrough', handleVideoLoad);
-        
-        if (videoElement.readyState >= 4) {
-          handleVideoLoad();
-        }
-      }
-    });
-    </script>
   </body>
 </html>

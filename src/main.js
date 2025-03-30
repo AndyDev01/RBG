@@ -1,7 +1,7 @@
 // Константы
 const ANIMATION_DURATION = 300;
 const VIDEO_LOAD_TIMEOUT = 8000;
-const CONTENT_LOAD_DELAY = 500; // Задержка перед показом контента
+const CONTENT_LOAD_DELAY = 100; // Небольшая задержка перед показом контента
 
 // Утилиты
 const hideElement = (element, removeActive = true) => {
@@ -23,39 +23,30 @@ const hideElement = (element, removeActive = true) => {
 const initVideoBackground = (videoElement) => {
   if (!videoElement) return;
 
-  // Сброс стилей видео
-  videoElement.style.removeProperty('transition');
-  videoElement.classList.remove('ready');
-
   // Установка начальных параметров
   videoElement.playsInline = true;
   videoElement.muted = true;
   videoElement.loop = true;
-  videoElement.autoplay = true; // Добавляем autoplay программно
+  videoElement.preload = 'auto';
   videoElement.setAttribute('playsinline', '');
   videoElement.setAttribute('muted', '');
   videoElement.setAttribute('loop', '');
   
-  // Предварительная загрузка видео
-  videoElement.preload = 'auto';
-  
-  let isPlaying = false;
-  let videoFailed = false;
+  let isVideoReady = false;
 
   // Функция для показа и воспроизведения видео
   const showAndPlayVideo = () => {
-    if (isPlaying || videoFailed) return;
+    if (isVideoReady) return;
     
-    isPlaying = true;
+    isVideoReady = true;
     videoElement.classList.add('ready');
     
     const playPromise = videoElement.play();
     if (playPromise !== undefined) {
       playPromise.catch(error => {
-        console.warn("Ошибка автовоспроизведения:", error);
-        isPlaying = false;
-        videoFailed = true;
+        console.warn("Ошибка автовоспроизведения видео:", error);
         videoElement.classList.remove('ready');
+        isVideoReady = false;
       });
     }
   };
@@ -70,12 +61,10 @@ const initVideoBackground = (videoElement) => {
   // Обработчик ошибок
   const handleVideoError = (error) => {
     console.error("Ошибка загрузки видео:", error);
-    videoElement.style.display = 'none';
-    videoFailed = true;
+    // При ошибке просто оставляем фоновое изображение
   };
 
   // Слушатели событий
-  videoElement.addEventListener("loadeddata", handleVideoLoad);
   videoElement.addEventListener("canplaythrough", handleVideoLoad);
   videoElement.addEventListener("error", handleVideoError);
 
@@ -84,18 +73,12 @@ const initVideoBackground = (videoElement) => {
     handleVideoLoad();
   }
 
-  // Таймаут для проверки загрузки
+  // Таймаут на случай, если видео не загрузится за отведенное время
   setTimeout(() => {
-    if (!isPlaying) {
+    if (!isVideoReady) {
       console.warn("Видео не загрузилось за отведенное время");
-      videoFailed = true;
     }
   }, VIDEO_LOAD_TIMEOUT);
-  
-  return {
-    isVideoPlaying: () => isPlaying,
-    hasVideoFailed: () => videoFailed
-  };
 };
 
 // Управление загрузкой сайта
@@ -103,49 +86,20 @@ document.addEventListener("DOMContentLoaded", function() {
   // Разрешаем взаимодействие с сайтом сразу
   document.body.style.overflow = "auto";
   
-  const preloader = document.querySelector(".preloader");
   const contentWrapper = document.querySelector(".content-wrapper");
   const videoElement = document.getElementById("video-background");
 
-  // Инициализация видео фона
-  const videoController = initVideoBackground(videoElement);
-
-  // Загрузка интерфейса
+  // Показываем контент после загрузки всех ресурсов
   window.addEventListener('load', function() {
-    // Показываем контент после небольшой задержки
     setTimeout(() => {
       if (contentWrapper) {
         contentWrapper.classList.add("loaded");
       }
-      
-      // При проблемах с видео оставляем фоновое изображение
-      if (videoElement.readyState < 4 || (videoController && videoController.hasVideoFailed())) {
-        // Не скрываем прелоадер, так как он отображает фоновую картинку
-        // Просто уберем обработчики, чтобы прелоадер не исчезал
-        videoElement.removeEventListener("canplaythrough", () => preloader?.classList.add('loaded'));
-        // Скрываем видео, чтобы оно не перекрывало фоновое изображение
-        videoElement.style.display = 'none';
-      } else if (videoElement.readyState >= 4) {
-        // Если видео уже загрузилось, скрываем прелоадер
-        preloader?.classList.add('loaded');
-      } else {
-        // Пытаемся дождаться загрузки видео
-        videoElement.addEventListener("canplaythrough", () => {
-          if (!videoController || !videoController.hasVideoFailed()) {
-            preloader?.classList.add('loaded');
-          }
-        }, { once: true });
-        
-        // Страховка: если видео не загрузится за отведенное время, оставляем фоновое изображение
-        setTimeout(() => {
-          if (!videoController || !videoController.isVideoPlaying()) {
-            videoElement.style.display = 'none';
-            // Оставляем прелоадер (с фоновым изображением)
-          }
-        }, VIDEO_LOAD_TIMEOUT);
-      }
     }, CONTENT_LOAD_DELAY);
   });
+
+  // Инициализация видео фона (асинхронно)
+  initVideoBackground(videoElement);
 
   // iOS высота
   const setAppHeight = () => {
