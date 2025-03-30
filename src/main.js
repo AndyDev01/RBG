@@ -23,6 +23,9 @@ const hideElement = (element, removeActive = true) => {
 const initVideoBackground = (videoElement) => {
   if (!videoElement) return;
 
+  // Скрываем видео изначально, пока не загрузится
+  videoElement.style.opacity = '0';
+  
   // Установка начальных параметров
   videoElement.playsInline = true;
   videoElement.muted = true;
@@ -38,16 +41,34 @@ const initVideoBackground = (videoElement) => {
   const showAndPlayVideo = () => {
     if (isVideoReady) return;
     
-    isVideoReady = true;
-    videoElement.classList.add('ready');
+    // Показываем видео только когда интерфейс уже отображен
+    const contentWrapper = document.querySelector(".content-wrapper");
+    if (!contentWrapper || !contentWrapper.classList.contains('loaded')) {
+      // Если интерфейс еще не загружен, ждем его загрузки
+      const checkInterface = setInterval(() => {
+        if (contentWrapper && contentWrapper.classList.contains('loaded')) {
+          clearInterval(checkInterface);
+          startVideo();
+        }
+      }, 100);
+      return;
+    }
     
-    const playPromise = videoElement.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(error => {
-        console.warn("Ошибка автовоспроизведения видео:", error);
-        videoElement.classList.remove('ready');
-        isVideoReady = false;
-      });
+    startVideo();
+    
+    function startVideo() {
+      console.log('Начинаем воспроизведение видео');
+      isVideoReady = true;
+      videoElement.classList.add('ready');
+      
+      const playPromise = videoElement.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(error => {
+          console.warn("Ошибка автовоспроизведения видео:", error);
+          videoElement.classList.remove('ready');
+          isVideoReady = false;
+        });
+      }
     }
   };
 
@@ -88,18 +109,17 @@ document.addEventListener("DOMContentLoaded", function() {
   
   const contentWrapper = document.querySelector(".content-wrapper");
   const videoElement = document.getElementById("video-background");
-
-  // Показываем контент после загрузки всех ресурсов
-  window.addEventListener('load', function() {
-    setTimeout(() => {
-      if (contentWrapper) {
-        contentWrapper.classList.add("loaded");
-      }
-    }, CONTENT_LOAD_DELAY);
-  });
-
-  // Инициализация видео фона (асинхронно)
-  initVideoBackground(videoElement);
+  
+  // Показываем контент после небольшой задержки, не дожидаясь полной загрузки всех ресурсов
+  setTimeout(() => {
+    if (contentWrapper) {
+      contentWrapper.classList.add("loaded");
+      console.log('Интерфейс отображен');
+    }
+    
+    // Инициализация видео фона (асинхронно) только после отображения интерфейса
+    initVideoBackground(videoElement);
+  }, CONTENT_LOAD_DELAY);
 
   // iOS высота
   const setAppHeight = () => {
