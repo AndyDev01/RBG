@@ -633,6 +633,11 @@ h1 {
   gap: 16px;
 }
 
+.tg-link {
+  color: #3a75ed;
+  text-decoration: none;
+}
+
 .mail-information {
   display: flex;
   flex-direction: column;
