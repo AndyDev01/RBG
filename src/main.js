@@ -242,9 +242,11 @@ document.addEventListener("DOMContentLoaded", () => {
     formElements.fileButton?.addEventListener("click", () => formElements.fileInput.click());
     formElements.fileInput?.addEventListener("change", (e) => {
         const file = e.target.files[0];
-      formElements.fileInfo.textContent = file 
-        ? `Файл: ${file.name} (${Math.round(file.size / 1024)} KB)`
-        : "Файл не выбран";
+      if (formElements.fileInfo) {
+        formElements.fileInfo.textContent = file 
+          ? `Файл: ${file.name} (${Math.round(file.size / 1024)} KB)`
+          : "Файл не выбран";
+      }
     });
 
     // Валидация
@@ -286,7 +288,9 @@ document.addEventListener("DOMContentLoaded", () => {
         showSuccessModal(); // Используем новую функцию
         
         requestForm.reset();
-        formElements.fileInfo.textContent = "Файл не выбран";
+        if (formElements.fileInfo) {
+          formElements.fileInfo.textContent = "Файл не выбран";
+        }
         formElements.submitButton.disabled = true;
       } catch (error) {
         console.error("Ошибка отправки формы:", error);

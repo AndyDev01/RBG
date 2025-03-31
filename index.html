@@ -162,28 +162,32 @@
     </div>
     <div class="overlay"></div>
     <div class="sidebar contact-sidebar">
-      <img src="/rbg-logo-blue.svg" alt="Логотип РЕФБИЛДИНГ ГРУПП" class="logo contact-logo">
-          <div class="close-btn">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
-              <path
-            d="M6 14L14 6M6 6L14 14"
-                stroke="white"
-                stroke-width="1.5"
-                stroke-linecap="round"
-            stroke-linejoin="round"
-              />
-            </svg>
-          </div>
+
       <div class="map_wrapper">
         <div class="contact-sidebar_wrapper">
+          <div class="contact-header">
+            <img src="/rbg-logo-blue.svg" alt="Логотип РЕФБИЛДИНГ ГРУПП" class="logo">
+            <div class="close-btn">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
+                <path
+              d="M6 14L14 6M6 6L14 14"
+                  stroke="white"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+              stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
           <div class="contact-sidebar_content">
+            
             <div>
               <h2 class="contact-title">Связаться с нами</h2>
               <p class="contact-subtitle">
@@ -235,7 +239,8 @@
     </div>
 
     <div class="sidebar request-sidebar">
-      <img src="/rbg-logo-blue.svg" class="logo" alt="Логотип РЕФБИЛДИНГ ГРУПП" />
+      <div class="request-sidebar_header">
+        <img src="/rbg-logo-blue.svg" class="logo" alt="Логотип РЕФБИЛДИНГ ГРУПП" />
       
       <div class="close-btn">
         <svg
@@ -254,6 +259,8 @@
           />
         </svg>
       </div>
+      </div>
+      
 
       <div class="request__form-container">
         <h2 class="request__title">Ваш запрос</h2>
@@ -312,6 +319,7 @@
               name="attachment"
               accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
             />
+            <div class="request__file-info">Файл не выбран</div>
           </div>
 
           <div class="request__policy">
@@ -351,19 +359,19 @@
           ></div>
 
           <!-- Скрытое сообщение об ошибке отправки (не используется) -->
-          <div class="request__error-message" id="error-message" style="display: none">
+          <!-- <div class="request__error-message" id="error-message" style="display: none">
             Произошла ошибка при отправке запроса. Пожалуйста, попробуйте еще
             раз или свяжитесь с нами по телефону.
-          </div>
+          </div> -->
 
           <!-- Скрытые поля для FormSubmit -->
-          <input
+          <!-- <input
             type="hidden"
             name="_subject"
             value="Новый запрос с сайта РБГ"
           />
           <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_template" value="table" /> -->
         </form>
       </div>
     </div>
@@ -383,7 +391,29 @@
     </div>
 
     <div class="sidebar policy-sidebar">
-      <img src="/rbg-logo-blue.svg" class="logo" alt="logo" />
+
+      <div class="policy-sidebar_header">
+        <img src="/rbg-logo-blue.svg" class="logo" alt="logo" />
+        <div class="close-btn">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
+            <path
+              d="M6 14L14 6M6 6L14 14"
+              stroke="white"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+      </div>
+
 
       <h2 class="policy__title">Условия обработки персональных данных</h2>
 
@@ -457,24 +487,7 @@
         </p>
       </div>
 
-      <div class="close-btn">
-        <svg
-          width="20"
-          height="20"
-          viewBox="0 0 20 20"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
-          <path
-            d="M6 14L14 6M6 6L14 14"
-            stroke="white"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-      </div>
+
     </div>
 
     <script type="module" src="/src/main.js"></script>

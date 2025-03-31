@@ -16,15 +16,10 @@
       display: block;
       width: 44px;
       height: 44px;
-      position: absolute;
-      top: 15px;
-      left: 15px;
+
     }
 
-    .close-btn {
-      right: 15px;
-      top: 15px;
-    }
+
     
   }
 
@@ -51,6 +46,11 @@
   display: flex;
   flex-direction: column;
   gap: 60px;
+}
+.contact-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
 .contact-sidebar_content {
   display: flex;
@@ -162,7 +162,7 @@
   }
   .contact-title {
     font-size: 26px;
-    padding-top: 84px;
+    margin-top: 40px;
     margin-bottom: 7px;
   }
   
