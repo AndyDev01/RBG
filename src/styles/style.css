@@ -607,7 +607,7 @@ h1 {
 .contact-title {
   font-size: 33px;
   font-weight: 600;
-  margin: 44px 0 25px 0;
+  margin-bottom: 25px;
 }
 
 .contact-subtitle {
@@ -703,7 +703,7 @@ h1 {
   }
   .contact-title {
     font-size: 26px;
-    padding-top: 40px;
+    padding-top: 84px;
     margin-bottom: 7px;
   }
   .contact-information {
