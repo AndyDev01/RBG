@@ -150,6 +150,18 @@ document.addEventListener("DOMContentLoaded", () => {
     elements.overlay.classList.add("active");
   };
 
+  // Показ модального окна успеха с оверлеем
+  const showSuccessModal = () => {
+    elements.successModal.classList.add("active");
+    elements.overlay.classList.add("active");
+    
+    // Автоматически скрываем через 3 секунды
+    setTimeout(() => {
+      hideElement(elements.successModal);
+      elements.overlay.classList.remove("active");
+    }, 3000);
+  };
+
   // Обработчики кнопок
   document.querySelector(".contact_button")?.addEventListener("click", () => {
     showSidebar(elements.contactSidebar);
@@ -171,6 +183,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // Закрытие сайдбаров
   elements.overlay?.addEventListener("click", () => {
     document.querySelectorAll(".sidebar.active").forEach(sidebar => hideElement(sidebar));
+    if (elements.successModal.classList.contains("active")) {
+      hideElement(elements.successModal);
+    }
     elements.overlay.classList.remove("active");
   });
 
@@ -182,7 +197,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Проверяем количество активных сайдбаров сразу
         const activeSidebars = document.querySelectorAll(".sidebar.active");
         if (activeSidebars.length <= 1) { // <= 1, так как текущий сайдбар еще не закрылся
-          elements.overlay?.classList.remove("active");
+          // Проверяем, есть ли активное модальное окно
+          if (!elements.successModal.classList.contains("active")) {
+            elements.overlay?.classList.remove("active");
+          }
         }
       }
     });
@@ -261,19 +279,16 @@ document.addEventListener("DOMContentLoaded", () => {
         await fetch("send_email.php", { method: "POST", body: formData });
         
         hideElement(elements.requestSidebar);
-        showSidebar(elements.successModal);
+        showSuccessModal(); // Используем новую функцию
         
         requestForm.reset();
         formElements.fileInfo.textContent = "Файл не выбран";
         formElements.submitButton.disabled = true;
-        
-        setTimeout(() => hideElement(elements.successModal), 3000);
       } catch (error) {
         console.error("Ошибка отправки формы:", error);
         // Показываем модальное окно успеха даже при ошибке, как было в оригинале
         hideElement(elements.requestSidebar);
-        showSidebar(elements.successModal);
-        setTimeout(() => hideElement(elements.successModal), 3000);
+        showSuccessModal(); // Используем новую функцию
       }
     });
   }
