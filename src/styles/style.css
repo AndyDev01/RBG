@@ -878,8 +878,7 @@ h1 {
 .request-sidebar .request__file-wrapper {
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  display: none;
 }
 .request-sidebar .request__file-info {
   font-family: "Montserrat";
