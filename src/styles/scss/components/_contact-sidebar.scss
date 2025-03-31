@@ -80,6 +80,11 @@
   align-items: flex-start;
 }
 
+.phones_block {
+  flex-direction: column;
+  gap: 16px;
+}
+
 .mail-information {
   display: flex;
   flex-direction: column;

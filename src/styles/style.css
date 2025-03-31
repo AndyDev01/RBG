@@ -172,6 +172,7 @@ h1 {
   transition: transform 0.3s ease;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overflow-x: auto !important;
   overflow-y: hidden !important;
 }
 .items::-webkit-scrollbar {
@@ -625,6 +626,11 @@ h1 {
 .location_block {
   display: flex;
   align-items: flex-start;
+}
+
+.phones_block {
+  flex-direction: column;
+  gap: 16px;
 }
 
 .mail-information {
@@ -1255,6 +1261,8 @@ h1 {
   justify-content: center;
   transition: transform 0.3s ease;
   transform: scale(1);
+  position: relative;
+  z-index: 1002;
 }
 .closing .success-modal__content {
   transform: scale(0.95);
@@ -1308,7 +1316,6 @@ h1 {
 .preloader.loaded {
   opacity: 0;
   visibility: hidden;
-  z-index: -999; /* Убираем его совсем из потока когда не нужен */
 }
 
 .preloader-bg {
@@ -1344,13 +1351,10 @@ body {
   padding: 0;
   min-height: 100vh;
   overflow-y: auto;
-  /* Фоновое изображение на body для мгновенного отображения */
   background-image: url("/preloader-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #000; /* Для случаев проблем с загрузкой изображения */
-  position: relative; /* Добавляем позиционирование */
 }
 
 ul,
@@ -1365,7 +1369,6 @@ a {
   text-decoration: none;
 }
 
-/* Убираем скроллбар */
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Edge */
 }
@@ -1375,18 +1378,14 @@ body {
   scrollbar-width: none; /* Firefox */
 }
 
-/* Стили для основного контента */
 .content-wrapper {
   opacity: 0;
-  transition: opacity 0.8s ease;
-  position: relative; /* Добавляем позиционирование */
-  z-index: 1; /* Выше чем фон и видео */
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 .content-wrapper.loaded {
   opacity: 1;
 }
 
-/* Видео фон */
 #video-background {
   position: fixed;
   top: 0;
@@ -1394,13 +1393,12 @@ body {
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: -2; /* Ниже всех элементов */
-  opacity: 0; /* Изначально скрыто */
+  z-index: -1;
+  opacity: 0;
   transition: opacity 1s ease;
 }
 #video-background.ready {
   opacity: 1;
-  z-index: -2; /* Оставляем ниже всех элементов */
 }
 
 .wrapper {
@@ -1575,15 +1573,4 @@ body {
     letter-spacing: 0;
   }
   /* Стили для горизонтальной ориентации */
-}
-/* Дополнительные стили для обеспечения видимости элементов интерфейса */
-header, .request, .items-container, .main-screen__buttons {
-  position: relative;
-  z-index: 2; /* Выше чем content-wrapper */
-}
-
-/* Убедимся, что все активные элементы видны */
-button, a, .logo, h1, .description {
-  position: relative;
-  z-index: 3;
 }/*# sourceMappingURL=style.css.map */

@@ -82,6 +82,7 @@ h1 {
   transition: transform 0.3s ease;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overflow-x: auto !important;
   overflow-y: hidden !important;
 
   &::-webkit-scrollbar {

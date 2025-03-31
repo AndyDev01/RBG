@@ -35,7 +35,6 @@ const initVideoBackground = (videoElement) => {
   // Обработчик загрузки видео
   const handleVideoLoad = () => {
     if (videoElement.readyState >= 4) { // HAVE_ENOUGH_DATA
-      console.log('Видео полностью загружено, начинаем воспроизведение');
       videoElement.classList.add('ready');
       
       const playPromise = videoElement.play();
@@ -99,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => {
       if (contentWrapper) {
         contentWrapper.classList.add("loaded");
-        console.log('Интерфейс отображен');
         
         // Делаем интерфейс стабильным и обеспечиваем его видимость
         contentWrapper.style.opacity = '1';
@@ -154,6 +152,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const showSuccessModal = () => {
     elements.successModal.classList.add("active");
     elements.overlay.classList.add("active");
+    
+    // Добавляем стили блюра к оверлею, если они не применены
+    if (elements.overlay) {
+      elements.overlay.style.backdropFilter = "blur(4px)";
+      elements.overlay.style.webkitBackdropFilter = "blur(4px)";
+    }
     
     // Автоматически скрываем через 3 секунды
     setTimeout(() => {
