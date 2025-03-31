@@ -1,4 +1,9 @@
 <?php
+// В начале файла
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+error_log("Starting email send process");
+
 // Проверяем метод запроса
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     echo json_encode(['success' => false, 'message' => 'Неверный метод запроса']);
@@ -87,8 +92,10 @@ try {
 
     // Отправляем
     $mail->send();
+    error_log("Email sent successfully");
     echo json_encode(['success' => true]);
 } catch (Exception $e) {
+    error_log("Mailer Error: " . $mail->ErrorInfo);
     echo json_encode(['success' => false, 'message' => 'Ошибка при отправке письма: ' . $mail->ErrorInfo]);
 }
 ?> 

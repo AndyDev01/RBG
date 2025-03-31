@@ -875,6 +875,18 @@ h1 {
   overflow: hidden;
   z-index: -1;
 }
+.request-sidebar .request__file-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.request-sidebar .request__file-info {
+  font-family: "Montserrat";
+  font-size: 14px;
+  color: #959595;
+  margin-top: 5px;
+}
 .request-sidebar .request__button {
   margin-top: 0;
   color: white;
@@ -1351,10 +1363,6 @@ li {
 
 a {
   text-decoration: none;
-}
-
-:root {
-  --wrapper-padding: 29px;
 }
 
 /* Убираем скроллбар */
