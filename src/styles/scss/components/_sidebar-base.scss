@@ -5,7 +5,7 @@
 }
 
 @mixin close-button {
-  display: block;
+  display: none;
   // position: absolute;
   top: 15px;
   right: 15px;
@@ -28,7 +28,7 @@
   box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
-  
+
   @supports (-webkit-overflow-scrolling: touch) {
     @include ios-safe-area;
   }
@@ -46,7 +46,8 @@
       height: 100%;
     }
 
-    circle, path {
+    circle,
+    path {
       transition: all 0.2s ease;
     }
 

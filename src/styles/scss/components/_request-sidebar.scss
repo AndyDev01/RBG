@@ -146,11 +146,10 @@
     justify-content: flex-start;
   }
 
-  .request-sidebar_header{
+  .request-sidebar_header {
     display: flex;
     align-items: start;
     justify-content: space-between;
-
   }
 
   .request__file-button {
@@ -197,7 +196,7 @@
     color: #959595;
     visibility: hidden;
     height: 0;
-    overflow: hidden; 
+    overflow: hidden;
   }
 
   .request__button {
@@ -294,8 +293,6 @@
     .request__textarea {
       font-size: 14px;
       max-height: 18.4px;
-      
-      
     }
   }
 
@@ -393,7 +390,6 @@
   overflow-y: auto;
   transition: transform 0.3s ease;
 
-
   .logo {
     width: 85px;
     height: 85px;
@@ -402,11 +398,15 @@
 
   // Всегда отображаем кнопку закрытия в сайдбаре политики
   .close-btn {
-    display: block;
+    display: none;
     cursor: pointer;
     z-index: 10;
+
+    @include mobile {
+      display: block;
+    }
   }
-  .policy-sidebar_header{
+  .policy-sidebar_header {
     display: flex;
     align-items: start;
     justify-content: space-between;
@@ -427,11 +427,10 @@
     color: #151515;
     line-height: 1.5;
 
-
     p {
       margin-bottom: 15px;
     }
-    .policy__text{
+    .policy__text {
       margin-top: 0;
     }
 
@@ -547,11 +546,9 @@
     .policy__content {
       font-size: 14px;
     }
-
   }
 
   @media (max-width: 358px) {
     padding: 15px 15px 30px 15px;
-
   }
 }

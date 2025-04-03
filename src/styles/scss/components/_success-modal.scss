@@ -20,7 +20,9 @@
   }
 
   &.closing {
-    opacity: 0;
+    opacity: 0 !important;
+    display: flex !important;
+    transition: opacity 0.3s ease !important;
   }
 
   &__content {

@@ -1,43 +1,83 @@
 @mixin backdrop {
-    backdrop-filter: $backdrop-blur;
-    -webkit-backdrop-filter: $backdrop-blur;
+  backdrop-filter: $backdrop-blur;
+  -webkit-backdrop-filter: $backdrop-blur;
 }
 
 .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: $overlay-color;
-    opacity: 0;
-    visibility: hidden;
-    z-index: $z-index-overlay;
-    @include backdrop;
-    transition: 
-        all $transition-duration ease,
-        backdrop-filter $transition-duration ease,
-        -webkit-backdrop-filter $transition-duration ease;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: $overlay-color;
+  opacity: 0;
+  visibility: hidden;
+  z-index: $z-index-overlay;
+  @include backdrop;
+  transition: opacity $transition-duration ease,
+    visibility $transition-duration ease,
+    backdrop-filter $transition-duration ease,
+    -webkit-backdrop-filter $transition-duration ease;
 
-    &.active {
-        opacity: 1;
-        visibility: visible;
-        display: block;
-    }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+  }
 
-    @supports not (backdrop-filter: blur(1px)) {
-        background: rgba(21, 21, 21, 0.95);
-        
-        &:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: inherit;
-            z-index: -1;
-        }
+  &.closing {
+    opacity: 0 !important;
+    visibility: visible !important;
+    display: block !important;
+    transition: opacity $transition-duration ease,
+      backdrop-filter $transition-duration ease,
+      -webkit-backdrop-filter $transition-duration ease !important;
+  }
+
+  @supports not (backdrop-filter: blur(1px)) {
+    background: rgba(21, 21, 21, 0.95);
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      z-index: -1;
     }
+  }
+}
+
+// Специальный оверлей для модального окна успеха
+.success-overlay {
+  z-index: 1000; // Ниже, чем у success-modal (1001)
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 21, 21, 0.7); // Более прозрачный фон
+  opacity: 0;
+  visibility: hidden;
+  transition-duration: 0.6s !important; // Увеличиваем время для синхронизации
+
+  @include backdrop;
+
+  &.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+  }
+
+  &.closing {
+    opacity: 0 !important;
+    visibility: visible !important;
+    display: block !important;
+    transition: opacity 0.6s ease, backdrop-filter 0.6s ease,
+      -webkit-backdrop-filter 0.6s ease !important;
+  }
 }

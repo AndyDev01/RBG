@@ -1,7 +1,10 @@
 <?php
 // В начале файла
-error_reporting(E_ALL);
 ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+ini_set('log_errors', 1);
+ini_set('error_log', 'email_errors.log'); // создаст отдельный лог-файл
 error_log("Starting email send process");
 
 // Проверяем метод запроса
@@ -26,13 +29,20 @@ if (empty($name) || empty($company) || empty($phone) || empty($email) || empty($
 // Настройки SMTP для Яндекс.Почты
 $smtp_server = "smtp.yandex.ru";
 $smtp_port = 465;
-$smtp_user = "noreply@refbg.ru"; // Введите реальный адрес
-$smtp_password = "RbG$2025"; // Введите реальный пароль
+$smtp_user = "info@refbg.ru"; 
+$smtp_password = 'fdhyaqkzzteauwgg'; 
 
-// Используем PHPMailer для отправки
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-require 'PHPMailer/src/Exception.php';
+// Проверка и подключение PHPMailer
+$phpmailer_base = __DIR__ . '/PHPMailer/src';
+if (!file_exists($phpmailer_base . '/PHPMailer.php')) {
+    file_put_contents(__DIR__ . '/phpmailer_error.txt', date('Y-m-d H:i:s') . ' - Файлы PHPMailer не найдены', FILE_APPEND);
+    echo json_encode(['success' => false, 'message' => 'Ошибка настройки сервера']);
+    exit;
+}
+
+require $phpmailer_base . '/PHPMailer.php';
+require $phpmailer_base . '/SMTP.php';
+require $phpmailer_base . '/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -64,21 +74,35 @@ $body = "
 // Создаем экземпляр PHPMailer
 $mail = new PHPMailer(true);
 
+// Добавьте логирование входящих данных
+error_log("POST data: " . print_r($_POST, true));
+
 try {
+    // Дебаг в файл
+    $debugFile = __DIR__ . '/smtp_debug.txt';
+    file_put_contents($debugFile, "=== " . date('Y-m-d H:i:s') . " ===\n", FILE_APPEND);
+    
+    // Усиленная отладка SMTP
+    $mail->SMTPDebug = 3;
+    $mail->Debugoutput = function($str, $level) use ($debugFile) {
+        file_put_contents($debugFile, "$str\n", FILE_APPEND);
+    };
+
+    error_log("Attempting to send email to {$to}");
     // Настройки сервера
     $mail->isSMTP();
     $mail->Host = $smtp_server;
     $mail->SMTPAuth = true;
     $mail->Username = $smtp_user;
     $mail->Password = $smtp_password;
-    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // для порта 465
+    $mail->SMTPSecure = 'ssl'; // для порта 587 используем TLS
     $mail->Port = $smtp_port;
     $mail->CharSet = 'UTF-8';
 
-    // Получатели
-    $mail->setFrom($smtp_user, 'РБГ Сайт');
-    $mail->addAddress($to);
-    $mail->addReplyTo($email, $name);
+    // Получатели - используем тот же адрес
+    $mail->setFrom($smtp_user, 'Refbg.ru');
+    $mail->addAddress($smtp_user); // отправляем на info@refbg.ru
+    $mail->addReplyTo($email, $name); // ответ будет на email отправителя формы
 
     // Содержимое
     $mail->isHTML(true);
@@ -95,7 +119,15 @@ try {
     error_log("Email sent successfully");
     echo json_encode(['success' => true]);
 } catch (Exception $e) {
+    error_log("FULL ERROR DETAILS: " . print_r($e, true));
+    error_log("SMTP DEBUG INFO: " . $mail->SMTPDebug);
     error_log("Mailer Error: " . $mail->ErrorInfo);
-    echo json_encode(['success' => false, 'message' => 'Ошибка при отправке письма: ' . $mail->ErrorInfo]);
+    // В блок catch добавьте:
+    file_put_contents(__DIR__ . '/mail_debug.txt', date('Y-m-d H:i:s') . " - Ошибка: " . $mail->ErrorInfo . "\n" . print_r($e, true) . "\n\n", FILE_APPEND);
+    echo json_encode([
+        'success' => false, 
+        'message' => 'Ошибка: ' . $mail->ErrorInfo,
+        'details' => (string)$e
+    ]);
 }
 ?> 
