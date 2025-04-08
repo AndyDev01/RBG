@@ -131,3 +131,5 @@ try {
     ]);
 }
 ?> 
+
+<div class="file-name">Файл не выбран</div> 

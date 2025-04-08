@@ -15,6 +15,15 @@
     margin-left: 0;
   }
 
+  .close-btn {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+  }
+
   // Стили для формы запроса
   .request__form-container {
     width: 100%;
@@ -49,38 +58,36 @@
   .request__input {
     padding: 12px;
     border-radius: 11px;
-    border: none;
+    border: 2px solid transparent;
     background-color: #e7e7e7;
     font-family: "Montserrat";
     font-size: 16px;
     color: #151515;
     outline: none;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
 
     &::placeholder {
       color: #959595;
     }
 
     &:focus {
-      // box-shadow: 0 0 0 2px rgba(58, 117, 237, 0.3);
-      box-shadow: 0 0 0 2px rgb(58, 117, 237);
+      border-color: #3a75ed;
     }
 
     &.invalid {
-      border-color: red;
+      border-color: #ff0000;
       background-color: rgba(255, 0, 0, 0.05);
     }
 
     &.invalid:focus {
-      box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
+      border-color: #ff0000;
     }
   }
 
   .request__textarea {
     padding: 12px;
     border-radius: 10px;
-    border: none;
+    border: 2px solid transparent;
     background-color: #e7e7e7;
     font-family: "Montserrat";
     font-size: 16px;
@@ -89,23 +96,22 @@
     height: 130px;
     outline: none;
     transition: all 0.3s ease;
-    border: 1px solid transparent;
 
     &::placeholder {
       color: #959595;
     }
 
     &:focus {
-      box-shadow: 0 0 0 2px rgb(58, 117, 237);
+      border-color: #3a75ed;
     }
 
     &.invalid {
-      border-color: red;
+      border-color: #ff0000;
       background-color: rgba(255, 0, 0, 0.05);
     }
 
     &.invalid:focus {
-      box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.3);
+      border-color: #ff0000;
     }
   }
 
@@ -194,9 +200,14 @@
   .request__file-info {
     font-family: "Montserrat";
     color: #959595;
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+
+  .file-name {
+    margin-top: 5px;
+    color: #666;
+    font-size: 14px;
   }
 
   .request__button {
@@ -390,6 +401,14 @@
   overflow-y: auto;
   transition: transform 0.3s ease;
 
+  /* Скрываем полосу прокрутки, сохраняя функциональность */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE и Edge */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari и Opera */
+    width: 0;
+  }
+
   .logo {
     width: 85px;
     height: 85px;
@@ -398,14 +417,14 @@
 
   // Всегда отображаем кнопку закрытия в сайдбаре политики
   .close-btn {
-    display: none;
+    display: block;
     cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
     z-index: 10;
-
-    @include mobile {
-      display: block;
-    }
   }
+
   .policy-sidebar_header {
     display: flex;
     align-items: start;
@@ -550,5 +569,44 @@
 
   @media (max-width: 358px) {
     padding: 15px 15px 30px 15px;
+  }
+}
+
+.file-success-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+
+  &.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  &__text {
+    color: white;
+    font-family: "Montserrat";
+    font-size: 16px;
   }
 }

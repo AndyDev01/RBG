@@ -319,11 +319,79 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
+    // Инициализация поля телефона с префиксом +7
+    if (formElements.phoneInput) {
+      // Устанавливаем префикс +7 при загрузке
+      formElements.phoneInput.value = "+7";
+
+      // Обработчик фокуса - перемещаем курсор в конец
+      formElements.phoneInput.addEventListener("focus", function () {
+        if (this.value === "+7") {
+          setTimeout(() => {
+            this.selectionStart = this.selectionEnd = this.value.length;
+          }, 0);
+        }
+      });
+
+      // Обработчик ввода для телефона
+      formElements.phoneInput.addEventListener("input", function (e) {
+        // Сохраняем позицию курсора
+        const cursorPos = this.selectionStart;
+
+        // Сохраняем только цифры
+        const digits = this.value.replace(/\D/g, "");
+
+        // Если пользователь удалил все, включая +7, восстанавливаем префикс
+        if (digits.length <= 1) {
+          this.value = "+7";
+          this.selectionStart = this.selectionEnd = 2;
+          return;
+        }
+
+        // Форматируем номер с префиксом +7
+        this.value = "+7" + digits.substring(1, 11);
+
+        // Упрощенная валидация: корректно только если ровно 10 цифр после +7
+        if (digits.length - 1 === 10) {
+          this.classList.remove("invalid");
+        } else {
+          this.classList.add("invalid");
+        }
+
+        // Восстанавливаем позицию курсора, учитывая изменения
+        const newCursorPos = Math.min(cursorPos, this.value.length);
+        this.selectionStart = this.selectionEnd = newCursorPos;
+      });
+
+      // Предотвращение удаления префикса +7 через backspace и delete
+      formElements.phoneInput.addEventListener("keydown", function (e) {
+        // Если выделен весь текст, разрешаем удаление
+        if (
+          this.selectionStart === 0 &&
+          this.selectionEnd === this.value.length
+        ) {
+          return;
+        }
+
+        // Запрещаем удаление префикса +7
+        if (
+          (e.key === "Backspace" && this.selectionStart <= 2) ||
+          (e.key === "Delete" && this.selectionStart < 2)
+        ) {
+          e.preventDefault();
+        }
+      });
+    }
+
     // Валидация
     const validators = {
       name: (value) => value.trim().length >= 2,
       email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
-      phone: (value) => value.replace(/\D/g, "").length >= 10,
+      phone: (value) => {
+        // Проверяем что введено ровно 10 цифр после +7
+        const digits = value.replace(/\D/g, "");
+        return digits.length === 11 && value.startsWith("+7");
+      },
     };
 
     const validateForm = () => {

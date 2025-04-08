@@ -9,18 +9,23 @@
     display: none;
   }
 
+  .close-btn {
+    display: block;
+    cursor: pointer;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    z-index: 10;
+  }
+
   @include mobile {
     transform: translateX(100%);
-    
+
     .logo {
       display: block;
       width: 44px;
       height: 44px;
-
     }
-
-
-    
   }
 
   &.active {
@@ -87,7 +92,6 @@
 .tg-link {
   color: #3a75ed;
   text-decoration: none;
-  
 }
 
 .mail-information {
@@ -137,20 +141,18 @@
   .contact-sidebar_wrapper {
     padding-bottom: 44px;
   }
-  .contact-sidebar_content{
+  .contact-sidebar_content {
     gap: 30px;
   }
   .contact {
     gap: 30px;
   }
-  
 }
 
 @media (max-width: 888px) {
   .contact {
     gap: 30px;
   }
-
 }
 
 @media (max-width: 576px) {
@@ -165,7 +167,7 @@
     margin-top: 40px;
     margin-bottom: 7px;
   }
-  
+
   .contact-information {
     gap: 2px;
   }
