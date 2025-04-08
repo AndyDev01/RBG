@@ -18,10 +18,9 @@
   .close-btn {
     display: block;
     cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 15px;
     z-index: 10;
+    width: 20px;
+    height: 20px;
   }
 
   // Стили для формы запроса
@@ -156,6 +155,8 @@
     display: flex;
     align-items: start;
     justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   .request__file-button {
@@ -419,16 +420,17 @@
   .close-btn {
     display: block;
     cursor: pointer;
-    position: absolute;
-    top: 15px;
-    right: 15px;
     z-index: 10;
+    width: 20px;
+    height: 20px;
   }
 
   .policy-sidebar_header {
     display: flex;
     align-items: start;
     justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
   }
 
   .policy__title {

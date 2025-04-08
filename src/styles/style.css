@@ -597,10 +597,9 @@ h1 {
 .contact-sidebar .close-btn {
   display: block;
   cursor: pointer;
-  position: absolute;
-  top: 15px;
-  right: 15px;
   z-index: 10;
+  width: 20px;
+  height: 20px;
 }
 @media (max-width: 888px) {
   .contact-sidebar {
@@ -639,6 +638,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: start;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 .contact-sidebar_content {
@@ -795,10 +796,9 @@ h1 {
 .request-sidebar .close-btn {
   display: block;
   cursor: pointer;
-  position: absolute;
-  top: 15px;
-  right: 15px;
   z-index: 10;
+  width: 20px;
+  height: 20px;
 }
 .request-sidebar .request__form-container {
   width: 100%;
@@ -912,6 +912,8 @@ h1 {
   display: flex;
   align-items: start;
   justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
 }
 .request-sidebar .request__file-button {
   background: none;
@@ -1153,15 +1155,16 @@ h1 {
 .policy-sidebar .close-btn {
   display: block;
   cursor: pointer;
-  position: absolute;
-  top: 15px;
-  right: 15px;
   z-index: 10;
+  width: 20px;
+  height: 20px;
 }
 .policy-sidebar .policy-sidebar_header {
   display: flex;
   align-items: start;
   justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
 }
 .policy-sidebar .policy__title {
   font-family: "Montserrat";

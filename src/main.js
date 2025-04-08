@@ -383,10 +383,32 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    // Валидация email в реальном времени
+    if (formElements.emailInput) {
+      formElements.emailInput.addEventListener("input", function () {
+        // Проверяем наличие @, точки и что используется только латиница
+        const isValidEmail =
+          /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+            this.value.trim()
+          );
+
+        if (isValidEmail || this.value.trim() === "") {
+          this.classList.remove("invalid");
+        } else {
+          this.classList.add("invalid");
+        }
+      });
+    }
+
     // Валидация
     const validators = {
       name: (value) => value.trim().length >= 2,
-      email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+      email: (value) => {
+        // Проверяем наличие @, точки и что используется только латиница
+        return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+          value.trim()
+        );
+      },
       phone: (value) => {
         // Проверяем что введено ровно 10 цифр после +7
         const digits = value.replace(/\D/g, "");
