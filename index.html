@@ -162,74 +162,77 @@
     </div>
     <div class="overlay"></div>
     <div class="sidebar contact-sidebar">
-      <div class="contact-header">
-        <img src="/rbg-logo-blue.svg" alt="Логотип РЕФБИЛДИНГ ГРУПП" class="logo">
-        <div class="close-btn">
-          <svg
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
-            <path
-              d="M6 14L14 6M6 6L14 14"
-              stroke="white"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
+      <div class="contact-sidebar-wrapper">
+        <div class="contact-header">
+          <img src="/rbg-logo-blue.svg" alt="Логотип РЕФБИЛДИНГ ГРУПП" class="logo">
+          <div class="close-btn">
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <circle cx="10" cy="10" r="10" fill="#9D9D9D" />
+              <path
+                d="M6 14L14 6M6 6L14 14"
+                stroke="white"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </div>
+        </div>
+  
+        <div class="contact-sidebar_content">
+          <div>
+            <h2 class="contact-title">Связаться с нами</h2>
+            <p class="contact-subtitle">
+              Для обсуждения проектов мы предпочитаем личное общение, поэтому
+              готовы приехать к Вам на объект или пригласить в наш офис.
+            </p>
+          </div>
+          <li class="contact" itemscope itemtype="http://schema.org/ContactPoint">
+            <ul class="phones_block">
+              <div class="contact-information">
+                <span class="contact-label">Телефоны:</span>
+                <a href="tel:+74955211915" class="phone" itemprop="telephone">+7 (495) 521 19 15,</a>
+                <a href="tel:+74955213016" class="phone" itemprop="telephone">+7 (495) 521 30 16</a>
+              </div>
+              <div class="contact-information">
+                <span class="contact-label">Телеграм:</span>
+                <a href="https://t.me/refbuilding_group" class="tg-link" itemprop="url">@refbuilding_group</a>
+              </div>
+            </ul>
+            <ul class="mail_block">
+              <div class="mail-information">
+                <div class="mail-line">
+                  <span class="contact-label">Коммерческий отдел:</span>
+                  <a href="mailto:info@refbg.ru" class="contact-email" itemprop="email">info@refbg.ru</a>
+                </div>
+                <div class="mail-line">
+                  <span class="contact-label">Сервисная служба:</span>
+                  <a href="mailto:service@refbg.ru" class="contact-email">service@refbg.ru</a>
+                </div>
+              </div>
+            </ul>
+            <ul class="location_block">
+              <div class="address-information" itemscope itemtype="http://schema.org/PostalAddress">
+                <div class="address-line">
+                  <span class="contact-label">Офис:</span>
+                  <span itemprop="addressLocality">Московская обл., г. Балашиха, ул. Белякова, д. 2Б</span>
+                </div>
+                <div class="address-line">
+                  <span class="contact-label">Производство:</span>
+                  Московская обл., г. Электрогорск, ул. Будённого, д. 1А
+                </div>
+              </div>
+            </ul>
+          </li>
         </div>
       </div>
-
-      <div class="contact-sidebar_content">
-        <div>
-          <h2 class="contact-title">Связаться с нами</h2>
-          <p class="contact-subtitle">
-            Для обсуждения проектов мы предпочитаем личное общение, поэтому
-            готовы приехать к Вам на объект или пригласить в наш офис.
-          </p>
-        </div>
-        <li class="contact" itemscope itemtype="http://schema.org/ContactPoint">
-          <ul class="phones_block">
-            <div class="contact-information">
-              <span class="contact-label">Телефоны:</span>
-              <a href="tel:+74955211915" class="phone" itemprop="telephone">+7 (495) 521 19 15,</a>
-              <a href="tel:+74955213016" class="phone" itemprop="telephone">+7 (495) 521 30 16</a>
-            </div>
-            <div class="contact-information">
-              <span class="contact-label">Телеграм:</span>
-              <a href="https://t.me/refbuilding_group" class="tg-link" itemprop="url">@refbuilding_group</a>
-            </div>
-          </ul>
-          <ul class="mail_block">
-            <div class="mail-information">
-              <div class="mail-line">
-                <span class="contact-label">Коммерческий отдел:</span>
-                <a href="mailto:info@refbg.ru" class="contact-email" itemprop="email">info@refbg.ru</a>
-              </div>
-              <div class="mail-line">
-                <span class="contact-label">Сервисная служба:</span>
-                <a href="mailto:service@refbg.ru" class="contact-email">service@refbg.ru</a>
-              </div>
-            </div>
-          </ul>
-          <ul class="location_block">
-            <div class="address-information" itemscope itemtype="http://schema.org/PostalAddress">
-              <div class="address-line">
-                <span class="contact-label">Офис:</span>
-                <span itemprop="addressLocality">Московская обл., г. Балашиха, ул. Белякова, д. 2Б</span>
-              </div>
-              <div class="address-line">
-                <span class="contact-label">Производство:</span>
-                Московская обл., г. Электрогорск, ул. Будённого, д. 1А
-              </div>
-            </div>
-          </ul>
-        </li>
-      </div>
+      
       <div id="map" style="width: 100%; height: 353px"></div>
     </div>
 

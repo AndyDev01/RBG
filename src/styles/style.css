@@ -588,20 +588,16 @@ h1 {
   }
 }
 
-#map {
-  height: auto; /* Вместо фиксированной высоты */
-  min-height: 300px; /* Минимальная высота */
-  max-height: 40vh; /* Не больше 40% высоты экрана */
-}
-
 .contact-sidebar {
   right: 0;
   width: 888px;
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  padding: 80px 122px 80px 122px;
   display: flex;
   flex-direction: column;
+}
+.contact-sidebar-wrapper {
+  padding: 80px 122px 0 122px;
 }
 .contact-sidebar .logo {
   display: block;
@@ -643,6 +639,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-bottom: 30px;
 }
 
 .contact-header {

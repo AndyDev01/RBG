@@ -4,9 +4,13 @@
   width: $sidebar-contact-width;
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  padding: 80px 122px 80px 122px;
+  // padding: 80px 122px 0 122px;
   display: flex;
   flex-direction: column;
+
+  &-wrapper {
+    padding: 80px 122px 0 122px;
+  }
 
   .logo {
     display: block;
@@ -53,6 +57,7 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
+  margin-bottom: 30px;
 }
 
 .contact-header {
