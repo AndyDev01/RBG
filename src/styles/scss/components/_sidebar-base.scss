@@ -28,6 +28,10 @@
   box-sizing: border-box;
   visibility: hidden;
   opacity: 0;
+  overflow-y: auto;
+  height: 100%;
+  max-height: 100vh;
+  -webkit-overflow-scrolling: touch;
 
   @supports (-webkit-overflow-scrolling: touch) {
     @include ios-safe-area;
