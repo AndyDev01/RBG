@@ -158,7 +158,6 @@ h1 {
 
 .items-container {
   position: relative;
-  overflow: hidden;
   width: 100%;
   padding-bottom: env(safe-area-inset-bottom, 60px);
 }
