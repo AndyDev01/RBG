@@ -616,10 +616,6 @@ h1 {
   .contact-sidebar {
     transform: translateX(100%);
   }
-  .contact-sidebar .logo {
-    width: 44px;
-    height: 44px;
-  }
 }
 .contact-sidebar.active {
   transform: translateX(0);
@@ -650,6 +646,10 @@ h1 {
     padding-left: 45px;
     padding-right: 45px;
   }
+  .contact-sidebar .logo {
+    width: 85px;
+    height: 85px;
+  }
 }
 @media (max-width: 768px) and (min-width: 577px) {
   .contact-sidebar-wrapper {
@@ -657,12 +657,20 @@ h1 {
     padding-left: 30px;
     padding-right: 30px;
   }
+  .contact-sidebar .logo {
+    width: 70px;
+    height: 70px;
+  }
 }
 @media (max-width: 576px) {
   .contact-sidebar-wrapper {
     padding-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
+  }
+  .contact-sidebar .logo {
+    width: 44px;
+    height: 44px;
   }
 }
 

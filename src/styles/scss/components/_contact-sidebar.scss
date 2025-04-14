@@ -29,11 +29,6 @@
 
   @include mobile {
     transform: translateX(100%);
-
-    .logo {
-      width: 44px;
-      height: 44px;
-    }
   }
 
   &.active {
@@ -70,6 +65,11 @@
       padding-left: 45px;
       padding-right: 45px;
     }
+
+    .logo {
+      width: 85px;
+      height: 85px;
+    }
   }
 
   @media (max-width: 768px) and (min-width: 577px) {
@@ -78,6 +78,11 @@
       padding-left: 30px;
       padding-right: 30px;
     }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+    }
   }
 
   @media (max-width: 576px) {
@@ -85,6 +90,11 @@
       padding-top: 15px;
       padding-left: 15px;
       padding-right: 15px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
     }
   }
 }
