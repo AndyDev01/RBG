@@ -9,7 +9,7 @@
   flex-direction: column;
 
   &-wrapper {
-    padding: 80px 122px 0 122px;
+    padding: 80px 150px 0 150px;
   }
 
   .logo {
@@ -46,6 +46,46 @@
 
   &_wrapper {
     padding: 0;
+  }
+
+  @media (max-width: 1400px) and (min-width: 1201px) {
+    &-wrapper {
+      padding-left: 90px;
+      padding-right: 90px;
+      padding-top: 80px;
+    }
+  }
+
+  @media (max-width: 1200px) and (min-width: 993px) {
+    &-wrapper {
+      padding-left: 60px;
+      padding-right: 60px;
+      padding-top: 80px;
+    }
+  }
+
+  @media (max-width: 992px) and (min-width: 769px) {
+    &-wrapper {
+      padding-top: 60px;
+      padding-left: 45px;
+      padding-right: 45px;
+    }
+  }
+
+  @media (max-width: 768px) and (min-width: 577px) {
+    &-wrapper {
+      padding-top: 50px;
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &-wrapper {
+      padding-top: 15px;
+      padding-left: 15px;
+      padding-right: 15px;
+    }
   }
 }
 
@@ -159,9 +199,6 @@
 }
 
 @media (max-width: 1675px) {
-  .contact-sidebar_wrapper {
-    padding-bottom: 44px;
-  }
   .contact-sidebar_content {
     gap: 30px;
   }
@@ -179,9 +216,6 @@
 @media (max-width: 576px) {
   .contact {
     gap: 20px;
-  }
-  .contact-sidebar_wrapper {
-    padding: 15px 15px 44px 15px !important;
   }
   .contact-title {
     font-size: 26px;
