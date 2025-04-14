@@ -590,9 +590,15 @@ h1 {
   width: 888px;
   transform: translateX(100%);
   transition: transform 0.3s ease;
+  padding: 80px 122px 80px 122px;
+  display: flex;
+  flex-direction: column;
 }
 .contact-sidebar .logo {
-  display: none;
+  display: block;
+  width: 85px;
+  height: 85px;
+  margin-left: 0;
 }
 .contact-sidebar .close-btn {
   display: block;
@@ -606,7 +612,6 @@ h1 {
     transform: translateX(100%);
   }
   .contact-sidebar .logo {
-    display: block;
     width: 44px;
     height: 44px;
   }
@@ -617,11 +622,8 @@ h1 {
 .contact-sidebar.closing {
   transform: translateX(100%);
 }
-.contact-sidebar__content {
-  padding: 20px;
-}
 .contact-sidebar_wrapper {
-  padding: 88px 122px;
+  padding: 0;
 }
 
 #map {
@@ -631,7 +633,7 @@ h1 {
 .contact {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 30px;
 }
 
 .contact-header {
@@ -645,20 +647,25 @@ h1 {
 .contact-sidebar_content {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 30px;
+  margin-top: 40px;
 }
 
 .contact-title {
-  font-size: 33px;
+  font-size: 32px;
   font-weight: 600;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
+  font-family: "Montserrat";
+  color: #000;
 }
 
 .contact-subtitle {
-  margin: 0;
+  margin: 0 0 30px 0;
   font-weight: 420;
   font-size: 18px;
   line-height: 1.4;
+  font-family: "Montserrat";
+  color: #151515;
 }
 
 .contact-information {
@@ -674,7 +681,7 @@ h1 {
 
 .phones_block {
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .tg-link {
@@ -685,19 +692,19 @@ h1 {
 .mail-information {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .address-information {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 10px;
 }
 
 .contact-information {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
 }
 
 .contact-label {
