@@ -597,7 +597,7 @@ h1 {
   flex-direction: column;
 }
 .contact-sidebar-wrapper {
-  padding: 80px 150px 0 150px;
+  padding: 80px 120px 0 120px;
 }
 .contact-sidebar .logo {
   display: block;
@@ -696,7 +696,7 @@ h1 {
 .contact-sidebar_content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 0;
 }
 
 .contact-title {
@@ -784,7 +784,7 @@ h1 {
 
 @media (max-width: 1675px) {
   .contact-sidebar_content {
-    gap: 30px;
+    gap: 0;
   }
   .contact {
     gap: 30px;
@@ -814,7 +814,7 @@ h1 {
     font-size: 14px;
   }
   .contact-sidebar_content {
-    gap: 20px;
+    gap: 0;
   }
   .mail-information {
     gap: 5px;
