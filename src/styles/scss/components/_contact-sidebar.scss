@@ -105,14 +105,14 @@
   justify-content: space-between;
   align-items: start;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .contact-sidebar_content {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 40px;
+  // margin-top: 40px;
 }
 
 .contact-title {
@@ -219,7 +219,7 @@
   }
   .contact-title {
     font-size: 26px;
-    margin-top: 40px;
+
     margin-bottom: 7px;
   }
 

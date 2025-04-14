@@ -682,14 +682,13 @@ h1 {
   justify-content: space-between;
   align-items: start;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .contact-sidebar_content {
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 40px;
 }
 
 .contact-title {
@@ -794,7 +793,6 @@ h1 {
   }
   .contact-title {
     font-size: 26px;
-    margin-top: 40px;
     margin-bottom: 7px;
   }
   .contact-information {
@@ -844,7 +842,6 @@ h1 {
 }
 .request-sidebar .request__form-container {
   width: 100%;
-  margin-top: 40px;
 }
 .request-sidebar .request__title {
   font-family: "Montserrat";
@@ -955,7 +952,7 @@ h1 {
   align-items: start;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 .request-sidebar .request__file-button {
   background: none;
