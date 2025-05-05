@@ -542,12 +542,6 @@ h1 {
   max-height: 100vh;
   -webkit-overflow-scrolling: touch;
 }
-@supports (-webkit-overflow-scrolling: touch) {
-  .sidebar, .policy-sidebar, .request-sidebar, .contact-sidebar {
-    padding-top: max(env(safe-area-inset-top, 0px), 20px);
-    padding-bottom: max(env(safe-area-inset-bottom, 0px), 20px);
-  }
-}
 .sidebar.active, .active.policy-sidebar, .active.request-sidebar, .active.contact-sidebar {
   visibility: visible;
   opacity: 1;
@@ -1562,8 +1556,6 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh; /* Стандартная высота */
-  /* Использование переменной --vh для iOS */
-  /* Учитываем системные панели браузера в iOS */
 }
 
 /* Адаптивные стили для всех устройств */
@@ -1727,5 +1719,4 @@ body {
     line-height: 120%;
     letter-spacing: 0;
   }
-  /* Стили для горизонтальной ориентации */
 }/*# sourceMappingURL=style.css.map */
