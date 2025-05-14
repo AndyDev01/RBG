@@ -422,6 +422,7 @@ document.addEventListener("DOMContentLoaded", () => {
         validators.email(formElements.emailInput.value) &&
         validators.phone(formElements.phoneInput.value) &&
         formElements.policyCheckbox.checked
+        // Не требуем капчу для активации кнопки отправки
       );
     };
 
@@ -440,11 +441,23 @@ document.addEventListener("DOMContentLoaded", () => {
       formElements.submitButton.disabled = !validateForm();
     });
 
+    // Глобальная функция обратного вызова для капчи
+    window.recaptchaCallback = function () {
+      console.log("Капча прошла проверку");
+    };
+
     // Отправка формы
     requestForm.addEventListener("submit", async function (event) {
       event.preventDefault();
 
       if (!validateForm()) return;
+
+      // Проверяем, что капча была пройдена
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (!recaptchaResponse) {
+        alert("Пожалуйста, подтвердите, что вы не робот");
+        return;
+      }
 
       try {
         const formData = new FormData(requestForm);
@@ -458,6 +471,9 @@ document.addEventListener("DOMContentLoaded", () => {
           formElements.fileInfo.textContent = "Файл не выбран";
         }
         formElements.submitButton.disabled = true;
+
+        // Сбрасываем капчу после успешной отправки
+        grecaptcha.reset();
       } catch (error) {
         console.error("Ошибка отправки формы:", error);
         // Показываем модальное окно успеха даже при ошибке, как было в оригинале

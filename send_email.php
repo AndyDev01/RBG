@@ -20,6 +20,45 @@ $phone = isset($_POST['phone']) ? htmlspecialchars($_POST['phone']) : '';
 $email = isset($_POST['email']) ? htmlspecialchars($_POST['email']) : '';
 $message = isset($_POST['message']) ? htmlspecialchars($_POST['message']) : '';
 
+// Получаем ответ reCAPTCHA
+$recaptchaResponse = isset($_POST['g-recaptcha-response']) ? $_POST['g-recaptcha-response'] : '';
+
+// Добавляем логирование
+error_log("reCAPTCHA response: " . ($recaptchaResponse ? 'получен' : 'отсутствует'));
+
+// Проверяем, что капча заполнена
+if (empty($recaptchaResponse)) {
+    echo json_encode(['success' => false, 'message' => 'Пожалуйста, подтвердите, что вы не робот']);
+    exit;
+}
+
+// Проверяем ответ от Google
+$secretKey = '6Lf19y8rAAAAAFqH2ilxN6NF_vPxdmAWen9q4ij8'; // Замените на ваш секретный ключ
+$url = 'https://www.google.com/recaptcha/api/siteverify';
+$data = [
+    'secret' => $secretKey,
+    'response' => $recaptchaResponse,
+    'remoteip' => $_SERVER['REMOTE_ADDR']
+];
+
+$options = [
+    'http' => [
+        'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+        'method' => 'POST',
+        'content' => http_build_query($data)
+    ]
+];
+
+$context = stream_context_create($options);
+$verify = file_get_contents($url, false, $context);
+$captchaSuccess = json_decode($verify);
+
+if (!$captchaSuccess->success) {
+    echo json_encode(['success' => false, 'message' => 'Проверка reCAPTCHA не пройдена. Пожалуйста, попробуйте еще раз.']);
+    error_log("reCAPTCHA verification failed: " . print_r($captchaSuccess, true));
+    exit;
+}
+
 // Проверяем обязательные поля
 if (empty($name) || empty($company) || empty($phone) || empty($email) || empty($message)) {
     echo json_encode(['success' => false, 'message' => 'Заполните все обязательные поля']);

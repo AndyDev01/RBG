@@ -62,7 +62,7 @@ body {
   min-height: 100vh;
   // background-color: #000; /* Чёрный фон на случай проблем с изображением */
   overflow-y: auto;
-  background-image: url('/preloader-bg.jpg');
+  background-image: url("/preloader-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -97,7 +97,7 @@ body {
   opacity: 0;
   // visibility: hidden;
   transition: opacity 0.8s ease, visibility 0.8s ease;
-  
+
   &.loaded {
     opacity: 1;
     // visibility: visible;
@@ -114,7 +114,7 @@ body {
   z-index: -1;
   opacity: 0;
   transition: opacity 1s ease;
-  
+
   &.ready {
     opacity: 1;
   }
@@ -126,6 +126,21 @@ body {
   flex-direction: column;
   justify-content: space-between;
   height: 100vh; /* Стандартная высота */
+}
+
+.request__recaptcha {
+  margin: 15px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* Стили для мобильных устройств */
+@media (max-width: 320px) {
+  .request__recaptcha {
+    transform: scale(0.9);
+    transform-origin: left center;
+  }
 }
 
 /* Адаптивные стили для всех устройств */
@@ -190,14 +205,12 @@ body {
 
 /* Планшеты (от 768px до 992px) */
 @media (max-width: 992px) and (min-width: 769px) {
-
   .wrapper {
     padding: 0 90px;
     height: auto;
     min-height: 100vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    
   }
 
   h1 {
@@ -215,7 +228,7 @@ body {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     margin: 20px 0;
-    
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -228,7 +241,7 @@ body {
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     flex-wrap: nowrap;
-    
+
     &::-webkit-scrollbar {
       display: none;
     }
@@ -249,9 +262,7 @@ body {
   body {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    
   }
-
 
   h1 {
     font-size: 40px;
@@ -296,9 +307,8 @@ body {
     height: auto;
     min-height: 100vh;
     -webkit-overflow-scrolling: touch;
-  
   }
-  
+
   .wrapper {
     height: auto;
     min-height: 100vh;
