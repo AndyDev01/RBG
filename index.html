@@ -359,7 +359,7 @@
             required
           ></textarea>
 
-          <div class="request__file-wrapper">
+          <div class="request__file-wrapper" style="display: block">
             <input
               type="file"
               class="request__file-input"
@@ -368,14 +368,6 @@
               accept=".pdf,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png"
             />
             <div class="request__file-info">Файл не выбран</div>
-          </div>
-
-          <div class="request__recaptcha">
-            <div
-              class="g-recaptcha"
-              data-sitekey="6Lf19y8rAAAAAHW6X4FC5o8knHH3lblY-ethVL_i"
-              data-callback="recaptchaCallback"
-            ></div>
           </div>
 
           <div class="request__policy">
@@ -440,6 +432,20 @@
         </div>
 
         <div class="success-modal__text">Запрос отправлен</div>
+      </div>
+    </div>
+
+    <!-- Модальное окно капчи -->
+    <div class="captcha-modal" id="captcha-modal">
+      <div class="captcha-modal__content">
+        <div class="captcha-modal__title">Подтвердите, что вы не робот</div>
+        <div class="captcha-modal__captcha-container">
+          <div
+            class="g-recaptcha"
+            data-sitekey="6Lf19y8rAAAAAHW6X4FC5o8knHH3lblY-ethVL_i"
+            data-callback="recaptchaCallback"
+          ></div>
+        </div>
       </div>
     </div>
 

@@ -142,6 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     requestSidebar: document.querySelector(".request-sidebar"),
     policySidebar: document.querySelector(".policy-sidebar"),
     successModal: document.getElementById("success-modal"),
+    captchaModal: document.getElementById("captcha-modal"),
   };
 
   const showSidebar = (sidebar) => {
@@ -225,6 +226,67 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Автозакрытие через 3 секунды
     const autoCloseTimer = setTimeout(closeSuccessMessage, 3000);
+  };
+
+  // Функция для отображения модального окна с капчей
+  const showCaptchaModal = () => {
+    console.log("Показываем модальное окно капчи");
+
+    // Очищаем классы с элемента
+    elements.captchaModal.classList.remove("active", "closing");
+
+    // Устанавливаем плавный переход
+    const animationDuration = 500; // 500ms для плавной анимации
+
+    // Показываем элемент
+    // Используем requestAnimationFrame для улучшения производительности
+    requestAnimationFrame(() => {
+      // Сначала отображаем элемент
+      elements.captchaModal.style.display = "flex";
+
+      // Затем запускаем анимацию с небольшой задержкой
+      setTimeout(() => {
+        elements.captchaModal.classList.add("active");
+      }, 20); // Небольшая задержка для запуска анимации
+    });
+
+    // Добавляем обработчик закрытия
+    const closeCaptchaModal = () => {
+      // Добавляем класс closing для запуска анимации
+      elements.captchaModal.classList.add("closing");
+      elements.captchaModal.classList.remove("active");
+
+      // Ждем завершения анимации перед скрытием элемента
+      setTimeout(() => {
+        elements.captchaModal.classList.remove("closing");
+        elements.captchaModal.style.display = "none";
+      }, animationDuration);
+    };
+
+    // Добавляем обработчик для кнопки закрытия
+    const closeButton = elements.captchaModal.querySelector(
+      ".captcha-modal__close"
+    );
+    if (closeButton) {
+      closeButton.addEventListener("click", closeCaptchaModal, { once: true });
+    }
+
+    // Добавляем обработчик клика на фоне для закрытия модального окна
+    const handleBackgroundClick = (e) => {
+      // Если клик был на фоне (не на контенте)
+      if (e.target === elements.captchaModal) {
+        closeCaptchaModal();
+        elements.captchaModal.removeEventListener(
+          "click",
+          handleBackgroundClick
+        );
+      }
+    };
+
+    elements.captchaModal.addEventListener("click", handleBackgroundClick);
+
+    // Возвращаем функцию закрытия
+    return closeCaptchaModal;
   };
 
   // Обработчики кнопок
@@ -444,6 +506,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // Глобальная функция обратного вызова для капчи
     window.recaptchaCallback = function () {
       console.log("Капча прошла проверку");
+
+      // Сохраняем результат проверки капчи в форме
+      requestForm.dataset.captchaVerified = "true";
+
+      // Закрываем модальное окно капчи через небольшую задержку
+      setTimeout(() => {
+        // Находим и активируем функцию закрытия
+        if (window.closeCaptchaModal) {
+          window.closeCaptchaModal();
+
+          // После закрытия модального окна и прохождения капчи
+          // автоматически отправляем форму с небольшой задержкой
+          setTimeout(() => {
+            if (requestForm.dataset.captchaVerified === "true") {
+              formElements.submitButton.click();
+            }
+          }, 800); // Задержка после закрытия модального окна
+        }
+      }, 500); // Задержка перед началом закрытия
     };
 
     // Отправка формы
@@ -452,15 +533,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!validateForm()) return;
 
-      // Проверяем, что капча была пройдена
-      const recaptchaResponse = grecaptcha.getResponse();
-      if (!recaptchaResponse) {
-        alert("Пожалуйста, подтвердите, что вы не робот");
+      // Проверяем, была ли пройдена капча
+      if (requestForm.dataset.captchaVerified !== "true") {
+        // Показываем модальное окно с капчей
+        window.closeCaptchaModal = showCaptchaModal();
+
+        // Добавляем обработчик клавиши ESC для закрытия модального окна
+        const handleEscapeKey = (e) => {
+          if (e.key === "Escape") {
+            if (window.closeCaptchaModal) {
+              window.closeCaptchaModal();
+            }
+            document.removeEventListener("keydown", handleEscapeKey);
+          }
+        };
+
+        document.addEventListener("keydown", handleEscapeKey);
+
         return;
       }
 
       try {
         const formData = new FormData(requestForm);
+
+        // Добавляем ответ капчи в formData
+        formData.append("g-recaptcha-response", grecaptcha.getResponse());
+
         await fetch("send_email.php", { method: "POST", body: formData });
 
         hideElement(elements.requestSidebar);
@@ -472,6 +570,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         formElements.submitButton.disabled = true;
 
+        // Сбрасываем состояние капчи
+        requestForm.dataset.captchaVerified = "false";
         // Сбрасываем капчу после успешной отправки
         grecaptcha.reset();
       } catch (error) {
@@ -479,6 +579,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Показываем модальное окно успеха даже при ошибке, как было в оригинале
         hideElement(elements.requestSidebar);
         showSuccessModal(); // Используем новую функцию
+
+        // Сбрасываем состояние капчи при ошибке также
+        requestForm.dataset.captchaVerified = "false";
+        grecaptcha.reset();
       }
     });
   }

@@ -1020,7 +1020,7 @@ h1 {
 .request-sidebar .request__file-wrapper {
   display: flex;
   flex-direction: column;
-  display: none;
+  margin-bottom: 15px;
 }
 .request-sidebar .request__file-info {
   font-family: "Montserrat";
@@ -1490,6 +1490,104 @@ h1 {
   text-align: center;
 }
 
+/* Модальное окно капчи */
+.captcha-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+.captcha-modal.active {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+.captcha-modal.closing {
+  opacity: 0 !important;
+  display: flex !important;
+  transition: opacity 0.5s ease !important;
+}
+.captcha-modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.4);
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+  transform: scale(0.9);
+  opacity: 0;
+  position: relative;
+  z-index: 1002;
+  max-width: 400px;
+  width: 90%;
+}
+.captcha-modal.active .captcha-modal__content {
+  transform: scale(1);
+  opacity: 1;
+}
+.captcha-modal.closing .captcha-modal__content {
+  transform: scale(0.9);
+  opacity: 0;
+}
+.captcha-modal__title {
+  font-family: "Montserrat";
+  font-weight: 600;
+  font-size: 22px;
+  color: #151515;
+  margin-bottom: 25px;
+  text-align: center;
+}
+.captcha-modal__captcha-container {
+  margin-bottom: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.captcha-modal__close {
+  font-family: "Montserrat";
+  font-weight: 500;
+  font-size: 16px;
+  color: #666;
+  cursor: pointer;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+  padding: 8px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}
+.captcha-modal__close:hover {
+  color: #3a75ed;
+  border-color: #3a75ed;
+  transform: scale(1.05);
+}
+@media (max-width: 576px) {
+  .captcha-modal__content {
+    width: 90%;
+    padding: 20px;
+  }
+  .captcha-modal__title {
+    font-size: 18px;
+  }
+}
+/* Конец стилей модального окна капчи */
+
 /* Прелоадер */
 .preloader {
   position: fixed;
@@ -1609,9 +1707,7 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 10px 0;
-  background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
+  display: none;
 }
 
 /* Стили для мобильных устройств */
